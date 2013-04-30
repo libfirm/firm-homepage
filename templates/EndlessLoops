@@ -1,0 +1,28 @@
+{% extends "parts/base" %}
+{% block title %}
+	EndlessLoops
+{% endblock %}
+{% block content %}
+
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#The_Problem"><span class="tocnumber">1</span> <span class="toctext">The Problem</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Keep-alive-edges"><span class="tocnumber">2</span> <span class="toctext">Keep-alive-edges</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Optimisations"><span class="tocnumber">3</span> <span class="toctext">Optimisations</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Frontends"><span class="tocnumber">4</span> <span class="toctext">Frontends</span></a></li>
+</ul>
+</td></tr></table>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: The Problem">edit</a>]</span> <span class="mw-headline" id="The_Problem"> The Problem </span></h2>
+<p>Endless-loops are tricky business because in this case there's no control flow going to the end node. In firm code that is not reachable by the end-node is considered dead - we simply loose all pointers and with them the knowledge that there are nodes.
+</p>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Keep-alive-edges">edit</a>]</span> <span class="mw-headline" id="Keep-alive-edges"> Keep-alive-edges </span></h2>
+<p>The solution is to add a special edge from the end-node to a block in the loop and if necessary another edge to the Memory input in front of the loop. We call this edge a keep-alive-edge. The edge is unusual in that it doesn't respect the SSA dominance property.
+Firm-Code expects that inside an endless loops at least 1 block is referenced by a keep-alive-edge!
+</p>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=3" title="Edit section: Optimisations">edit</a>]</span> <span class="mw-headline" id="Optimisations"> Optimisations </span></h2>
+<p>Optimisations that potentially create endless loops have to make sure to add keep-alive edges as needed.
+</p>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=4" title="Edit section: Frontends">edit</a>]</span> <span class="mw-headline" id="Frontends"> Frontends </span></h2>
+<p>Frontends have to add keep-alive edges for potential endless loops. This is usually the case for goto-labels and stuff like while(true) when the frontend performs constant folding itself.
+</p>
+{% endblock %}

@@ -1,0 +1,527 @@
+{% extends "parts/base" %}
+{% block title %}
+	BackendTutorial
+{% endblock %}
+{% block content %}
+
+<div style="border-top: 1px solid red; border-bottom: 1px solid red; text-align: center; margin-top: 1em; margin-bottom: 1em;">
+<p>This article is work in progress. It is incomplete and can contain errors. Help in finishing the article is appreciated.
+</p>
+</div>
+<p><b>TODO: </b>
+</p>
+<ul><li> <b>adapt to current syntax, this version is slightly outdated</b>
+</li><li> <b>complete english translation</b>
+</li></ul>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#The_specification_language"><span class="tocnumber">1</span> <span class="toctext">The specification language</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#The_architecture_.24arch"><span class="tocnumber">1.1</span> <span class="toctext">The architecture $arch</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#The_variable_.24additional_opcodes"><span class="tocnumber">1.2</span> <span class="toctext">The variable $additional_opcodes</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#The_cpu_flags_.25flags"><span class="tocnumber">1.3</span> <span class="toctext">The cpu flags&#160;%flags</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#The_abstract_cpu_.25cpu"><span class="tocnumber">1.4</span> <span class="toctext">The abstract cpu&#160;%cpu</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#The_vliw_support_.25vliw"><span class="tocnumber">1.5</span> <span class="toctext">The vliw support&#160;%vliw</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#The_emitter_templates_.25emit_templates"><span class="tocnumber">1.6</span> <span class="toctext">The emitter templates&#160;%emit_templates</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#The_register_classes_.25reg_classes"><span class="tocnumber">1.7</span> <span class="toctext">The register classes&#160;%reg_classes</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Die_Knoten_.25nodes"><span class="tocnumber">1.8</span> <span class="toctext">Die Knoten&#160;%nodes</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Generierte_Dateien_und_Funktionen"><span class="tocnumber">1.9</span> <span class="toctext">Generierte Dateien und Funktionen</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: The specification language">edit</a>]</span> <span class="mw-headline" id="The_specification_language"> The specification language </span></h1>
+<p>The specification itself is a Perl file. So the node and register constraint descriptions are represented by Perl data structures like hashes and arrays. This has the advantage that no separate parser is needed and the specification can be directly included into the generator scripts which are written in Perl as well. The following variables are used for generation:
+</p>
+<dl><dt> <span class="var">$arch</span>&#160;</dt><dd> architecture mnemonic (e.g. ia32, sparc, mips, ppc, ...), required
+</dd><dt> <span class="var">$additional_opcodes</span>&#160;</dt><dd> number of additional required opcodes (besides the specified ones), optional
+</dd><dt> <span class="var">%reg_classes</span>&#160;</dt><dd> description of register classes, required
+</dd><dt> <span class="var">%flags</span>&#160;</dt><dd> description of cpu flags, optional, can be omitted if flags are not supported on your architecture
+</dd><dt> <span class="var">%cpu</span>&#160;</dt><dd> abstract cpu description, right now only used for ILP scheduling
+</dd><dt> <span class="var">%vliw</span>&#160;</dt><dd> vliw support description, right now only used for ILP scheduling
+</dd><dt> <span class="var">%emit_templates</span>&#160;</dt><dd> templates for code emitter, optional
+</dd><dt> <span class="var">%nodes</span>&#160;</dt><dd> description of backend nodes, required
+</dd></dl>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: The architecture $arch">edit</a>]</span> <span class="mw-headline" id="The_architecture_.24arch"> The architecture <span class="var">$arch</span> </span></h2>
+<p>The assigned architecture mnemonic is used for the generated names of types, variables, functions and files to avoid name conflicts with other backends. In general all external visible functions, variables and types should contain this mnemonic.
+Example:
+</p>
+<pre>$arch = "ia32";
+</pre>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=3" title="Edit section: The variable $additional opcodes">edit</a>]</span> <span class="mw-headline" id="The_variable_.24additional_opcodes"> The variable <span class="var">$additional_opcodes</span> </span></h2>
+<p>This variable is optional. You can acquire additional opcodes in <span class="algo">Firm</span> for special nodes not created by the generator.
+Example:
+</p>
+<pre>$additional_opcodes = "5";
+</pre>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=4" title="Edit section: The cpu flags %flags">edit</a>]</span> <span class="mw-headline" id="The_cpu_flags_.25flags"> The cpu flags <span class="var">%flags</span> </span></h2>
+<p>The flags are described as a hash with a name for every cpu flag as key pointing to another hash representing the actual flag description. This hash contains a key <span class="var">reg</span> pointing to the name of the flag register containing the current flag and a key <span class="var">bit</span> for the number of the bit representing the current flag within the register.
+Example:
+</p>
+<pre>
+%flags = (
+        CF =&gt; { reg =&gt; &quot;eflags&quot;, bit =&gt; 0 },
+        PF =&gt; { reg =&gt; &quot;eflags&quot;, bit =&gt; 2 },
+        AF =&gt; { reg =&gt; &quot;eflags&quot;, bit =&gt; 4 },
+        ZF =&gt; { reg =&gt; &quot;eflags&quot;, bit =&gt; 6 },
+        SF =&gt; { reg =&gt; &quot;eflags&quot;, bit =&gt; 7 },
+        TF =&gt; { reg =&gt; &quot;eflags&quot;, bit =&gt; 8 },
+        IF =&gt; { reg =&gt; &quot;eflags&quot;, bit =&gt; 9 },
+        DF =&gt; { reg =&gt; &quot;eflags&quot;, bit =&gt; 10 },
+        OF =&gt; { reg =&gt; &quot;eflags&quot;, bit =&gt; 11 }
+); #&#160;%flags
+</pre>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=5" title="Edit section: The abstract cpu %cpu">edit</a>]</span> <span class="mw-headline" id="The_abstract_cpu_.25cpu"> The abstract cpu <span class="var">%cpu</span> </span></h2>
+<p>This variable is as hash used as abstract machine description. One can specify which function unit types are available and how many units of each type exists. The hash contains a unit type name as key pointing to an array listing all units of this type. The first entry in the array is the number of outports for each unit (usually 1) and all following ones are the names for the corresponding unit. Right now this description is used for the ILP scheduler to assign instructions to functional units.
+Example:
+</p>
+<pre>
+%cpu = (
+  &quot;ALU&quot;   =&gt; [ 1, &quot;ALU1&quot;, &quot;ALU2&quot;, &quot;ALU3&quot;, &quot;ALU4&quot; ],
+  &quot;MUL&quot;   =&gt; [ 1, &quot;MUL&quot; ],
+  &quot;SHIFT&quot; =&gt; [ 1, &quot;SHIFT&quot; ],
+  &quot;EXT&quot;   =&gt; [ 1, &quot;EXT&quot; ],
+  &quot;MEM&quot;   =&gt; [ 2, &quot;LDST&quot; ]
+); #&#160;%cpu
+</pre>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=6" title="Edit section: The vliw support %vliw">edit</a>]</span> <span class="mw-headline" id="The_vliw_support_.25vliw"> The vliw support <span class="var">%vliw</span> </span></h2>
+<p>The vliw support description is used along with the abstract machine description in <span class="var">%cpu</span> for the ILP scheduler to determine how many instruction can be executed within one cycle. It is a hash with two keys <span class="var">bundle_size</span> describing the number of instructions per bundle, and <span class="var">bundels_per_cycle</span> describing the number of bundles executed per cycle.
+Example (Itanium):
+</p>
+<pre>
+%vliw = (
+    &quot;bundle_size&quot;       =&gt; 3,
+    &quot;bundels_per_cycle&quot; =&gt; 2
+); # vliw
+</pre>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=7" title="Edit section: The emitter templates %emit templates">edit</a>]</span> <span class="mw-headline" id="The_emitter_templates_.25emit_templates"> The emitter templates <span class="var">%emit_templates</span> </span></h2>
+<p>This variable is used to specify place holders one can use within the emit specification for the nodes. They can be used similar to <span class="var">printf</span> format specifiers.
+Example:
+</p>
+<pre>
+%emit_templates = (
+    S0 =&gt; &quot;${arch}_emit_source_register(env, node, 0);&quot;,
+    S1 =&gt; &quot;${arch}_emit_source_register(env, node, 1);&quot;,
+    S2 =&gt; &quot;${arch}_emit_source_register(env, node, 2);&quot;,
+    S3 =&gt; &quot;${arch}_emit_source_register(env, node, 3);&quot;,
+    S4 =&gt; &quot;${arch}_emit_source_register(env, node, 4);&quot;,
+    S5 =&gt; &quot;${arch}_emit_source_register(env, node, 5);&quot;,
+    D0 =&gt; &quot;${arch}_emit_dest_register(env, node, 0);&quot;,
+    D1 =&gt; &quot;${arch}_emit_dest_register(env, node, 1);&quot;,
+    D2 =&gt; &quot;${arch}_emit_dest_register(env, node, 2);&quot;,
+    D3 =&gt; &quot;${arch}_emit_dest_register(env, node, 3);&quot;,
+    D4 =&gt; &quot;${arch}_emit_dest_register(env, node, 4);&quot;,
+    D5 =&gt; &quot;${arch}_emit_dest_register(env, node, 5);&quot;,
+    X0 =&gt; &quot;${arch}_emit_x87_name(env, node, 0);&quot;,
+    X1 =&gt; &quot;${arch}_emit_x87_name(env, node, 1);&quot;,
+    X2 =&gt; &quot;${arch}_emit_x87_name(env, node, 2);&quot;,
+    C  =&gt; &quot;${arch}_emit_immediate(env, node);&quot;,
+    SE =&gt; &quot;${arch}_emit_extend_suffix(env, get_ia32_ls_mode(node));&quot;,
+    ME =&gt; &quot;if(get_mode_size_bits(get_ia32_ls_mode(node))&#160;!= 32)\n
+               ia32_emit_mode_suffix(env, node);&quot;,
+    M  =&gt; &quot;${arch}_emit_mode_suffix(env, node);&quot;,
+    XM =&gt; &quot;${arch}_emit_x87_mode_suffix(env, node);&quot;,
+    XXM =&gt; &quot;${arch}_emit_xmm_mode_suffix(env, node);&quot;,
+    XSD =&gt; &quot;${arch}_emit_xmm_mode_suffix_s(env, node);&quot;,
+    AM =&gt; &quot;${arch}_emit_am(env, node);&quot;,
+    unop =&gt; &quot;${arch}_emit_unop(env, node);&quot;,
+    binop =&gt; &quot;${arch}_emit_binop(env, node);&quot;,
+    x87_binop =&gt; &quot;${arch}_emit_x87_binop(env, node);&quot;,
+); #&#160;%emit_templates
+</pre>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=8" title="Edit section: The register classes %reg classes">edit</a>]</span> <span class="mw-headline" id="The_register_classes_.25reg_classes"> The register classes <span class="var">%reg_classes</span> </span></h2>
+<p>Diese Variable ist ein Hash, mit einem Namen f&#252;r jede Registerklasse als Schl&#252;ssel, der auf ein Array zeigt, dass die
+Registerbeschreibungen enth&#228;lt. Jedes dieser Register wird durch einen Hash beschrieben, wobei jeder dieser Hashes zwei
+Schl&#252;ssel enth&#228;lt -- <span class="var">name</span> zeigt auf den Registernamen und <span class="var">type</span> zeigt auf den Registertyp. Als
+Registername kann eine beliebige Zeichenkette bestehen aus <span class="var">A-Z</span>, <span class="var">a-z</span>, <span class="var">0-9</span> und <span class="var">_</span> angegeben werden. 
+Der Registertyp kann mit Hilfe der folgenden vier Flags definiert werden:
+</p>
+<ul><li> <span class="var">0</span> - no special type
+</li><li> <span class="var">1</span> - caller save (register must be saved by the caller of a function)
+</li><li> <span class="var">2</span> - callee save (register must be saved by the called function)
+</li><li> <span class="var">4</span> - ignore (do not assign this register, eg. stack pointer)
+</li><li> <span class="var">8</span> - emitter can choose an arbitrary register of this class
+</li><li> <span class="var">16</span> - the register is a virtual one
+</li><li> <span class="var">32</span> - register represents a state
+</li></ul>
+<p>Wenn mehrere dieser Flags gesetzt sein sollen, dann sind die entsprechende Werte zu addieren. Der letzte Eintrag in dem Array
+mit den Registerbeschreibungen ist ein besonderer Hash, der als Schl&#252;ssel <span class="var">mode</span> besitzt. Dieser zeigt auf den
+gr&#246;&#223;ten <span class="algo">Firm</span> Mode, den ein Register dieser Klasse aufnehmen kann.
+</p><p>Beispiel:
+</p>
+<pre>
+%reg_classes = (
+    gp =&gt; [
+        { name =&gt; &quot;eax&quot;, type =&gt; 1 },
+        { name =&gt; &quot;edx&quot;, type =&gt; 1 },
+        { name =&gt; &quot;ebx&quot;, type =&gt; 2 },
+        { name =&gt; &quot;ecx&quot;, type =&gt; 1 },
+        { name =&gt; &quot;esi&quot;, type =&gt; 2 },
+        { name =&gt; &quot;edi&quot;, type =&gt; 2 },
+        { name =&gt; &quot;ebp&quot;, type =&gt; 2 },
+        { name =&gt; &quot;esp&quot;, type =&gt; 4 },
+        { name =&gt; &quot;gp_NOREG&quot;, type =&gt; 4 | 8 | 16 }, # we need a dummy register for NoReg nodes
+        { name =&gt; &quot;gp_UKNWN&quot;, type =&gt; 4 | 8 | 16 },  # we need a dummy register for Unknown nodes
+        { mode =&gt; &quot;mode_Iu&quot; }
+    ],
+    xmm =&gt; [
+        { name =&gt; &quot;xmm0&quot;, type =&gt; 1 },
+        { name =&gt; &quot;xmm1&quot;, type =&gt; 1 },
+        { name =&gt; &quot;xmm2&quot;, type =&gt; 1 },
+        { name =&gt; &quot;xmm3&quot;, type =&gt; 1 },
+        { name =&gt; &quot;xmm4&quot;, type =&gt; 1 },
+        { name =&gt; &quot;xmm5&quot;, type =&gt; 1 },
+        { name =&gt; &quot;xmm6&quot;, type =&gt; 1 },
+        { name =&gt; &quot;xmm7&quot;, type =&gt; 1 },
+        { name =&gt; &quot;xmm_NOREG&quot;, type =&gt; 4 | 16 },     # we need a dummy register for NoReg nodes
+        { name =&gt; &quot;xmm_UKNWN&quot;, type =&gt; 4 | 8 | 16},  # we need a dummy register for Unknown nodes
+        { mode =&gt; &quot;mode_E&quot; }
+    ],
+    st =&gt; [
+        { name =&gt; &quot;st0&quot;, realname =&gt; &quot;st&quot;,    type =&gt; 4 },
+        { name =&gt; &quot;st1&quot;, realname =&gt; &quot;st(1)&quot;, type =&gt; 4 },
+        { name =&gt; &quot;st2&quot;, realname =&gt; &quot;st(2)&quot;, type =&gt; 4 },
+        { name =&gt; &quot;st3&quot;, realname =&gt; &quot;st(3)&quot;, type =&gt; 4 },
+        { name =&gt; &quot;st4&quot;, realname =&gt; &quot;st(4)&quot;, type =&gt; 4 },
+        { name =&gt; &quot;st5&quot;, realname =&gt; &quot;st(5)&quot;, type =&gt; 4 },
+        { name =&gt; &quot;st6&quot;, realname =&gt; &quot;st(6)&quot;, type =&gt; 4 },
+        { name =&gt; &quot;st7&quot;, realname =&gt; &quot;st(7)&quot;, type =&gt; 4 },
+        { mode =&gt; &quot;mode_E&quot; }
+    ],
+    flags =&gt; [
+        { name =&gt; &quot;eflags&quot;, type =&gt; 4 },
+        { mode =&gt; &quot;mode_Iu&quot; }
+    ]
+); #&#160;%reg_classes
+</pre>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=9" title="Edit section: Die Knoten %nodes">edit</a>]</span> <span class="mw-headline" id="Die_Knoten_.25nodes"> Die Knoten <span class="var">%nodes</span> </span></h2>
+<p>Die Backendknoten sind in der Hash Variablen <span class="var">%nodes</span> beschrieben. Jeder Schl&#252;ssel entspricht einem Knotennamen
+und zeigt auf die zugeh&#246;rige Knotenbeschreibung. Der endg&#252;ltige Knotenname wird aus dem Architekturk&#252;rzel und dem
+hier angegebenen Namen gelbildet.
+Beispiel:
+</p>
+<pre>
+$arch = &quot;ia32&quot;;
+
+%nodes = (
+  &quot;Add&quot; =&gt; {
+    ...
+  }
+  ...
+);
+</pre>
+<p>Der resultierende Knoten hei&#223;t <span class="var">ia32_Add</span>.
+</p><p>Die Knotenbeschreibung ist wiederum ein Hash, f&#252;r den die folgenden Schl&#252;ssel definiert sind:
+</p><p><dl>
+<dt><span class="var">op_flags</span>
+<dd>Die hier angebenen Flags entsprechen den <span class="var">irop_flags</span> aus <span class="algo">Firm</span>. Sollen mehrere Flags gesetzt sein, so sind sie mit <span class="var">|</span> zu verbinden. Folgende Werte sind definiert:
+</p>
+<ul>
+<li><span class="var">N</span> - <span class="var">irop_flag_none</span>
+<li><span class="var">L</span> - <span class="var">irop_flag_labeled</span>
+<li><span class="var">C</span> - <span class="var">irop_flag_commutative</span>
+<li><span class="var">X</span> - <span class="var">irop_flag_cfopcode</span>
+<li><span class="var">I</span> - <span class="var">irop_flag_ip_cfopcode</span>
+<li><span class="var">F</span> - <span class="var">irop_flag_fragile</span>
+<li><span class="var">Y</span> - <span class="var">irop_flag_forking</span>
+<li><span class="var">H</span> - <span class="var">irop_flag_highlevel</span>
+<li><span class="var">c</span> - <span class="var">irop_flag_constlike</span>
+<li><span class="var">K</span> - <span class="var">irop_flag_keep</span>
+</ul>
+<p>Dieser Eintrag ist optional und kann auch entfallen, dann wird als Standard <span class="var">N</span> verwendet. Beispiel
+</p>
+<pre> <span class="var">op_flags =&gt; "L|X"</span>
+</pre>
+<p></dl>
+</p><p><dl>
+<dt><span class="var">irn_flags</span>
+<dd>Mit diesen Flags kann man die Registerallokation des jeweiligen Knotens steuern. Es k&#246;nnen ebenfalls mehrere Flags gesetzt sein, die dann entsprechend mit <span class="var">|</span> verbunden werden. Folgende Werte sind definiert:
+</p>
+<ul>
+<li><span class="var">N</span> - <span class="var">dont_spill</span>, d.h. der Wert dieses Knotens kann nicht ausgelagert werden, falls der Registerdruck zu hoch wird
+<li><span class="var">R</span> - <span class="var">rematerializable</span>, d.h. es ist u.U. billiger den Wert neu zu berechnen, anstatt ihn auszulagern
+<li><span class="var">I</span> - <span class="var">ignore</span>, d.h. dieser Knoten soll vom Registerallokator nicht beachtet werden, die Registerzuteilung muss dann von Hand geschehen
+</ul>
+<p>Der Eintrag ist optional und kann entfallen, dann werden keine besonderen Flags gesetzt. Beispiel:
+</p>
+<pre> <span class="var">irn_flags =&gt; "R"</span>
+</pre>
+<p></dl>
+</p><p><dl>
+<dt><span class="var">arity</span>
+<dd>Die <span class="var">arity</span> gibt die Anzahl der Eing&#228;nge des Knotens an. Folgende Werte k&#246;nnen angeben werden:
+<dl>
+<dt><span class="var">0,1,2,...</span>
+<dd>ein beliebige Dezimalzahl gr&#246;&#223;er oder gleich 0, jeder dieser Knoten hat dann die hier festgelegte Zahl an Eing&#228;ngen
+<dt><span class="var">variable</span>
+<dd>die Anzahl der Eing&#228;nge pro Knoten ist verschieden, aber nach der Konstruktion fest (z.B. bei <span class="var">Call</span> Knoten)
+<dt><span class="var">dynamic</span>
+<dd>die Anzahl der Eing&#228;nge kann auch nach der Knotenkonstuktion noch variieren
+<dt><span class="var">any</span>
+<dd>die Stelligkeit ist nicht n&#228;her festgelegt
+</dl>
+Dieser Eintrag ist optional und kann entfallen, dann wird die Stelligkeit aus der Angabe der Registeranforderungen f&#252;r die Eing&#228;nge berechnet. Man muss ihn also nur setzen, wenn man explizit eine andere Stelligkeit angeben will. Beispiel
+</p>
+<pre> <span class="var">arity =&gt; "variable"</span>
+</pre>
+<p></dl>
+</p><p><dl>
+<dt><span class="var">state</span>
+<dd>Hiermit wird angegeben, in welchem Zustand sich Knoten dieses Typs befinden. Folgende Werte sind definiert
+<dl>
+<dt><span class="var">floats</span>
+<dd>Knoten diesen Typs k&#246;nnen beliebig zwischen Bl&#246;cken verschoben werden
+<dt><span class="var">pinned</span>
+<dd>Knoten diesen Typs k&#246;nnen nicht aus dem Block heraus verschoben werden, in dem sie erzeugt wurden
+<dt><span class="var">exc_pinned</span>
+<dd>Knoten diesen Typs k&#246;nnen nicht aus dem Block heraus verschoben werden, in dem sie erzeugt wurden, falls sie eine Ausnahme erzeugen k&#246;nnen
+<dt><span class="var">mem_pinned</span>
+<dd>Knoten diesen Typs k&#246;nnen nicht aus dem Block heraus verschoben werden, in dem sie erzeugt wurden,	falls sie eine Ausnahmeerzeugen k&#246;nnen oder auf Speicher zugreifen
+</dl>
+Dieser Eintrag ist optional und kann entfallen, dann wird als Standard <span class="var">floats</span> verwendet. Beispiel
+</p>
+<pre> <span class="var">state =&gt; "pinned"</span>
+</pre>
+<p></dl>
+</p><p><dl>
+<dt><span class="var">reg_req</span>
+<dd>Dieser Wert dient der Beschreibung der Registeranforderungen f&#252;r die Knotenein- und -ausg&#228;nge. Die Angabe erfolgt als Hash mit zwei Schl&#252;sseln -- <span class="var">in</span> f&#252;r die Eing&#228;nge und <span class="var">out</span> f&#252;r die Ausg&#228;nge. Jeder dieser beiden Schl&#252;ssel zeigt auf ein Array mit Strings, die die Anforderungen f&#252;r den jeweiligen Ein-/Ausgang beschreiben. Aus der Anzahl der Strings im Feld f&#252;r <span class="var">in</span> kann auch die Stelligkeit (siehe <span class="var">arity</span>) berechnet werden. Es gilt die folgende Syntax
+<dl>
+<dt><span class="var">none</span>
+<dd>Dies bedeutet, dass keine Register zugeteilt werden sollen (z.B. bei Ein-/Ausg&#228;ngen von Speicherkanten).
+<dt><span class="var">Name einer Registerklasse</span>
+<dd>Wenn der Name einer der in <span class="var">%reg_classes</span> definierten Registerklassen angegeben wird, dann kann jedes Register dieser Klasse verwendet werden.
+<dt><span class="var">Name eines oder mehrere Register einer Klasse</span>
+<dd>Man kann die m&#246;glichen Register auch aufz&#228;hlen (getrennt durch Leerzeichen), dann sind nur die erw&#228;hnten Register zul&#228;ssig. Beispiel
+</p>
+<pre> <span class="var">"eax edx"</span>
+</pre>
+<p>Es ist auch m&#246;glich die Register zu negieren, dann hei&#223;t das, das alle bis auf die negierten Register zul&#228;ssig sind.
+Beispiel
+</p>
+<pre> <span class="var">"!ebx&#160;!ecx"</span>
+</pre>
+<p>Das Mischen von Registern verschiedener Klassen ist nicht zul&#228;ssig. Das Mischen von negierten Registern und nicht negierten Registern ist ebenfalls nicht zul&#228;ssig.
+</p>
+<pre>  <span class="var">"eax xmm0"</span> -&gt; falsch
+  <span class="var">"!eax edx"</span> -&gt; falsch
+</pre>
+<p><dt><span class="var">in_rX</span>
+<dd>Nur bei den Ausgabeanforderungen zul&#228;ssig. Damit kann man den Wunsch ausdr&#252;cken, dass der durch <span class="var">X</span> (<span class="var">X</span> &gt;= 1) angegebene Eingang das gleiche Register ,,zugewiesen<i> bekommen soll wie der aktuelle Ausgang. Dies kann vom Registerallokator allerdings nicht immer erf&#252;llt werden, so dass ggfs.  hinterher von Hand eine Kopie eingf&#252;gt werden muss.</i>
+Beispiel:
+</p>
+<pre> <span class="var">"in_r1"</span>
+</pre>
+<p>Es ist auch m&#246;glich diese Angabe zu negieren und damit ungleiche Register zu fordern. Im Gegensatz zur Gleichf&#228;rbung ist dies dann nicht nur ein Wunsch, sondern eine Forderung, die auch immer sichergestellt wird.
+Beispiel:
+</p>
+<pre> <span class="var">"!in_r2"</span>
+</pre>
+<p>Es ist m&#246;glich normale und negierte Angabe zu mischen, allerdings ist nur eine normale und/oder negierte Angabe pro Ausgang zul&#228;ssig.
+</p>
+<pre> <span class="var">"in_r1&#160;!in_r2"</span>  -&gt; richtig
+ <span class="var">"in_r1 in_r2"</span>   -&gt; falsch
+ <span class="var">"!in_r1&#160;!in_r2"</span> -&gt; falsch
+</pre>
+<p>Ebenfalls m&#246;glich ist das Msichen mit der Angabe von Registernamen, so dass sich z.B. die Anforderung: ,,Das Ergebnis liegt immer in Register <span class="var">eax</span>. Der erste Operand sollte ebenfalls in <span class="var">eax</span> sein, es darf aber auf keinen Fall der zweite Operand in <span class="var">eax</span> liegen.<i> folgenderma&#223;en realisieren l&#228;&#223;t:</i>
+</p>
+<pre> <span class="var">"eax in_r1&#160;!in_r2"</span>
+</pre>
+<p></dl>
+Die Angabe der Registeranforderungen ist optional und kann entfallen, allerdings muss dann die Stelligkeit spezifiziert werden. Zu bemerken sei noch, dass Eing&#228;ngen keine Register zugeteilt werden, sondern die Angabe der Anforderungen dient der Steuerung der Zuteilung der Register zu den Ausg&#228;ngen und ggfs. dem Einf&#252;gen von Kopien. Beispiel:
+</p>
+<pre> <span class="var">"in" =&gt; [ "gp", "gp" ], "out" =&gt; [ "in_r1" ] }</span>
+</pre>
+<p></dl>
+</p>
+<dl><dt> <span class="var">comment</span>&#160;</dt><dd> Optionaler C-Kommentar, der vor den erzeugten Knotenkonstruktor eingef&#252;gt wird.\\ Bsp.: <span class="var">comment =&gt; "Store(ptr, val, mem) = ST ptr,val"</span>
+</dd></dl>
+<p><dl>
+<dt><span class="var">rd_constructor</span>
+<dd>Hiermit kann optional der Quellcode des Knotenkonstruktors angegeben werden, falls nicht der Standardkonstruktor verwendet werden soll. Die Signatur wird fogenderma&#223;en generiert:
+</p>
+<pre> ir_node *new_rd_&lt;Knotenname&gt;(dbg_info *db, ir_graph *irg, ir_node *block, ir_node *op1 ..., ir_node *opX, ir_mode *mode)
+</pre>
+<p><span class="var">op1</span> bis <span class="var">opX</span> stehen f&#252;r die Operanden, die der Knoten verwendet, wobei <span class="var">X</span> die Anzahl der Eing&#228;nge ist. Der Standardkonstruktor sieht wie folgt aus (<span class="var">Y</span> steht für die Anzahl der Ausgänge):
+</p>
+<pre>
+ir_node *new_rd_&lt;Knotenname&gt;(dbg_info *db, ir_graph *irg, ir_node *block, ir_node *op1, ..., ir_node *opX, ir_mode *mode)
+{
+  ir_node *res;
+  ir_node *in[X];
+  int flags = 0;
+  static const $arch_register_req_t *_in_req_&lt;Knotenname&gt;[] =
+  {
+    &lt;Knotenname&gt;_reg_req_in_0,
+    ...
+    &lt;Knotenname&gt;_reg_req_in_(X-1),
+  };
+  static const $arch_register_req_t *_out_req_&lt;Knotenname&gt;[] =
+  {
+    &lt;Knotenname&gt;_reg_req_out_0,
+    ...
+    &lt;Knotenname&gt;_reg_req_out_(Y-1),
+  };
+
+  if (! op_&lt;Knotenname&gt;) {
+    assert(0);
+    return NULL;
+  }
+
+  in[0]   = op1;
+  ...
+  in[X-1] = opX;
+
+  /* create node */
+  res = new_ir_node(db, irg, block, op_&lt;Knotenname&gt;, mode, X, in);
+  
+  /* init node attributes */
+  init_$arch_attributes(res, flags, _in_req_&lt;Knotenname&gt;, _out_req_&lt;Knotenname&gt;, Y);
+  
+  /* optimize node */
+  res = optimize_node(res);
+  irn_vrfy_irg(res, irg);
+  return res;
+}
+</pre>
+<p>Wenn explizit kein Konstruktor erzeugt werden soll, dann muss der Schl&#252;ssel auf <span class="var">NONE</span> gesetzt werden:
+</p>
+<pre> <span class="var">rd_constructor =&gt; "NONE"</span>
+</pre>
+<p>Beispiel f&#252;r die Angabe eines eigenen Konstruktors
+</p>
+<pre> "rd_constructor" =&gt;
+ "  if (!op_ia32_Return) assert(0);
+      return new_ir_node(db, irg, block, op_ia32_Return, mode_X, n, in);
+ "
+</pre>
+<p></dl>
+</p><p><dl>
+<dt><span class="var">args</span>
+<dd>Wenn kein Standardkonstruktor verwendet wird, dann kann kann man an dieser Stelle auch andere Argumente f&#252;r	die Funktionssignatur des Konstruktors angeben. Die Angabe erfolgt als Array von Hashes, wobei jeder Hash zwei Schl&#252;ssel enth&#228;lt -- <span class="var">type</span> f&#252;r den Typ des Arguments und <span class="var">name</span> f&#252;r den Variablennamen. Zu beachten ist, dass die ersten drei Parameter trotzdem automatisch als <span class="var">dbg_info *db</span>, <span class="var">ir_graph *irg</span> und <span class="var">ir_node *block</span> generiert werden. D.h. alle hier angegebenen Paramter werden zus&#228;tzlich zu diesen drei erzeugt.
+Beispiel passend zum obigen selbst definierten Konstruktor:
+</p>
+<pre>
+&quot;args&quot; =&gt; [
+            { &quot;type&quot; =&gt; &quot;int&quot;,        &quot;name&quot; =&gt; &quot;n&quot; },
+            { &quot;type&quot; =&gt; &quot;ir_node **&quot;, &quot;name&quot; =&gt; &quot;in&quot; }
+          ]
+</pre>
+<p></dl>
+</p><p><dl>
+<dt><span class="var">emit</span>
+<dd>Mit diesem Schl&#252;ssel l&#228;&#223;t sich automatisch eine Ausgabefunktion erzeugen. Spezifiziert werden kann sie mittels normalem C-Code und Ausgabemakros. Die Makros sind durch einen Punkt <span class="var">.</span> am Anfang der Zeile gekennzeichnet und werden durch eine <span class="var">printf</span> Sequenz ersetzt. Daher ist auch Syntax der Makros an <span class="var">printf</span> angelehnt. Abgesehen von den &#252;blichen Formatangaben sind folgende Platzhalter definiert:
+<dl>
+<dt><span class="var">%Sx</span>
+<dd>Gibt das Register von Eingang <span class="var">x</span> aus (<span class="var">x</span> &gt;= 0)
+<dt><span class="var">%Dx</span>
+<dd>Gibt das Register von Ausgang <span class="var">x</span> aus (<span class="var">x</span> &gt;= 0)
+<dt><span class="var">%Ax</span>
+<dd>Gibt den Namen des <span class="algo">Firm</span> Knotens an Eingang <span class="var">x</span> aus (<span class="var">x</span> &gt;= 0)
+<dt><span class="var">%M</span>
+<dd>Gibt einen String in Abh&#228;ngigkeit des Modes des Knotens aus
+<dt><span class="var">%name_einer_funktion</span>
+<dd>Es wird das Resultat der angegebenen Funktion als Parameter an <span class="var">printf</span> &#252;bergeben.  Diese	Funktion bekommt den Knoten als	Eingabe und muss einen String zur&#252;ckliefern. Das Makro <span class="var">. add&#160;%ia32_add_params</span> wird also in folgenden Code umgewandelt:
+</p>
+<pre> <span class="var">printf("%s", ia32_add_params(n))</span>
+</pre>
+<p></dl>
+Optional kann noch eine Zahl vor dem Punkt angegeben werden, die die Einr&#252;cktiefe der <span class="var">printf</span> Sequenzen im generierten Code entspricht. Die erzeugte Ausgabefunktion sieht folgenderma&#223;en aus:
+</p>
+<pre>
+void emit_&lt;Knotenname&gt;(ir_node *n, emit_env_t *env) {
+  FILE *F = env-&gt;out;
+
+  Code aus &quot;emit&quot; mit ersetzten Makros
+}
+</pre>
+<p>Beispiel einer einfachen Addition:
+</p>
+<pre> <span class="var">"emit" =&gt; '. add&#160;%S0,&#160;%S1,&#160;%D0 \t /* Add(%A0,&#160;%A1) */'</span>
+</pre>
+<p>Komplexeres Beispiel (Min-Knoten auf <span class="var">ia32</span>):
+</p>
+<pre>
+&quot;emit&quot; =&gt;
+'2. cmp&#160;%S0,&#160;%S1 /* prepare Min(%A0,&#160;%A1) */
+  if (mode_is_signed(get_irn_mode(n))) {
+2. cmovg&#160;%D0,&#160;%S1 /*&#160;%S0 is greater&#160;%S1 */
+  }
+  else {
+2. cmova&#160;%D0,&#160;%S1,&#160;%D0 /*&#160;%S0 is above&#160;%S1 */
+  }
+'
+</pre>
+<p></dl>
+</p><p><dl>
+<dt><span class="var">attr</span>
+<dd>Wenn man zus&#228;tzlich noch Attribute an den Standardkonmstruktor &#252;bergeben will, dann kann hier eine mit Komma separierte Liste von Variablen angeben werden, die an die Argumentliste des Standardkonstruktors angef&#252;gt wird. Beispiel:
+</p>
+<pre> <span class="var">"attr" =&gt; "int a_min, int a_max"</span>
+</pre>
+<p></dl>
+</p><p><dl>
+<dt><span class="var">init_attr</span>
+<dd>Wenn man zus&#228;tzliche Attribute zum Standardkonstruktor hinzugef&#252;gt hat, dann wird hier die Initialisierung der Attribute durchgef&#252;hrt. Es wird automatisch eine Variablendeklaration erzeugt und die Knotenattribute des neu erzeugten Knotens an diese zugewiesen:
+</p>
+<pre> <span class="var">$arch_attr_t *attr = get_$arch_attr(res);</span>
+</pre>
+<p>Diese Variable kann zur Initialisierung verwendet werden. Beispiel passend zur vorherigen Spezifikation zus&#228;tzlicher Attribute:
+</p>
+<pre> <span class="var">"init_attr" =&gt; "  attr-&gt;min = a_min; attr-&gt;max = a_max;"</span>
+</pre>
+<p></dl>
+</p><p><dl>
+<dt><span class="var">cmp_attr</span>
+<dd>An dieser Stelle kann der Quellcode zum vergleichen von Attributen zweier Knoten des gleichen Typs angegeben werden. Dies ist notwendig, da <span class="algo">Firm</span> beim Erzeugen der Knoten bereits CSE (Common Subexpression Elimination) betreibt. Dazu wird der neue Knoten mit allen anderen verglichen. Wenn sich heraus stellt, dass er zu einem anderen gleich ist, dann wird der alte Knoten verwendet und kein neuer erzeugt. Zwei Knoten sind in <span class="algo">Firm</span> gleich, wenn sie den gleichen opcode besitzen (also von der gleichen Art sind), die selben Vorg&#228;nger besitzen und u.a. die Attributvergleichsfunktion die Gleichheit der Attribute best&#228;tigt. Bei Konstanten treffen die beiden ersten Eigenschaften offensichtlich immer zu, denn sie besitzen keinen Vorg&#228;nger. Daher muss die Attributvergleichsfunktion implementiert werden, da ansonsten alle Konstanten bei der Umwandlung in Backend spezifische Konstanten gleich werden w&#252;rden. Die erzeugte Funktion sieht folgenderma&#223;en aus:
+</p>
+<pre>
+static int cmp_attr_&lt;Knotenname&gt;(ir_node *a, ir_node *b) {
+  &lt;arch&gt;_attr_t *attr_a = get_&lt;arch&gt;_attr(a);
+  &lt;arch&gt;_attr_t *attr_b = get_&lt;arch&gt;_attr(b);
+
+  Code aus &quot;cmp_attr&quot;
+}
+</pre>
+<p>Es kann also im C-Code auf die Attribute der beiden zu vergleichenden Knoten mittels <span class="var">attr_a</span> und <span class="var">attr_b</span> zugegriffen werden.
+</dl>
+</p>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=10" title="Edit section: Generierte Dateien und Funktionen">edit</a>]</span> <span class="mw-headline" id="Generierte_Dateien_und_Funktionen"> Generierte Dateien und Funktionen </span></h2>
+<p>Es gibt drei Perlskripte, die aus der Spezifikation, die Knotenkonstruktoren, die Strukturen f&#252;r die Registerallokation und
+Ausgabefunktionen generieren.
+</p><p><dl>
+<dt><span class="var">generate_new_opcodes.pl</span>
+<dd>Dieses Skript erzeugt die folgenden Dateien:
+<dl>
+<dt><span class="var">gen_&lt;arch&gt;_new_nodes.c.inl</span>
+<dd>Enth&#228;lt die folgenden Funktionen:
+</p>
+<ul>
+<li><span class="var">void &lt;arch&gt;_create_opcodes(void)</span> -- Initialisiert und registriert die opcodes in <span class="algo">Firm</span>. Diese Funktion muss einmal bei der Initialisierung aufgerufen werden.
+<li><span class="var">ir_node *new_rd_&lt;Knotenname&gt;(...)</span> -- die Konstruktorfunktion f&#252;r jeden Knoten
+<li><span class="var">ir_op *get_op_&lt;Knotenname&gt;(void)</span> -- Liefert <span class="var">ir_op</span> f&#252;r jeden Knoten zur&#252;ck
+<li><span class="var">int is_&lt;Knotenname&gt;(const ir_node *n)</span> -- Liefert <span class="var">1</span>, wenn der &#252;bergebene Knoten vom Typ <span class="var">&lt;Knotenname&gt;</span> ist und <span class="var">0</span> sonst
+<li><span class="var">int is_&lt;arch&gt;_irn(const ir_node *node)</span> -- Liefert <span class="var">1</span>, wenn der &#252;bergebene Knoten zu den eigenen geh&#246;rt und <span class="var">0</span> sonst
+</ul>
+<p><dt><span class="var">gen_&lt;arch&gt;_new_nodes.h</span>
+<dd>Enth&#228;lt die Prototypen f&#252;r die oben genannten Funktionen.
+</dl>
+<dt><span class="var">generate_regalloc_if.pl</span>
+<dd>Dieses Skript erzeugt die folgenden Dateien:
+<dl>
+<dt><span class="var">gen_&lt;arch&gt;_regalloc_if.c</span>
+<dd>Enth&#228;lt die Definitionen der Registeranforderungsstrukturen, die Definition der Registerklassen, sowie eine Funktion zum Initialisieren der Registerstruktur <span class="var">void &lt;arch&gt;_register_init(void *isa_ptr)</span>, die einmalig bei der Initialisierung aufgerufen werden muss.
+<dt><span class="var">gen_&lt;arch&gt;_regalloc_if.h</span>
+<dd>Enth&#228;lt die Deklarationen obiger Strukturen und Funktionen sowie einige Definitionen f&#252;r Registernamen und Klassennamen.
+<dt><span class="var">gen_&lt;arch&gt;_regalloc_if_t.h</span>
+<dd>Enth&#228;lt Definitionen f&#252;r den internen Gebrauch und sollte nie eingebunden werden.
+</dl>
+<dt><span class="var">generate_emitter.pl</span>
+<dd>Dieses Skript erzeugt die folgenden Dateien:
+<dt><span class="var">gen_&lt;arch&gt;_emitter.c</span>
+<dd>Enth&#228;lt die Ausgabefunktionen f&#252;r jeden Knoten (falls definiert).
+<dt><span class="var">gen_&lt;arch&gt;_emitter.h</span>
+<dd>Enth&#228;lt die Prototypen der Ausgabefunktionen.
+</dl>
+</p>
+{% endblock %}

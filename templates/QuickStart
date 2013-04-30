@@ -1,0 +1,32 @@
+{% extends "parts/base" %}
+{% block title %}
+	QuickStart
+{% endblock %}
+{% block content %}
+
+<p>You want to try our compiler? LibFirm in itself is just a library, so you probably want our C frontend cparser. Here is the fastest way to get it running.
+</p><p><b>We assume a 32bit Linux or OSX environment here</b>
+</p><p>Check it out with git:
+</p>
+<pre>git clone <a rel="nofollow" class="external free" href="http://pp.info.uni-karlsruhe.de/git/cparser/">http://pp.info.uni-karlsruhe.de/git/cparser/</a>
+cd cparser
+</pre>
+<p>If you want the latest release, instead of the developement version, checkout the latest tag.
+</p><p>Additionally, we need the libFirm library, which is included as a submodule.
+</p>
+<pre>git submodule update --init
+</pre>
+<p>Now build everything. You need a C compiler, GNU Make, Perl, and Python.
+</p>
+<pre>make
+</pre>
+<p>You probably have a multicore machine? Then use something like <tt>make -j4</tt> for a parallel build.
+</p><p>Now you should have a working binary.
+</p>
+<pre>build/cparser --version
+</pre>
+<p>Our compiler tries to be a drop in replacement for GCC, so it supports the same arguments.
+Try it on some C99 code, like <tt>cparser -Wall -O3 test.c</tt> or <tt>make CC=cparser</tt>.
+</p><p>If you find bugs, please report them in our <a rel="nofollow" class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/bugs/">issue tracker</a>.
+</p>
+{% endblock %}

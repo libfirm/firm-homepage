@@ -1,0 +1,72 @@
+{% extends "parts/base" %}
+{% block title %}
+	Download
+{% endblock %}
+{% block content %}
+
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#libFirm"><span class="tocnumber">1</span> <span class="toctext">libFirm</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Source_Release"><span class="tocnumber">1.1</span> <span class="toctext">Source Release</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Ubuntu"><span class="tocnumber">1.2</span> <span class="toctext">Ubuntu</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Git_Source"><span class="tocnumber">1.3</span> <span class="toctext">Git Source</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#The_Make_Way"><span class="tocnumber">1.3.1</span> <span class="toctext">The Make Way</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: libFirm">edit</a>]</span> <span class="mw-headline" id="libFirm"> libFirm </span></h2>
+<p>libfirm contains the core firm library, the analyses, optimisations and backends. 
+</p>
+<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Source Release">edit</a>]</span> <span class="mw-headline" id="Source_Release"> Source Release </span></h3>
+<p>You can download the source tarball here:
+</p>
+<pre><a rel="nofollow" class="external free" href="https://sourceforge.net/projects/libfirm/files/libfirm/">https://sourceforge.net/projects/libfirm/files/libfirm/</a>
+</pre>
+<p>Afterwards a usual <tt>./configure &amp;&amp; make</tt> will do the rest.
+</p>
+<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=3" title="Edit section: Ubuntu">edit</a>]</span> <span class="mw-headline" id="Ubuntu"> Ubuntu </span></h3>
+<p>An experimental repository for Ubuntu karmic is available, which contains a libfirm-dev package.
+The packages were not checked by Ubuntu devs, so use <b>at own risk</b>.
+Add the following to your sources.list:
+</p>
+<pre>deb <a rel="nofollow" class="external free" href="http://pp.info.uni-karlsruhe.de/~zwinkau/repo/Ubuntu">http://pp.info.uni-karlsruhe.de/~zwinkau/repo/Ubuntu</a> karmic IPD
+deb-src <a rel="nofollow" class="external free" href="http://pp.info.uni-karlsruhe.de/~zwinkau/repo/Ubuntu">http://pp.info.uni-karlsruhe.de/~zwinkau/repo/Ubuntu</a> karmic IPD
+</pre>
+<p>The reason for the libfirm-dev package is mostly as a build dependency for <a rel="nofollow" class="external text" href="http://cparser.sourceforge.net/">cparser</a>, which is also in the repository.
+</p>
+<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=4" title="Edit section: Git Source">edit</a>]</span> <span class="mw-headline" id="Git_Source"> Git Source </span></h3>
+<p>For a development environment look at our <a rel="nofollow" class="external text" href="http://pp.info.uni-karlsruhe.de/git/">public repositories</a>. You should clone the firm-build repo:
+</p>
+<pre>git clone <a rel="nofollow" class="external free" href="http://pp.info.uni-karlsruhe.de/git/firm-build.git/">http://pp.info.uni-karlsruhe.de/git/firm-build.git/</a>
+</pre>
+<p>Inside you find the two scripts setup.py and update.py. You need to execute the setup.py script to get initial checkouts of libfirm, cparser and the testsuite. To do this use one of the included config.py.example files. Afterwards use <a rel="nofollow" class="external text" href="http://www.perforce.com/jam/jam.html">jam</a> to build everything.
+</p>
+<pre>cd firm-build
+./setup.py
+jam
+</pre>
+<p>The update.py script will essentially perform a git pull in each subproject. Use that to keep up with recent development.
+</p>
+<h4><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=5" title="Edit section: The Make Way">edit</a>]</span> <span class="mw-headline" id="The_Make_Way"> The Make Way </span></h4>
+<p>Instead of Jam, you can use the simpler make solution with cparser.
+Clone the cparser repository:
+</p>
+<pre>git clone <a rel="nofollow" class="external free" href="http://pp.info.uni-karlsruhe.de/git/cparser.git/">http://pp.info.uni-karlsruhe.de/git/cparser.git/</a>
+</pre>
+<p>Get libfirm as a submodule:
+</p>
+<pre>cd cparser
+git submodule update --init
+</pre>
+<p>Now you can use make to build libfirm and cparser:
+</p>
+<pre>make
+</pre>
+<p>This approach links libfirm statically, so you always have to rebuild cparser, if you change libfirm. However, this does not really add significantly to the build time.
+</p>
+{% endblock %}

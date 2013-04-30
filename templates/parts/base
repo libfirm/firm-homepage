@@ -7,18 +7,30 @@
 		{%- endif %}
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<title>{% block title %}libFirm{% endblock %}</title>
-		<link rel="stylesheet" type="text/css" href="CSS/style.css"/>
+		<link rel="stylesheet" type="text/css" href="style.css"/>
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 		{%- block extrahead -%}
 		{%- endblock %}
 	</head>
 	<body>
-		<!-- Wrapper: start -->
-		<div id="wrapper">
-			<div id="container">
+		<div class="content-wrapper">
+			<div class="content">
+				<div class="sidebar">
+					{% block sidebar %}
+						<img src="logo.png"/>
 
-				{% block content %}
-				{% endblock %}
+						<h3>Navigation</h3>
+						<ul>
+							<li><a href="">Index</a></li>
+							<li><a href="about.html">About</a></li>
+						</ul>
+
+					{% endblock %}
+				</div>
+				<div class="document">
+					{% block content %}
+					{% endblock %}
+				</div>
 			</div>
 		</div>
 	</body>

@@ -1,0 +1,17 @@
+{% extends "parts/base" %}
+{% block title %}
+	YcompWishlist
+{% endblock %}
+{% block content %}
+
+<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: Wish list:">edit</a>]</span> <span class="mw-headline" id="Wish_list:"> Wish list: </span></h3>
+<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Done:">edit</a>]</span> <span class="mw-headline" id="Done:"> Done: </span></h3>
+<ul><li> After searching a node, set zoom level to something where you can see the node and read its label (or leave zoom as is, if its nearer)
+<ul><li> <b>Introduced CTRL-0 (that's a zero), which sets the zoom level to 100%</b>
+</li></ul>
+</li><li> Zoom on CTRL-SHIFT-+ and CTRL-SHIFT-- (or simply + and -?)
+<ul><li> <b>Zoom on + and - (equivalent to CTRL+mouse wheel)</b>
+</li></ul>
+</li></ul>
+
+{% endblock %}

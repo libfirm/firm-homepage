@@ -1,0 +1,27 @@
+{% extends "parts/base" %}
+{% block title %}
+	Frontends
+{% endblock %}
+{% block content %}
+
+<div style="border-top: 1px solid red; border-bottom: 1px solid red; text-align: center; margin-top: 1em; margin-bottom: 1em;">
+<p>This article is work in progress. It is incomplete and can contain errors. Help in finishing the article is appreciated.
+</p>
+</div>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: Frame Type">edit</a>]</span> <span class="mw-headline" id="Frame_Type"> Frame Type </span></h2>
+<p>Many languages allow allocating data on the stack. Stack data is valid until the function finishes.
+Each firm-graph has an associated type called frame-type. This is a struct-type which contains entities for data on the stack.
+</p><p>Entities can be added to the frame-type. However calculation of the final entity offsets is left to libfirm.
+Hence you should not layout this type or set its size.
+</p>
+<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Loops">edit</a>]</span> <span class="mw-headline" id="Loops"> Loops </span></h1>
+<p>TODO
+</p>
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=3" title="Edit section: Endless loops">edit</a>]</span> <span class="mw-headline" id="Endless_loops"> Endless loops </span></h2>
+<p>Endless loops are a tricky case, since they don't reach the end-block (or return node) so noone is using the data produced by them. However the memory changes and control flow changes still need to be present (it's an endless loop and you can actually experience the things that happened before the loop). So the correct thing when creating loops or label blocks that could potentially form a loop is using keep_alive on the block itself and the current memory:
+</p>
+<pre>keep_alive(potential_endless_loop_block);
+keep_alive(get_store());
+</pre>
+
+{% endblock %}

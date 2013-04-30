@@ -1,0 +1,18 @@
+{% extends "parts/base" %}
+{% block title %}
+	Llvm
+{% endblock %}
+{% block content %}
+
+<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: LibFirm vs LLVM">edit</a>]</span> <span class="mw-headline" id="LibFirm_vs_LLVM"> LibFirm vs LLVM </span></h2>
+<p>Let me start with the similarities: Both libraries provide an intermediate representation for compilers which is low level (closer to hardware than to high level source language), and both provide optimizing transformations for this representations and backends for different architectures. So both have a very similar mission: optimized compilation/generation of machine code.
+</p><p>Now for the differences and keep in mind that I'm biased 
+</p>
+<ul><li> libFirm uses a graph based program representation, based on the SSA form. This generally makes it easier to create and execute optimisations that replace patterns, since you generally don't have to care about the schedule inside basic blocks.
+</li><li> libFirm is written in lightweight C while llvm uses more heavyweight C++. In practice this means, shorter compile and link times and IMO easier to understand APIs. Using C++ provides use with more flexible abstract datatypes (lists, hashmaps) and more modern language features such as namespaces and operator overloading, but in my experience that isn't worth the overhead in compilation times, more complicated error messages and code bloat which slows me down as a programmer. Also generating language bindings is alot easier with C interfaces - we were able to create a java binding called jFirm within 2 months.
+</li><li> llvm probably is a little stronger for architecture neutral optimisations and a bit faster (though firm isn't slow either).
+</li><li> libFirm has very modern/good register allocation infrastructure. In combination with our ia32 backend we often produce better code than llvm and sometimes even gcc. (This is based on our measurements with Spec CPU2000 and our own set of micro benchmarks, results vary heavily depending on the benchmark of course, so in the end you should do your own benchmarks and not focus on a single task).
+</li><li> libFirm has a very good ia32 and sparc backends. libFirms arm and amd64 backends are still in very early phases and often fail or don't produce good code yet.
+</li></ul>
+
+{% endblock %}

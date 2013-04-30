@@ -1,0 +1,9 @@
+{% extends "parts/base" %}
+{% block title %}
+	SingletonNode
+{% endblock %}
+{% block content %}
+
+<p>Singleton Nodes are node types, where only 1 instance is allowed per graph. This single instance is always reachable through the anchor node with the get_irg_XX() functions. There exist new_XX() functions for singleton nodes too, but they just return the single instance after each call.
+</p>
+{% endblock %}

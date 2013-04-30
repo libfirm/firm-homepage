@@ -1,0 +1,11 @@
+{% extends "parts/base" %}
+{% block title %}
+	UtilityClasses
+{% endblock %}
+{% block content %}
+
+<p>Libfirm provides several utility classes. These include lists, sets or variable length arrays. 
+</p><p>For more information on these, see the files in include/libfirm/adt/
+</p><p>The lists are modeled after the lists in the linux kernel. Documentation can be found here: isis.poly.edu/kulesh/stuff/src/klist/
+</p>
+{% endblock %}
