@@ -1,1 +1,58 @@
+body {
+	margin-bottom: .5em;
+	font-family: "Verdana", Arial, sans-serif;
+	line-height: 1.4em;
+	color: black;
+}
 
+div.content {
+	width: 60em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.document {
+	width: 50em;
+	float: right;
+}
+
+div.sidebar {
+	width: 10em;
+	float: left;
+	font-size: .9em;
+}
+
+div.sidebar h3 {
+	font-family: "Georgia", "Times New Roman", serif;
+	font-weight: normal;
+	color: #2e3436;
+	text-transform: uppercase;
+	font-size: 130%;
+	letter-spacing: .1em;
+}
+
+div.sidebar ul {
+	list-style-image: url(listitem.png);
+	margin-left: 5px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	display: block;
+	font-family: "Georgia", "Times New Roman", serif;
+	font-weight: normal;
+	color: #204a87;
+}
+
+h1 {
+	font-size: 2em;
+	line-height: 120%;
+	margin-bottom: .8em;
+}
+
+div.document pre {
+	border: 1px dashed #2f6fab;
+	background-color: #f9f9f9;
+	color: black;
+	padding: 1em;
+	line-height: 1.1em;
+}
