@@ -1,7 +1,7 @@
 {% extends "parts/base" %}
 {% block title %}Index{% endblock %}
 {% block content %}
-<h1>About</h1>
+<h1 id="About">About</h1>
 <p>
 	lib<span class="algo">Firm</span> is a library that provides an intermediate representation and optimisations for compilers. Programs are represented in a graph based <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA form</a>.
 </p>
@@ -16,10 +16,10 @@
 	<li><a href="/firm/Contact" title="Contact">Contact</a></li>
 </ul>
 
-<h1>News</h1>
+<h1 id="News">News</h1>
 
 
-<h1>Downloads</h1>
+<h1 id="Downloads">Downloads</h1>
 <ul>
 	<li><b><a href="/firm/Download" title="Download">Download lib<span class="algo">Firm</span></a></b></li>
 	<li> <a rel="nofollow" class="external text" href="http://github.com/MatzeB/JFirm/">JFirm</a> - Java-Bindings (aimed at compiler construction courses)]</li>
@@ -39,7 +39,7 @@
 	</li>
 </ul>
 
-<h1>Development</h1>
+<h1 id="Development">Development</h1>
 <ul>
 	<li><a href="/firm/NewDevelopers" title="NewDevelopers">Advice for new Developers</a></li>
 	<li><a href="/firm/Coding_Conventions" title="Coding Conventions">Coding Conventions</a></li>
