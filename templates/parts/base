@@ -21,8 +21,8 @@
 
 						<h3>Navigation</h3>
 						<ul>
-							<li><a href="">Index</a></li>
-							<li><a href="about.html">About</a></li>
+							<li><a href="Index">About</a></li>
+							<li><a href="Documentation">Documentation</a></li>
 						</ul>
 
 					{% endblock %}
