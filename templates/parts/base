@@ -25,6 +25,7 @@
 							<li><a href="Documentation">Documentation</a></li>
 							<li><a href="Index#Downloads">Downloads</a></li>
 							<li><a href="Index#Development">Development</a></li>
+							<li><a href="Contact">Contact</a></li>
 						</ul>
 
 					{% endblock %}
