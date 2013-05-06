@@ -1,0 +1,51 @@
+{% extends "parts/base" %}
+{% block title %}Unreachable Code{% endblock %}
+{% block content %}
+
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#What_is_unreachable_code"><span class="tocnumber">1</span> <span class="toctext">What is unreachable code</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Detection"><span class="tocnumber">2</span> <span class="toctext">Detection</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Conservatively"><span class="tocnumber">2.1</span> <span class="toctext">Conservatively</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Marking_reachable_blocks"><span class="tocnumber">2.2</span> <span class="toctext">Marking reachable blocks</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Pruning"><span class="tocnumber">3</span> <span class="toctext">Pruning</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Caveats"><span class="tocnumber">4</span> <span class="toctext">Caveats</span></a></li>
+</ul>
+</td></tr></table>
+<h1> <span class="mw-headline" id="What_is_unreachable_code"> What is unreachable code </span></h1>
+<p>Unreachable Code, is code which can't be reached (by control-flow) from the beginning of the function. It will consequently never be executed and can be removed.
+(Note that unreachable code is not necessarily dead code, these are 2 different concepts)
+</p><p>By definition the end block is always reachable.
+Optimizations that change control flow are responsible for insert keep edges accordingly.
+</p>
+<h1> <span class="mw-headline" id="Detection"> Detection </span></h1>
+<p>We can detect unreachable code in several ways:
+</p>
+<h3> <span class="mw-headline" id="Conservatively"> Conservatively </span></h3>
+<p>A block without any inputs is obviously dead. When removing unreachable code, this usually triggers other blocks to have no inputs and therefore obviously unnecessary. This property will however miss unreachable code that contains loops.
+We can easily express this conservative rule as local optimisation.
+</p>
+<h3> <span class="mw-headline" id="Marking_reachable_blocks"> Marking reachable blocks </span></h3>
+<p>This is best done using an optimistic dataflow analysis: If a block has at least one 1 reachable predecessor then it is reachable. If you iterate this until the fixpoint then you have catched all reachable blocks. All other blocks are unreachable. This should catch all cases of unreachable code. This style is 1 of the things the dataflow analysis in the "combo" phase calculates.
+</p><p>The principle of marking all reaching blocks also happens implicitely when we calculate the dominance relation.
+So you can identify unreachable blocks in firm by them having a dominance_depth of -1.
+</p>
+<h1> <span class="mw-headline" id="Pruning"> Pruning </span></h1>
+<p>Removing unreachable code means removing a block and all the nodes in it.
+This however would mean that we have to remove inputs from blocks.
+Removing inputs from blocks is only possible if we remove the same input from all phi-nodes in a block at the exact same time!
+As this is not possible in a normal localopt rule, we use a trick:
+</p><p>Instead of removing the block we replace it by a special node called <i>Bad</i>.
+An additional localopt rule (called gigo) ensures that all nodes in a Bad block get replaced by Bad.
+So in effect all unreachable code is replaced by Bad.
+</p><p>Blocks and Phi-nodes can have Bad as input values. This however shouldn't inhibit further localopt rules (except that you have to ignore the Bad inputs). The Bad inputs can be removed in a phase where we can update the block and all contained phis at once. This is done in the "local" phase, where all unreachable code is already eliminated.
+</p>
+<h1> <span class="mw-headline" id="Caveats"> Caveats </span></h1>
+<p>Since Bad nodes in the block input are usually unexpected and lead to all sorts of surprises in normal code, they are usually not allowed. To avoid this we only enable localopt rules that replace blocks with Bad in the fixpoint localopt phase. Because in this case we are guaranteed that all nodes inside the block will be visited again and then replaced by Bad. The gigo rule is also applied before any other localopt rule so we should not encounter nodes with Bad as block input.
+</p><p>Dominance is not defined for unreachable code. So the SSA-property that a definition dominates its uses doesn't really apply. I'm not sure yet if this actually causes problems. So far its only a special case in the verifier.
+</p>
+
+{% endblock content %}
