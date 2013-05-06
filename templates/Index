@@ -1,5 +1,6 @@
 {% extends "parts/base" %}
 {% block title %}Index{% endblock %}
+{% block documenttitle %}{% endblock %}
 {% block content %}
 <h1 id="About">About</h1>
 <p>
