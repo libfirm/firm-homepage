@@ -1,7 +1,7 @@
 {% extends "parts/base" %}
-{% block title %}
+{%- block title -%}
 	CodingConventions
-{% endblock %}
+{%- endblock %}
 {% block content %}
 
 <p>This document summarizes libFirm coding style conventions.

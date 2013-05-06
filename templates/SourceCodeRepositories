@@ -1,7 +1,7 @@
 {% extends "parts/base" %}
-{% block title %}
+{%- block title -%}
 	SourceCodeRepositories
-{% endblock %}
+{%- endblock %}
 {% block content %}
 
 <p>The main development repositories use git and can be found here:

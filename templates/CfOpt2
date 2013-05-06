@@ -1,7 +1,7 @@
 {% extends "parts/base" %}
-{% block title %}
+{%- block title -%}
 	CfOpt2
-{% endblock %}
+{%- endblock %}
 {% block content %}
 
 <p>The current ir/opt/cfopt.c is a mess and does not do enough. A complete rewrite might be appropriate. Here are the requirements for a control-flow optimization:

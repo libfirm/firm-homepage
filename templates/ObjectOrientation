@@ -1,7 +1,7 @@
 {% extends "parts/base" %}
-{% block title %}
+{%- block title -%}
 	ObjectOrientation
-{% endblock %}
+{%- endblock %}
 {% block content %}
 
 <h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: Basics">edit</a>]</span> <span class="mw-headline" id="Basics"> Basics </span></h1>

@@ -1,7 +1,7 @@
 {% extends "parts/base" %}
-{% block title %}
+{%- block title -%}
 	Backends
-{% endblock %}
+{%- endblock %}
 {% block content %}
 
 <h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: I want a backend X, how hard would it be to create one for libFirm?">edit</a>]</span> <span class="mw-headline" id="I_want_a_backend_X.2C_how_hard_would_it_be_to_create_one_for_libFirm.3F"> I want a backend X, how hard would it be to create one for libFirm? </span></h2>

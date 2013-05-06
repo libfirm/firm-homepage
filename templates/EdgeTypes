@@ -1,7 +1,7 @@
 {% extends "parts/base" %}
-{% block title %}
+{%- block title -%}
 	EdgeTypes
-{% endblock %}
+{%- endblock %}
 {% block content %}
 
 <p>People, who know intermediate representations from text books,

@@ -1,7 +1,7 @@
 {% extends "parts/base" %}
-{% block title %}
+{%- block title -%}
 	Download
-{% endblock %}
+{%- endblock %}
 {% block content %}
 
 <table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>

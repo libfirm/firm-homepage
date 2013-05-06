@@ -1,7 +1,7 @@
 {% extends "parts/base" %}
-{% block title %}
+{%- block title -%}
 	PhaseManagement
-{% endblock %}
+{%- endblock %}
 {% block content %}
 
 <p>Firm currently has no clear phase management to control the order and dependencies of the optimizations.

@@ -1,7 +1,7 @@
 {% extends "parts/base" %}
-{% block title %}
+{%- block title -%}
 	QuickStart
-{% endblock %}
+{%- endblock %}
 {% block content %}
 
 <p>You want to try our compiler? LibFirm in itself is just a library, so you probably want our C frontend cparser. Here is the fastest way to get it running.

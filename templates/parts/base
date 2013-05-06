@@ -6,7 +6,7 @@
 		<base href="{{base}}"/>
 		{%- endif %}
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<title>{% block title %}libFirm{% endblock %}</title>
+		<title>{%- block title -%}libFirm{%- endblock -%}</title>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 		{%- block extrahead -%}

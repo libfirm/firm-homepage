@@ -1,7 +1,7 @@
 {% extends "parts/base" %}
-{% block title %}
+{%- block title -%}
 	Contact
-{% endblock %}
+{%- endblock %}
 {% block content %}
 
 <p>There's a public mailing list here:

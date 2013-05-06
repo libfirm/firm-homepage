@@ -1,7 +1,7 @@
 {% extends "parts/base" %}
-{% block title %}
+{%- block title -%}
 	Features
-{% endblock %}
+{%- endblock %}
 {% block content %}
 
 <ul><li> works exclusively on a graph-based SSA representation ("sea of nodes") until assembler code emission.  Based on the work of C. Click and M. Trapp

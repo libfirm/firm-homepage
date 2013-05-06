@@ -1,7 +1,7 @@
 {% extends "parts/base" %}
-{% block title %}
+{%- block title -%}
 	Llvm
-{% endblock %}
+{%- endblock %}
 {% block content %}
 
 <h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: LibFirm vs LLVM">edit</a>]</span> <span class="mw-headline" id="LibFirm_vs_LLVM"> LibFirm vs LLVM </span></h2>

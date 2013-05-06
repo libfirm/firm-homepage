@@ -1,7 +1,7 @@
 {% extends "parts/base" %}
-{% block title %}
+{%- block title -%}
 	Publications
-{% endblock %}
+{%- endblock -%}
 {% block content %}
 
 <p><br />
