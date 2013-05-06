@@ -56,3 +56,7 @@ div.document pre {
 	padding: 1em;
 	line-height: 1.1em;
 }
+
+span.algo {
+	font-variant: small-caps;
+}
