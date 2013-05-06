@@ -20,7 +20,7 @@ os.system("cp -rvp static/* output/")
 # Create pages from templates
 templatedir = os.path.join(os.path.dirname(__file__), 'templates')
 env = Environment(loader=FileSystemLoader(templatedir))
-env.globals['base']   = "file://%s/" % os.path.abspath(outdir)
+#env.globals['base']   = "file://%s/" % os.path.abspath(outdir)
 for filename in glob("%s/*" % templatedir):
 	if not os.path.isfile(filename):
 		continue
