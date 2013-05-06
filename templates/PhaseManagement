@@ -22,12 +22,12 @@ This page collects information until someone gets around to implement it.
 </li>
 </ul>
 </td></tr></table>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: Requirements">edit</a>]</span> <span class="mw-headline" id="Requirements"> Requirements </span></h2>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Consistent Names">edit</a>]</span> <span class="mw-headline" id="Consistent_Names"> Consistent Names </span></h3>
+<h2><span class="mw-headline" id="Requirements"> Requirements </span></h2>
+<h3><span class="mw-headline" id="Consistent_Names"> Consistent Names </span></h3>
 <p>In cparser there is the "local" optimization,
 which directly calls the libFirm function <b>optimize_graph_df</b>.
 </p>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=3" title="Edit section: Dependencies">edit</a>]</span> <span class="mw-headline" id="Dependencies"> Dependencies </span></h3>
+<h3><span class="mw-headline" id="Dependencies"> Dependencies </span></h3>
 <p>For example ifconv cannot handle Bad nodes in the graph, so they must be removed before. Currently, this is done inline by calling <b>remove_bads</b>. Similarily, the <b>assure_*</b> specify some preconditions. Others are implicit in the order in cparser/driver/firm_opt.c.
 </p><p>Here is a list, what an optimization might require
 </p>
@@ -45,20 +45,20 @@ which directly calls the libFirm function <b>optimize_graph_df</b>.
 </li><li> assure_irg_entity_usage_computed?
 </li><li> assure_irp_globals_entity_usage_computed?
 </li></ul>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=4" title="Edit section: Post Actions">edit</a>]</span> <span class="mw-headline" id="Post_Actions"> Post Actions </span></h3>
+<h3><span class="mw-headline" id="Post_Actions"> Post Actions </span></h3>
 <p>Some optimizations require certain clean up code afterwards.
 For example, if-conversion performs "local" and "control-flow" afterwards, according to cparser.
 </p><p><i>Matze</i>: I'd like to have some more info on why this is done. It shouldn't be because of correctness... So I'm not sure whether I want an explicit "Post Actions" concept.
 </p>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=5" title="Edit section: Auto Invalidation">edit</a>]</span> <span class="mw-headline" id="Auto_Invalidation"> Auto Invalidation </span></h3>
+<h3><span class="mw-headline" id="Auto_Invalidation"> Auto Invalidation </span></h3>
 <p>Currently, an optimization must explicitly invalidate status information (<b>set_irg_doms_inconsistent</b>).
 A more robust approach, would be to invalidate everything by default, such that optimizations must explicitly and dynamically specify, what is still valid.
 This prevents that someone forgets to invalidate and just leads to useless recomputation of valid information.
 </p>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=6" title="Edit section: Clean Up">edit</a>]</span> <span class="mw-headline" id="Clean_Up"> Clean Up </span></h3>
+<h3><span class="mw-headline" id="Clean_Up"> Clean Up </span></h3>
 <p>Remove duplicate KeepAlive edges and KeepAlive edges referencing Bad/NoMem.
 </p>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=7" title="Edit section: Ordering">edit</a>]</span> <span class="mw-headline" id="Ordering"> Ordering </span></h3>
+<h3><span class="mw-headline" id="Ordering"> Ordering </span></h3>
 <p>Currently the phases assume all funktions are completely independet of each other and so perform all optimisations one after the other on each function. Though in the light of inlining the order is suddenly different. We should first completely optimize the leaf functions in a callgraph walking/inlining away towards the callgraph roots...
 Needs some discussions on how to do this exactly. One strange effect of this is probably the strange optimization callback from the inliner...
 </p><p><i>xt3</i>: That is not true. Currently there are two approaches: local
@@ -69,7 +69,7 @@ global optimizations callect global information first and transform the
 graphs them (in any order).
 </p><p><i>zwinkau</i>: (Inspired by Polyglot) Lazyness for the rescue! When the inliner thinks about inlining a call to X into Y, then X should be fully optimized (recursion!) first and afterwards the inliner decides. Finally, Y is fully optimized.
 </p>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=8" title="Edit section: Meta">edit</a>]</span> <span class="mw-headline" id="Meta"> Meta </span></h3>
+<h3><span class="mw-headline" id="Meta"> Meta </span></h3>
 <p>Cparser has <b>opt_flags_t</b> for:
 </p>
 <ul><li> enable the optimization

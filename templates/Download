@@ -19,17 +19,17 @@
 </li>
 </ul>
 </td></tr></table>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: libFirm">edit</a>]</span> <span class="mw-headline" id="libFirm"> libFirm </span></h2>
+<h2><span class="mw-headline" id="libFirm"> libFirm </span></h2>
 <p>libfirm contains the core firm library, the analyses, optimisations and backends. 
 </p>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Source Release">edit</a>]</span> <span class="mw-headline" id="Source_Release"> Source Release </span></h3>
+<h3><span class="mw-headline" id="Source_Release"> Source Release </span></h3>
 <p>You can download the source tarball here:
 </p>
 <pre><a rel="nofollow" class="external free" href="https://sourceforge.net/projects/libfirm/files/libfirm/">https://sourceforge.net/projects/libfirm/files/libfirm/</a>
 </pre>
 <p>Afterwards a usual <tt>./configure &amp;&amp; make</tt> will do the rest.
 </p>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=3" title="Edit section: Ubuntu">edit</a>]</span> <span class="mw-headline" id="Ubuntu"> Ubuntu </span></h3>
+<h3><span class="mw-headline" id="Ubuntu"> Ubuntu </span></h3>
 <p>An experimental repository for Ubuntu karmic is available, which contains a libfirm-dev package.
 The packages were not checked by Ubuntu devs, so use <b>at own risk</b>.
 Add the following to your sources.list:
@@ -39,7 +39,7 @@ deb-src <a rel="nofollow" class="external free" href="http://pp.info.uni-karlsru
 </pre>
 <p>The reason for the libfirm-dev package is mostly as a build dependency for <a rel="nofollow" class="external text" href="http://cparser.sourceforge.net/">cparser</a>, which is also in the repository.
 </p>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=4" title="Edit section: Git Source">edit</a>]</span> <span class="mw-headline" id="Git_Source"> Git Source </span></h3>
+<h3><span class="mw-headline" id="Git_Source"> Git Source </span></h3>
 <p>For a development environment look at our <a rel="nofollow" class="external text" href="http://pp.info.uni-karlsruhe.de/git/">public repositories</a>. You should clone the firm-build repo:
 </p>
 <pre>git clone <a rel="nofollow" class="external free" href="http://pp.info.uni-karlsruhe.de/git/firm-build.git/">http://pp.info.uni-karlsruhe.de/git/firm-build.git/</a>
@@ -52,7 +52,7 @@ jam
 </pre>
 <p>The update.py script will essentially perform a git pull in each subproject. Use that to keep up with recent development.
 </p>
-<h4><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=5" title="Edit section: The Make Way">edit</a>]</span> <span class="mw-headline" id="The_Make_Way"> The Make Way </span></h4>
+<h4><span class="mw-headline" id="The_Make_Way"> The Make Way </span></h4>
 <p>Instead of Jam, you can use the simpler make solution with cparser.
 Clone the cparser repository:
 </p>

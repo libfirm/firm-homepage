@@ -24,15 +24,15 @@
 </li>
 </ul>
 </td></tr></table>
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: SPARC-Backendstatus mit -msoft-float">edit</a>]</span> <span class="mw-headline" id="SPARC-Backendstatus_mit_-msoft-float"> SPARC-Backendstatus mit -msoft-float </span></h1>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Zu Beachten">edit</a>]</span> <span class="mw-headline" id="Zu_Beachten"> Zu Beachten </span></h2>
+<h1><span class="mw-headline" id="SPARC-Backendstatus_mit_-msoft-float"> SPARC-Backendstatus mit -msoft-float </span></h1>
+<h2><span class="mw-headline" id="Zu_Beachten"> Zu Beachten </span></h2>
 <ul><li> qemu hat einige kleinere Bugs (assert syscall, signal handling), deshalb bitte folgende Version benutzen:
 </li></ul>
 <pre> /ben/local/GIT/qemu.git
 </pre>
 <ul><li> Beim übersetzen der spec-benchmarks mit den makefiles aus unserem svn immer scripts/sparcmake.sh benutzen! Sonst vergisst man schnell flags die benötigt werden.
 </li></ul>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=3" title="Edit section: Kurzzusammenfassung Fehlerklassen">edit</a>]</span> <span class="mw-headline" id="Kurzzusammenfassung_Fehlerklassen">Kurzzusammenfassung Fehlerklassen</span></h2>
+<h2><span class="mw-headline" id="Kurzzusammenfassung_Fehlerklassen">Kurzzusammenfassung Fehlerklassen</span></h2>
 <ul><li> <b>MemPerm in omitfp-Funktionen funktioniert nicht</b>
 <ul><li> backend/memperm.c
 </li><li> siehe diverse SPEC-Tests (unten)
@@ -55,20 +55,20 @@
 </li></ul>
 <p>long double sind auf sparc 128bit Breite float-Werte. Ausserdem haben sie etwas obskure Aufrufkonventionen (siehe sparc System-V ABI). Unser Softfloat lowerer unterstützt sie bisher nicht.
 </p>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=4" title="Edit section: FIRM-Testsuite">edit</a>]</span> <span class="mw-headline" id="FIRM-Testsuite"> FIRM-Testsuite</span></h2>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=5" title="Edit section: compilerhang3">edit</a>]</span> <span class="mw-headline" id="compilerhang3">compilerhang3</span></h3>
+<h2><span class="mw-headline" id="FIRM-Testsuite"> FIRM-Testsuite</span></h2>
+<h3><span class="mw-headline" id="compilerhang3">compilerhang3</span></h3>
 <p>long double softfloat
 </p>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=6" title="Edit section: fehler101">edit</a>]</span> <span class="mw-headline" id="fehler101">fehler101</span></h3>
+<h3><span class="mw-headline" id="fehler101">fehler101</span></h3>
 <p>long double softfloat
 </p>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=7" title="Edit section: fehler137">edit</a>]</span> <span class="mw-headline" id="fehler137">fehler137</span></h3>
+<h3><span class="mw-headline" id="fehler137">fehler137</span></h3>
 <p>long double softfloat
 </p>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=8" title="Edit section: float if">edit</a>]</span> <span class="mw-headline" id="float_if">float_if</span></h3>
+<h3><span class="mw-headline" id="float_if">float_if</span></h3>
 <p>long double softfloat
 </p>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=9" title="Edit section: SPECint 2000">edit</a>]</span> <span class="mw-headline" id="SPECint_2000">SPECint 2000</span></h2>
+<h2><span class="mw-headline" id="SPECint_2000">SPECint 2000</span></h2>
 <p>Legende:
 </p>
 <ul><li> <span style="color:green;">Grün:</span> Kompiliert und isok-Skript ist zufrieden.
@@ -122,7 +122,7 @@
 </li></ul>
 <dl><dd>Kompiliert nur mit -fno-omit-frame-pointer
 </dd></dl>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=10" title="Edit section: SPECint 2000 auf dem FPGA-Board">edit</a>]</span> <span class="mw-headline" id="SPECint_2000_auf_dem_FPGA-Board">SPECint 2000 auf dem FPGA-Board</span></h2>
+<h2><span class="mw-headline" id="SPECint_2000_auf_dem_FPGA-Board">SPECint 2000 auf dem FPGA-Board</span></h2>
 <ul><li> <span style="color:green;"><b>164.gzip</b></span>
 </li><li> <span style="color:grey;"><b>175.vpr</b></span>
 </li><li> <span style="color:green;"><b>176.gcc</b></span>

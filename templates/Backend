@@ -32,8 +32,8 @@
 </li>
 </ul>
 </td></tr></table>
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: Anatomy of a Backend">edit</a>]</span> <span class="mw-headline" id="Anatomy_of_a_Backend"> Anatomy of a Backend </span></h1>
-<h4><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Interface">edit</a>]</span> <span class="mw-headline" id="Interface"> Interface </span></h4>
+<h1><span class="mw-headline" id="Anatomy_of_a_Backend"> Anatomy of a Backend </span></h1>
+<h4><span class="mw-headline" id="Interface"> Interface </span></h4>
 <p>The most basic interface:
 </p>
 <pre>A backend gets a firm program as input.
@@ -41,7 +41,7 @@ It produces assembler output on a given FILE* stream.
 </pre>
 <p>Firm comes with a backend framework with several more specific interfaces to help in this task.
 </p>
-<h4><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=3" title="Edit section: Phases">edit</a>]</span> <span class="mw-headline" id="Phases"> Phases </span></h4>
+<h4><span class="mw-headline" id="Phases"> Phases </span></h4>
 <p>A typical backend consists of the following phases.
 </p>
 <ul><li> Architecture specific Lowering
@@ -52,9 +52,9 @@ It produces assembler output on a given FILE* stream.
 </li><li> (Peephole Optimisations)
 </li><li> Code Emission
 </li></ul>
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=4" title="Edit section: Code Selection">edit</a>]</span> <span class="mw-headline" id="Code_Selection"> Code Selection </span></h1>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=5" title="Edit section: Calling Convention / ABI Issues">edit</a>]</span> <span class="mw-headline" id="Calling_Convention_.2F_ABI_Issues"> Calling Convention / ABI Issues </span></h2>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=6" title="Edit section: Prolog">edit</a>]</span> <span class="mw-headline" id="Prolog"> Prolog </span></h3>
+<h1><span class="mw-headline" id="Code_Selection"> Code Selection </span></h1>
+<h2><span class="mw-headline" id="Calling_Convention_.2F_ABI_Issues"> Calling Convention / ABI Issues </span></h2>
+<h3><span class="mw-headline" id="Prolog"> Prolog </span></h3>
 <p>The function prolog is responsible for setting up the stack pointer.
 This usually means allocating space on the stack frame.
 There might be additional architecture specific tasks that have to be performed at the beginning of a method.
@@ -62,12 +62,12 @@ Typical examples are:
 </p>
 <ul><li> Setting up/Saving the base pointer
 </li></ul>
-<h4><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=7" title="Edit section: Construction">edit</a>]</span> <span class="mw-headline" id="Construction"> Construction </span></h4>
+<h4><span class="mw-headline" id="Construction"> Construction </span></h4>
 <p>The recommended way to create Prolog Code is now to do it at code-selection time when selecting code for the Start node.
 There is some code in beabihelper which helps in constructing such prolog code.
 </p><p>A function should always start with a be_Start node. This node produces the initial memory and has an output for every register which has a signifant meaning (= some other node reads it later) at the beginning of the function. Typically prolog code follows the be_Start node which is finally followed by a be_Barrier node (see <a href="#Barrier_Discussion">#Barrier Discussion</a>).
 </p>
-<h4><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=8" title="Edit section: Barrier Discussion">edit</a>]</span> <span class="mw-headline" id="Barrier_Discussion"> Barrier Discussion </span></h4>
+<h4><span class="mw-headline" id="Barrier_Discussion"> Barrier Discussion </span></h4>
 <p>Currently all backends construct barrier nodes. The original idea with these was the problem that we can't spill any values before we haven't setup the stackframe in the prolog. As we can't tell which values will be spilled later we have to enforce that all values are only created after the barrier.
 The original assumption was that the barrier captures all values alive after the prolog and therefore provides a natural barrier all nodes depend on.
 Unfortunately this idea is flawed as there are nodes for constants which don't depend on anything and might still be scheduled before the initial barrier.

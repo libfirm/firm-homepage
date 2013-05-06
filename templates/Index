@@ -6,14 +6,14 @@
 	lib<span class="algo">Firm</span> is a library that provides an intermediate representation and optimisations for compilers. Programs are represented in a graph based <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA form</a>.
 </p>
 <ul>
-	<li><a href="/firm/Introduction" title="Introduction">Introduction</a></li>
-	<li><a href="/firm/Quick_Start" title="Quick Start">Quick Start</a></li>
-	<li><a href="/firm/Features" title="Features">Features</a></li>
+	<li><a href="Introduction" title="Introduction">Introduction</a></li>
+	<li><a href="Quick_Start" title="Quick Start">Quick Start</a></li>
+	<li><a href="Features" title="Features">Features</a></li>
 	<li><a rel="nofollow" class="external text" href="http://kreacher.isla-de-muerta.de/~matze/online_compiler">Online Demo</a></li>
-	<li><a href="/firm/Benchmarks" title="Benchmarks">Benchmarks</a></li>
+	<li><a href="Benchmarks" title="Benchmarks">Benchmarks</a></li>
 	<li> <a rel="nofollow" class="external text" href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
-	<li><a href="/firm/Documentation" title="Documentation">Documentation</a></li>
-	<li><a href="/firm/Contact" title="Contact">Contact</a></li>
+	<li><a href="Documentation" title="Documentation">Documentation</a></li>
+	<li><a href="Contact" title="Contact">Contact</a></li>
 </ul>
 
 <h1 id="News">News</h1>
@@ -21,7 +21,7 @@
 
 <h1 id="Downloads">Downloads</h1>
 <ul>
-	<li><b><a href="/firm/Download" title="Download">Download lib<span class="algo">Firm</span></a></b></li>
+	<li><b><a href="Download" title="Download">Download lib<span class="algo">Firm</span></a></b></li>
 	<li> <a rel="nofollow" class="external text" href="http://github.com/MatzeB/JFirm/">JFirm</a> - Java-Bindings (aimed at compiler construction courses)]</li>
 	<li> Tools
 		<ul>
@@ -34,21 +34,21 @@
 			<li> <a rel="nofollow" class="external text" href="http://github.com/MatzeB/bytecode2firm">bytecode2firm</a> - Javabytecode frontend</li>
 			<li> <a rel="nofollow" class="external text" href="http://github.com/MatzeB/fluffy">Fluffy Language</a></li>
 			<li> <a rel="nofollow" class="external text" href="http://pp.info.uni-karlsruhe.de/git/firm-bf">brainfuck</a></li>
-			<li><a href="/firm/Edgfe" title="Edgfe">C-Frontend (based on edison design group code)</a></li>
+			<li><a href="Edgfe" title="Edgfe">C-Frontend (based on edison design group code)</a></li>
 		</ul>
 	</li>
 </ul>
 
 <h1 id="Development">Development</h1>
 <ul>
-	<li><a href="/firm/NewDevelopers" title="NewDevelopers">Advice for new Developers</a></li>
-	<li><a href="/firm/Coding_Conventions" title="Coding Conventions">Coding Conventions</a></li>
+	<li><a href="NewDevelopers" title="NewDevelopers">Advice for new Developers</a></li>
+	<li><a href="Coding_Conventions" title="Coding Conventions">Coding Conventions</a></li>
 	<li> <a rel="nofollow" class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></li>
-	<li><a href="/firm/Debug_Extension" title="Debug Extension">Debug Extension</a></li>
-	<li><a href="/firm/Sourcecode_Repositories" title="Sourcecode Repositories">Sourcecode Repositories</a></li>
-	<li><a href="/firm/Testing" title="Testing">Testing</a></li>
-	<li><a href="/firm/Wiki_Editing" title="Wiki Editing">Wiki Editing</a></li>
-	<li><a href="/firm/TODO" title="TODO">TODO</a></li>
+	<li><a href="Debug_Extension" title="Debug Extension">Debug Extension</a></li>
+	<li><a href="Sourcecode_Repositories" title="Sourcecode Repositories">Sourcecode Repositories</a></li>
+	<li><a href="Testing" title="Testing">Testing</a></li>
+	<li><a href="Wiki_Editing" title="Wiki Editing">Wiki Editing</a></li>
+	<li><a href="TODO" title="TODO">TODO</a></li>
 </ul>
 <p>
 	Visit us in #firm on <a rel="nofollow" class="external text" href="http://webchat.freenode.net/">freenode</a> (IRC).

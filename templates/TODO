@@ -18,12 +18,12 @@
 </li>
 </ul>
 </td></tr></table>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: Improvements">edit</a>]</span> <span class="mw-headline" id="Improvements"> Improvements </span></h2>
+<h2><span class="mw-headline" id="Improvements"> Improvements </span></h2>
 <p>TODO: move these into the bugtracker&#160;;-)
 </p>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Firm">edit</a>]</span> <span class="mw-headline" id="Firm"> <span style="font-variant:small-caps">Firm</span> </span></h3>
-<ul><li> <a href="/firm/CFOpt2" title="CFOpt2">CFOpt2</a>
-</li><li> <a href="/firm/PhaseManagement" title="PhaseManagement">PhaseManagement</a>
+<h3><span class="mw-headline" id="Firm"> <span style="font-variant:small-caps">Firm</span> </span></h3>
+<ul><li> <a href="CFOpt2" title="CFOpt2">CFOpt2</a>
+</li><li> <a href="PhaseManagement" title="PhaseManagement">PhaseManagement</a>
 </li><li> It would be a cool thing to make firm tarvals actually represent expressions (add, sub) of symconsts and constants - limited by what the backend/linker can support. This would make handling of constant folding and matching addressmode in the backend a lot easier since you only have to look for Const nodes and don't have to combine Const+SymConst to ia32_Const anymore. It would also help the combo optimisation.
 </li><li> Implement a new (fixpoint based) control flow optimization
 </li><li> Optimize Cmps in deconv (find criteria when this is possible)
@@ -38,14 +38,14 @@
 </li><li> for (maybe a limited) range of &amp;&amp; ... &amp;&amp; ... and || ... || ... conditions permutates them to test wether some of them get optimized away
 </li></ul>
 </li></ul>
-<h3><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=3" title="Edit section: Backend">edit</a>]</span> <span class="mw-headline" id="Backend"> Backend </span></h3>
+<h3><span class="mw-headline" id="Backend"> Backend </span></h3>
 <ul><li> We don't want to schedule Phis. The only problem is that we need to find a list of phis in a block often in the backend so we need another (fast) way to do this if they aren't scheduled anymore. (see also the linked list of phis proposal in the Firm section)
 </li><li> The Spillslot coalescer is suboptimal when mergin spillslots of different sizes.
 </li><li> Create an amd64 backend
 </li><li> Belady spiller: fix_block_borders: If a value is reloaded in lots of empty predecessor blocks (with high execfreq) and are only available on less frequently executed blocks, then reloading in the current block should be better as we can keep the critical-edge-split blocks empty and remove them later.
 </li><li> We need a must_be_same register constraint (additionally to the should_be_same constraint). This usually means creating copies in front of the instruction if a value doesn't die at the instruction.
 </li></ul>
-<h4><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=4" title="Edit section: x86">edit</a>]</span> <span class="mw-headline" id="x86"> x86 </span></h4>
+<h4><span class="mw-headline" id="x86"> x86 </span></h4>
 <ul><li> We could allocate stack space for function calls in advance and don't do IncSP/IncSP before and after function calls
 </li><li> transform (Const - X) to -X + Const, it's both 2 commands in x86 but add has more potential for other optimisations, but don't do this when we can use SourceAM
 </li><li> When we have float parameters in private functions, use the fp stack for them (needs a sim_RegParams)

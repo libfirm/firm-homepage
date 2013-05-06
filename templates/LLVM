@@ -4,7 +4,7 @@
 {%- endblock %}
 {% block content %}
 
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: LibFirm vs LLVM">edit</a>]</span> <span class="mw-headline" id="LibFirm_vs_LLVM"> LibFirm vs LLVM </span></h2>
+<h2><span class="mw-headline" id="LibFirm_vs_LLVM"> LibFirm vs LLVM </span></h2>
 <p>Let me start with the similarities: Both libraries provide an intermediate representation for compilers which is low level (closer to hardware than to high level source language), and both provide optimizing transformations for this representations and backends for different architectures. So both have a very similar mission: optimized compilation/generation of machine code.
 </p><p>Now for the differences and keep in mind that I'm biased 
 </p>

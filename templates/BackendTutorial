@@ -30,7 +30,7 @@
 </li>
 </ul>
 </td></tr></table>
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: The specification language">edit</a>]</span> <span class="mw-headline" id="The_specification_language"> The specification language </span></h1>
+<h1><span class="mw-headline" id="The_specification_language"> The specification language </span></h1>
 <p>The specification itself is a Perl file. So the node and register constraint descriptions are represented by Perl data structures like hashes and arrays. This has the advantage that no separate parser is needed and the specification can be directly included into the generator scripts which are written in Perl as well. The following variables are used for generation:
 </p>
 <dl><dt> <span class="var">$arch</span>&#160;</dt><dd> architecture mnemonic (e.g. ia32, sparc, mips, ppc, ...), required
@@ -42,19 +42,19 @@
 </dd><dt> <span class="var">%emit_templates</span>&#160;</dt><dd> templates for code emitter, optional
 </dd><dt> <span class="var">%nodes</span>&#160;</dt><dd> description of backend nodes, required
 </dd></dl>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: The architecture $arch">edit</a>]</span> <span class="mw-headline" id="The_architecture_.24arch"> The architecture <span class="var">$arch</span> </span></h2>
+<h2><span class="mw-headline" id="The_architecture_.24arch"> The architecture <span class="var">$arch</span> </span></h2>
 <p>The assigned architecture mnemonic is used for the generated names of types, variables, functions and files to avoid name conflicts with other backends. In general all external visible functions, variables and types should contain this mnemonic.
 Example:
 </p>
 <pre>$arch = "ia32";
 </pre>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=3" title="Edit section: The variable $additional opcodes">edit</a>]</span> <span class="mw-headline" id="The_variable_.24additional_opcodes"> The variable <span class="var">$additional_opcodes</span> </span></h2>
+<h2><span class="mw-headline" id="The_variable_.24additional_opcodes"> The variable <span class="var">$additional_opcodes</span> </span></h2>
 <p>This variable is optional. You can acquire additional opcodes in <span class="algo">Firm</span> for special nodes not created by the generator.
 Example:
 </p>
 <pre>$additional_opcodes = "5";
 </pre>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=4" title="Edit section: The cpu flags %flags">edit</a>]</span> <span class="mw-headline" id="The_cpu_flags_.25flags"> The cpu flags <span class="var">%flags</span> </span></h2>
+<h2><span class="mw-headline" id="The_cpu_flags_.25flags"> The cpu flags <span class="var">%flags</span> </span></h2>
 <p>The flags are described as a hash with a name for every cpu flag as key pointing to another hash representing the actual flag description. This hash contains a key <span class="var">reg</span> pointing to the name of the flag register containing the current flag and a key <span class="var">bit</span> for the number of the bit representing the current flag within the register.
 Example:
 </p>
@@ -71,7 +71,7 @@ Example:
         OF =&gt; { reg =&gt; &quot;eflags&quot;, bit =&gt; 11 }
 ); #&#160;%flags
 </pre>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=5" title="Edit section: The abstract cpu %cpu">edit</a>]</span> <span class="mw-headline" id="The_abstract_cpu_.25cpu"> The abstract cpu <span class="var">%cpu</span> </span></h2>
+<h2><span class="mw-headline" id="The_abstract_cpu_.25cpu"> The abstract cpu <span class="var">%cpu</span> </span></h2>
 <p>This variable is as hash used as abstract machine description. One can specify which function unit types are available and how many units of each type exists. The hash contains a unit type name as key pointing to an array listing all units of this type. The first entry in the array is the number of outports for each unit (usually 1) and all following ones are the names for the corresponding unit. Right now this description is used for the ILP scheduler to assign instructions to functional units.
 Example:
 </p>
@@ -84,7 +84,7 @@ Example:
   &quot;MEM&quot;   =&gt; [ 2, &quot;LDST&quot; ]
 ); #&#160;%cpu
 </pre>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=6" title="Edit section: The vliw support %vliw">edit</a>]</span> <span class="mw-headline" id="The_vliw_support_.25vliw"> The vliw support <span class="var">%vliw</span> </span></h2>
+<h2><span class="mw-headline" id="The_vliw_support_.25vliw"> The vliw support <span class="var">%vliw</span> </span></h2>
 <p>The vliw support description is used along with the abstract machine description in <span class="var">%cpu</span> for the ILP scheduler to determine how many instruction can be executed within one cycle. It is a hash with two keys <span class="var">bundle_size</span> describing the number of instructions per bundle, and <span class="var">bundels_per_cycle</span> describing the number of bundles executed per cycle.
 Example (Itanium):
 </p>
@@ -94,7 +94,7 @@ Example (Itanium):
     &quot;bundels_per_cycle&quot; =&gt; 2
 ); # vliw
 </pre>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=7" title="Edit section: The emitter templates %emit templates">edit</a>]</span> <span class="mw-headline" id="The_emitter_templates_.25emit_templates"> The emitter templates <span class="var">%emit_templates</span> </span></h2>
+<h2><span class="mw-headline" id="The_emitter_templates_.25emit_templates"> The emitter templates <span class="var">%emit_templates</span> </span></h2>
 <p>This variable is used to specify place holders one can use within the emit specification for the nodes. They can be used similar to <span class="var">printf</span> format specifiers.
 Example:
 </p>
@@ -129,7 +129,7 @@ Example:
     x87_binop =&gt; &quot;${arch}_emit_x87_binop(env, node);&quot;,
 ); #&#160;%emit_templates
 </pre>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=8" title="Edit section: The register classes %reg classes">edit</a>]</span> <span class="mw-headline" id="The_register_classes_.25reg_classes"> The register classes <span class="var">%reg_classes</span> </span></h2>
+<h2><span class="mw-headline" id="The_register_classes_.25reg_classes"> The register classes <span class="var">%reg_classes</span> </span></h2>
 <p>Diese Variable ist ein Hash, mit einem Namen f&#252;r jede Registerklasse als Schl&#252;ssel, der auf ein Array zeigt, dass die
 Registerbeschreibungen enth&#228;lt. Jedes dieser Register wird durch einen Hash beschrieben, wobei jeder dieser Hashes zwei
 Schl&#252;ssel enth&#228;lt -- <span class="var">name</span> zeigt auf den Registernamen und <span class="var">type</span> zeigt auf den Registertyp. Als
@@ -194,7 +194,7 @@ gr&#246;&#223;ten <span class="algo">Firm</span> Mode, den ein Register dieser K
     ]
 ); #&#160;%reg_classes
 </pre>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=9" title="Edit section: Die Knoten %nodes">edit</a>]</span> <span class="mw-headline" id="Die_Knoten_.25nodes"> Die Knoten <span class="var">%nodes</span> </span></h2>
+<h2><span class="mw-headline" id="Die_Knoten_.25nodes"> Die Knoten <span class="var">%nodes</span> </span></h2>
 <p>Die Backendknoten sind in der Hash Variablen <span class="var">%nodes</span> beschrieben. Jeder Schl&#252;ssel entspricht einem Knotennamen
 und zeigt auf die zugeh&#246;rige Knotenbeschreibung. Der endg&#252;ltige Knotenname wird aus dem Architekturk&#252;rzel und dem
 hier angegebenen Namen gelbildet.
@@ -486,7 +486,7 @@ static int cmp_attr_&lt;Knotenname&gt;(ir_node *a, ir_node *b) {
 <p>Es kann also im C-Code auf die Attribute der beiden zu vergleichenden Knoten mittels <span class="var">attr_a</span> und <span class="var">attr_b</span> zugegriffen werden.
 </dl>
 </p>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=10" title="Edit section: Generierte Dateien und Funktionen">edit</a>]</span> <span class="mw-headline" id="Generierte_Dateien_und_Funktionen"> Generierte Dateien und Funktionen </span></h2>
+<h2><span class="mw-headline" id="Generierte_Dateien_und_Funktionen"> Generierte Dateien und Funktionen </span></h2>
 <p>Es gibt drei Perlskripte, die aus der Spezifikation, die Knotenkonstruktoren, die Strukturen f&#252;r die Registerallokation und
 Ausgabefunktionen generieren.
 </p><p><dl>

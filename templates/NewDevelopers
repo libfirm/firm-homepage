@@ -6,17 +6,17 @@
 
 <p>This site collects good advice to novice firm developers. So if you're new to firm and want to contribute please read the following points carefully.
 </p>
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: Coding Conventions">edit</a>]</span> <span class="mw-headline" id="Coding_Conventions"> Coding Conventions </span></h1>
-<p>Please respect the <a href="/firm/Coding_Conventions" title="Coding Conventions">Coding Conventions</a>
+<h1><span class="mw-headline" id="Coding_Conventions"> Coding Conventions </span></h1>
+<p>Please respect the <a href="Coding_Conventions" title="Coding Conventions">Coding Conventions</a>
 </p>
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Committing">edit</a>]</span> <span class="mw-headline" id="Committing"> Committing </span></h1>
+<h1><span class="mw-headline" id="Committing"> Committing </span></h1>
 <p>If you're a student your probably have full access to the repository. Nonetheless consider the following points:
 </p>
 <ol><li> Don't even think about commiting if your code doesn't compile
 </li><li> Grab the testsuite and see if your changes broke any testcases (note that there are usually some testcases broken anyway, but your code mustn't increase the number of broken testcases)
 </li><li> And if this is your first commit (to the firm repository): <b>Show us your code and let us do a code review before you commit!</b>
 </li></ol>
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=3" title="Edit section: Debugging">edit</a>]</span> <span class="mw-headline" id="Debugging"> Debugging </span></h1>
-<p>Make your life a little easier and use the <a href="/firm/Debug_Extension" title="Debug Extension">Debug Extension</a>. Make sure you grab the .gdbinit file from that site.
+<h1><span class="mw-headline" id="Debugging"> Debugging </span></h1>
+<p>Make your life a little easier and use the <a href="Debug_Extension" title="Debug Extension">Debug Extension</a>. Make sure you grab the .gdbinit file from that site.
 </p>
 {% endblock %}

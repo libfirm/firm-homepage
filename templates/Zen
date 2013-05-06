@@ -4,8 +4,8 @@
 {%- endblock -%}
 {% block content %}
 
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: The Zen of libFirm">edit</a>]</span> <span class="mw-headline" id="The_Zen_of_libFirm"> The Zen of libFirm </span></h1>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Merging Blocks">edit</a>]</span> <span class="mw-headline" id="Merging_Blocks"> Merging Blocks </span></h2>
+<h1><span class="mw-headline" id="The_Zen_of_libFirm"> The Zen of libFirm </span></h1>
+<h2><span class="mw-headline" id="Merging_Blocks"> Merging Blocks </span></h2>
 <p>The student knocked on the door of the master.
 "Myeah", the master greeted him.
 "Master, i know to use <b>exchange</b> to replace a node with another one,

@@ -4,13 +4,13 @@
 {%- endblock %}
 {% block content %}
 
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: Testsuite">edit</a>]</span> <span class="mw-headline" id="Testsuite"> Testsuite </span></h1>
+<h1><span class="mw-headline" id="Testsuite"> Testsuite </span></h1>
 <p>We have a repository with lots of small test programs along with a testing driver script in:
 </p>
 <pre><a rel="nofollow" class="external free" href="http://pp.info.uni-karlsruhe.de/git/firm-testsuite.git">http://pp.info.uni-karlsruhe.de/git/firm-testsuite.git</a>
 (cgit at <a rel="nofollow" class="external free" href="http://pp.info.uni-karlsruhe.de/git/firm-testsuite/">http://pp.info.uni-karlsruhe.de/git/firm-testsuite/</a>)
 </pre>
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Buildbot">edit</a>]</span> <span class="mw-headline" id="Buildbot"> Buildbot </span></h1>
+<h1><span class="mw-headline" id="Buildbot"> Buildbot </span></h1>
 <p>We also started using buildbot for automatically running tests on pushs. If you are on the internal IPD Network you can find it here:
 </p>
 <pre><a rel="nofollow" class="external free" href="http://i44sun3.info.uni-karlsruhe.de:8010/">http://i44sun3.info.uni-karlsruhe.de:8010/</a>

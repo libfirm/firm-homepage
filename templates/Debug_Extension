@@ -21,7 +21,7 @@
 </li>
 </ul>
 </td></tr></table>
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: Commands">edit</a>]</span> <span class="mw-headline" id="Commands"> Commands </span></h1>
+<h1><span class="mw-headline" id="Commands"> Commands </span></h1>
 <table border="1" cellspacing="0">
 <tr>
 <td width="25%">init </td>
@@ -95,10 +95,10 @@
 <td>help </td>
 <td> list all commands
 </td></tr></table>
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Usage">edit</a>]</span> <span class="mw-headline" id="Usage"> Usage </span></h1>
+<h1><span class="mw-headline" id="Usage"> Usage </span></h1>
 <p>lib<span class="algo">Firm</span> contains a builtin debug extension helping set breakpoints and inspecting data.
 </p>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=3" title="Edit section: Environment Variable">edit</a>]</span> <span class="mw-headline" id="Environment_Variable"> Environment Variable </span></h2>
+<h2><span class="mw-headline" id="Environment_Variable"> Environment Variable </span></h2>
 <p>When firm starts up the environment variable FIRMDBG is interpreted as debug commands. Examples:
 </p><p>Break when node number 123 is created:
 </p>
@@ -108,7 +108,7 @@
 </p>
 <pre>&gt; FIRMDBG="setmask firm.be.prefalloc -1" my_firm_compiler
 </pre>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=4" title="Edit section: Inside a debugger">edit</a>]</span> <span class="mw-headline" id="Inside_a_debugger"> Inside a debugger </span></h2>
+<h2><span class="mw-headline" id="Inside_a_debugger"> Inside a debugger </span></h2>
 <p>The debug extension is accessed using the builtin <span class="var">firm_debug(<i>command</i>)</span> function.
 </p><p>In gdb, issue a call
 </p>
@@ -117,7 +117,7 @@ call firm_debug(&quot;.help&quot;)
 </pre>
 <p>In the Visual Studio Debugger, simply place a call into the watch window.
 </p>
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=5" title="Edit section: Debug Functions">edit</a>]</span> <span class="mw-headline" id="Debug_Functions"> Debug Functions </span></h1>
+<h1><span class="mw-headline" id="Debug_Functions"> Debug Functions </span></h1>
 <p>Further, the following functions/expression might be useful while debugging
 </p>
 <table border="1" cellspacing="0">
@@ -133,7 +133,7 @@ call firm_debug(&quot;.help&quot;)
 <td>dump_ir_block_graph_sched(current_ir_graph, <i>suffix</i>) </td>
 <td> dumps the current graph with scheduling info
 </td></tr></table>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=6" title="Edit section: Usage in gdb macros">edit</a>]</span> <span class="mw-headline" id="Usage_in_gdb_macros"> Usage in gdb macros </span></h2>
+<h2><span class="mw-headline" id="Usage_in_gdb_macros"> Usage in gdb macros </span></h2>
 <p>You can predefine gdb macros for common constructs like displaying an ir_node* or dumping the current graph for opening it in ycomp. The following is a good idea:
 </p>
 <pre>set unwindonsignal on
@@ -194,9 +194,9 @@ define type
 call print_type($arg0), (void)putchar('\n')
 end
 </pre>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=7" title="Edit section: Installation for the FirmEvaluator DLL for DevStudio/Visual Studio">edit</a>]</span> <span class="mw-headline" id="Installation_for_the_FirmEvaluator_DLL_for_DevStudio.2FVisual_Studio"> Installation for the FirmEvaluator DLL for DevStudio/Visual Studio </span></h2>
+<h2><span class="mw-headline" id="Installation_for_the_FirmEvaluator_DLL_for_DevStudio.2FVisual_Studio"> Installation for the FirmEvaluator DLL for DevStudio/Visual Studio </span></h2>
 <p>The FirmEvaluator shows complex <span class="algo">Firm</span> data structures like nodes or bitsets directly in the Visula Studio Debuggers.
-</p><p><a href="/firm/File:FirmEvaluator.gif" class="image"><img alt="FirmEvaluator.gif" src="/firmw/images/3/31/FirmEvaluator.gif" width="380" height="80" /></a>
+</p><p><a href="File:FirmEvaluator.gif" class="image"><img alt="FirmEvaluator.gif" src="images/FirmEvaluator.gif" width="380" height="80" /></a>
 </p><p>Copy the firmEvaluator.dll to an appropriate place. 
 </p><p>VC6: &lt;InstallRoot&gt;\Common\MSDev98\Bin\IDE
 VS2003/VS2005: &lt;Visual Studio folder&gt;\Common7\Packages\Debugger

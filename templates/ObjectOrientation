@@ -4,7 +4,7 @@
 {%- endblock %}
 {% block content %}
 
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: Basics">edit</a>]</span> <span class="mw-headline" id="Basics"> Basics </span></h1>
+<h1><span class="mw-headline" id="Basics"> Basics </span></h1>
 <p>Many modern languages use object-oriented constructs. These includes:
 </p>
 <ul><li> compound-datastructures with associated methods (class types)
@@ -20,7 +20,7 @@
 </li></ul>
 <p>This article attempts to describe how to model some of these aspects in firm
 </p>
-<h1><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Implement them as a library">edit</a>]</span> <span class="mw-headline" id="Implement_them_as_a_library"> Implement them as a library </span></h1>
+<h1><span class="mw-headline" id="Implement_them_as_a_library"> Implement them as a library </span></h1>
 <p>libFirm at its core is concerned with low-level code. object-orientation is consider as a high-level feature which will be lowered to low-level code. Bases on this definition these features should not be part of libfirms core.
 Instead we attempt to provide them as an add-on library called liboo.
 </p><p>Note though that we should keep libfirms core open for extensions of this kind this means:

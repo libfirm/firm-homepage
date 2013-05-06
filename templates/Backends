@@ -4,7 +4,7 @@
 {%- endblock %}
 {% block content %}
 
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: I want a backend X, how hard would it be to create one for libFirm?">edit</a>]</span> <span class="mw-headline" id="I_want_a_backend_X.2C_how_hard_would_it_be_to_create_one_for_libFirm.3F"> I want a backend X, how hard would it be to create one for libFirm? </span></h2>
+<h2><span class="mw-headline" id="I_want_a_backend_X.2C_how_hard_would_it_be_to_create_one_for_libFirm.3F"> I want a backend X, how hard would it be to create one for libFirm? </span></h2>
 <p>In our experience starting with a new backend is quiet easy. We provide the TEMPLATE backend as a starting point and the sparc and arm backends should be easy enough to understand. How complex the backend becomes in the end heavily depends on how irregular the architecture is, how complicated are the address modi, do the address modi of different instructions behave differently, how complicated are the calling conventions, so far each architecture had its own set of features which make writing a backend a little challenge, these problems are there for every compiler, you just have to deal with them with custom code. Some examples of what We have seen before:
 </p>
 <ul><li> On sparc you always have to leave 92 bytes of stack space reserved between the stack pointer and the stuff you actually put on the stack.

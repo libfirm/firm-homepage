@@ -33,46 +33,46 @@ So, "forward" means from the End to the Start node.
 </li>
 </ul>
 </td></tr></table>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=1" title="Edit section: Forward Edges">edit</a>]</span> <span class="mw-headline" id="Forward_Edges"> Forward Edges </span></h2>
-<h4><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=2" title="Edit section: Data Dependencies (black)">edit</a>]</span> <span class="mw-headline" id="Data_Dependencies_.28black.29"> Data Dependencies (black) </span></h4>
+<h2><span class="mw-headline" id="Forward_Edges"> Forward Edges </span></h2>
+<h4><span class="mw-headline" id="Data_Dependencies_.28black.29"> Data Dependencies (black) </span></h4>
 <p>These are the most common edges.
 An operation is connected with a data dependency to its operands.
 </p>
-<h4><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=3" title="Edit section: Reversed Control Flow Edges (red)">edit</a>]</span> <span class="mw-headline" id="Reversed_Control_Flow_Edges_.28red.29"> Reversed Control Flow Edges (red) </span></h4>
+<h4><span class="mw-headline" id="Reversed_Control_Flow_Edges_.28red.29"> Reversed Control Flow Edges (red) </span></h4>
 <p>Reversed, these edges form (sort of) a control flow graph.
 However, these edges go to the operation (not the block),
 which is used to jump to the source block.
 </p><p>These edges are not control dependencies!
 </p>
-<h5><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=4" title="Edit section: Special Case: Back Edges">edit</a>]</span> <span class="mw-headline" id="Special_Case:_Back_Edges"> Special Case: Back Edges </span></h5>
+<h5><span class="mw-headline" id="Special_Case:_Back_Edges"> Special Case: Back Edges </span></h5>
 <p>A reversed control flow edge, where the block of the target node dominates (or is) the source block.
 </p><p>Do not confuse back edges with reversed edges!
 </p>
-<h4><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=5" title="Edit section: Memory Dependencies (blue)">edit</a>]</span> <span class="mw-headline" id="Memory_Dependencies_.28blue.29"> Memory Dependencies (blue) </span></h4>
+<h4><span class="mw-headline" id="Memory_Dependencies_.28blue.29"> Memory Dependencies (blue) </span></h4>
 <p>Memory dependencies represent a special form of data dependency,
 where the value is the memory.
 In contrast to other SSA values, memory cannot be duplicated.
 Intuitively, a store operation consumes the whole memory state
 and produces a new state.
 </p>
-<h4><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=6" title="Edit section: Keeps (violet)">edit</a>]</span> <span class="mw-headline" id="Keeps_.28violet.29"> Keeps (violet) </span></h4>
-<p>If code is dead, but <a href="/firm/Unreachable_Code" title="Unreachable Code">reachable</a>, e.g. infinite loops,
+<h4><span class="mw-headline" id="Keeps_.28violet.29"> Keeps (violet) </span></h4>
+<p>If code is dead, but <a href="Unreachable_Code" title="Unreachable Code">reachable</a>, e.g. infinite loops,
 the keep edges are Firm's hack to "keep" the code,
 because they provide a path from the End node.
 </p>
-<h4><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=7" title="Edit section: Other Dependencies (green)">edit</a>]</span> <span class="mw-headline" id="Other_Dependencies_.28green.29"> Other Dependencies (green) </span></h4>
+<h4><span class="mw-headline" id="Other_Dependencies_.28green.29"> Other Dependencies (green) </span></h4>
 <p>Additional dependencies with no special semantics.
 </p>
-<h2><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=8" title="Edit section: Reverse Edges">edit</a>]</span> <span class="mw-headline" id="Reverse_Edges"> Reverse Edges </span></h2>
+<h2><span class="mw-headline" id="Reverse_Edges"> Reverse Edges </span></h2>
 <p>Sometimes it is necessary to walk a Firm graph in data <i>flow</i> order.
 So libFirm provides the following mechanisms.
 </p>
-<h4><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=9" title="Edit section: Outs">edit</a>]</span> <span class="mw-headline" id="Outs"> Outs </span></h4>
+<h4><span class="mw-headline" id="Outs"> Outs </span></h4>
 <p>Outs are the reversed form of the dependencies above.
 However, any change to the graph makes this edges inconsistent,
 but the corresponding flag is not set implicitly.
 </p>
-<h4><span class="editsection">[<a href="/firmw/index.php?title=CLIParser&amp;action=edit&amp;section=10" title="Edit section: Out Edges">edit</a>]</span> <span class="mw-headline" id="Out_Edges"> Out Edges </span></h4>
+<h4><span class="mw-headline" id="Out_Edges"> Out Edges </span></h4>
 <p>These are like outs, but are updated automatically.
 This automatic updates can be switched on and off (edges_activate, edges_deactivate).
 However,
