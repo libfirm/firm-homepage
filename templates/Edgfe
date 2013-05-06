@@ -1,0 +1,7 @@
+{% extends "parts/base" %}
+{% block title %}Edgfe{% endblock %}
+{% block content %}
+<p>
+	We do have a complete frontend based on the edison design group libraries. We can't release this source code to the public. We might be able to provide the source to academic institutions, please contact us for details.
+</p>
+{% endblock content %}
