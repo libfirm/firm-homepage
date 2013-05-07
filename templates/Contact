@@ -4,14 +4,12 @@
 {%- endblock %}
 {% block content %}
 
-<p>There's a public mailing list here:
-<a class="external free" href="https://lists.sourceforge.net/lists/listinfo/libfirm-user">https://lists.sourceforge.net/lists/listinfo/libfirm-user</a>
-</p><p>You can contact the developers directly at:
+<p>Probably the best approach is to contact the developers directly at
+<a href="mailto:firm@ipd.info.uni-karlsruhe.de">firm@ipd.info.uni-karlsruhe.de</a></p>
+
+<p>We also have a
+<a class="external free" href="http://pp.info.uni-karlsruhe.de/~firm/bugs">bug tracker</a>.
 </p>
-<pre><i>firm@ipd.info.uni-karlsruhe.de</i>
-</pre>
-<p>We have a bugtracker:
-<a class="external free" href="http://pp.info.uni-karlsruhe.de/~firm/bugs">http://pp.info.uni-karlsruhe.de/~firm/bugs</a>
-</p><p>(There is also the #firm channel on freenode. However it is currently not frequented regularily by the main developers).
-</p>
+
+<p>There is also the #firm channel on freenode.</p>
 {% endblock %}

@@ -3,23 +3,18 @@
 {% block documenttitle %}{% endblock %}
 {% block content %}
 <p>
-	lib<span class="algo">Firm</span> is a C-library that provides an intermediate representation, optimisations, and backends for compilers. Programs are represented in a graph based <a class="external text" href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA form</a>.
+	lib<span class="algo">Firm</span> is a C-library that provides an intermediate representation, optimi&shy;sations, and backends for compilers. Programs are represented in a graph based <a class="external text" href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA form</a>.
 </p>
+
 <ul>
-	<li><a href="Introduction" title="Introduction">Introduction</a></li>
-	<li><a href="Quick_Start" title="Quick Start">Quick Start</a></li>
-	<li><a href="Features" title="Features">Features</a></li>
+	<li><a href="Quick_Start">Quick Start</a></li>
 	<li><a class="external text" href="http://kreacher.isla-de-muerta.de/~matze/online_compiler">Online Demo</a></li>
-	<li><a href="Benchmarks" title="Benchmarks">Benchmarks</a></li>
-	<li> <a class="external text" href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
-	<li><a href="Documentation" title="Documentation">Documentation</a></li>
-	<li><a href="Contact" title="Contact">Contact</a></li>
 </ul>
 
 <h1 id="Downloads">Downloads</h1>
 <ul>
 	<li><b><a href="Download" title="Download">Download lib<span class="algo">Firm</span></a></b></li>
-	<li> <a class="external text" href="http://github.com/MatzeB/JFirm/">JFirm</a> - Java-Bindings (aimed at compiler construction courses)]</li>
+	<li> <a class="external text" href="http://github.com/MatzeB/JFirm/">JFirm</a> - Java-Bindings (aimed at compiler construction courses)</li>
 	<li> Tools
 		<ul>
 			<li><a class="external text" href="http://www.info.uni-karlsruhe.de/software/ycomp">yComp</a> - <i>visualization for program graphs</i></li>
@@ -46,8 +41,5 @@
 	<li><a href="Testing" title="Testing">Testing</a></li>
 	<li><a href="TODO" title="TODO">TODO</a></li>
 </ul>
-<p>
-	Visit us in #firm on <a class="external text" href="http://webchat.freenode.net/">freenode</a> (IRC).
-</p>
 
 {% endblock %}

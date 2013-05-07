@@ -4,13 +4,6 @@ body {
 	color: black;
 }
 
-div.header,
-div.content {
-	width: 50em;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 div.document {
 	width: 40em;
 	float: right;
@@ -27,12 +20,6 @@ div.sidebar h3 {
 	text-transform: uppercase;
 	font-size: 130%;
 	letter-spacing: .1em;
-}
-
-div.sidebar ul {
-	list-style-image: url(listitem.png);
-	margin-left: 0px;
-	padding-left: 0px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -67,9 +54,18 @@ h1, h2, h3, h4, h5, h6 {
 	color: #410;
 }
 
+div.footer,
+div.sidebar li a {
+	background-color: #dcb;
+}
+div.sidebar li a:hover {
+	color: #fff;
+	background-color: #410;
+}
+
 div.document pre {
-	border: 1px dashed #2f6fab;
-	background-color: #f9f9f9;
+	border: 1px dashed #410;
+	background-color: #eee;
 }
 
 /** FONTS **/
@@ -79,16 +75,60 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: "Georgia", "Times New Roman", serif;
+	font-family: "Linux Biolinum Capitals O", "Georgia", "Times New Roman", serif;
 }
 
 pre, code {
 	font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
 }
 
+/** TEXT **/
+
+div.sidebar a {
+	text-decoration: none;
+}
+
+div.footer span { font-size: 0.9em; }
+
 /** SPACING **/
 
-#footer {
-	clear: both;
-	margin-bottom: 5cm;
+div.header,
+div.footer,
+div.content {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.header {
+	width: 40em;
+	padding-left: 10em;
+}
+
+div.content { width: 50em; }
+
+div.sidebar ul {
+	list-style-type: none;
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+div.sidebar li a {
+	display: block;
+	margin: 2px 0;
+	padding: 1px 4px;
+	border-radius: 0 5px;
+}
+
+div.footer { width: 48em; margin-top: 2em; padding: 1em 1em; }
+
+.clear,
+div.footer { clear: both; }
+
+div.footer span { display: block; }
+
+/** GIMMICKS **/
+
+a.external {
+	padding-right: 12px;
+	background: url(externallink.png) no-repeat right center;
 }
