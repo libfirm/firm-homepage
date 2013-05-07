@@ -14,18 +14,30 @@
 <h1 id="Downloads">Downloads</h1>
 <ul>
 	<li><b><a href="Download" title="Download">Download lib<span class="algo">Firm</span></a></b></li>
-	<li> <a class="external text" href="http://github.com/MatzeB/JFirm/">JFirm</a> - Java-Bindings (aimed at compiler construction courses)</li>
-	<li> Tools
+	<li>Tools
 		<ul>
-			<li><a class="external text" href="http://www.info.uni-karlsruhe.de/software/ycomp">yComp</a> - <i>visualization for program graphs</i></li>
+			<li><a class="external text" href="http://www.info.uni-karlsruhe.de/software/ycomp">yComp</a> - visualization for program graphs</li>
 		</ul>
 	</li>
-	<li> Frontends
+	<li>Frontends
 		<ul>
-			<li> <a class="external text" href="http://sourceforge.net/projects/cparser/">CParser</a> - C-Frontend</li>
-			<li> <a class="external text" href="http://github.com/MatzeB/bytecode2firm">bytecode2firm</a> - Javabytecode frontend</li>
-			<li> <a class="external text" href="http://github.com/MatzeB/fluffy">Fluffy Language</a></li>
-			<li> <a class="external text" href="http://pp.info.uni-karlsruhe.de/git/firm-bf">brainfuck</a></li>
+			<li><a class="external text" href="http://sourceforge.net/projects/cparser/">CParser</a> - C-Frontend</li>
+			<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/X10i/">X10i</a> - X10 native code compiler (for <a class="external text" href="http://www.invasic.de">invasic</a> architectures)</li>
+			<li><a class="external text" href="http://github.com/MatzeB/bytecode2firm">bytecode2firm</a> - Javabytecode frontend</li>
+			<li><a class="external text" href="http://github.com/MatzeB/fluffy">Fluffy Language</a></li>
+			<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/firm-bf">brainfuck</a> - Brainfuck native code compiler (and a good tutorial)</li>
+		</ul>
+	</li>
+	<li>Libraries
+		<ul>
+			<li><a class="external text" href="http://github.com/MatzeB/JFirm/">JFirm</a> - Java-Bindings (aimed at compiler construction courses)</li>
+			<li><a class="external text" href="http://github.com/MatzeB/liboo/">libOO</a> - lowering of object orientated code</li>
+		</ul>
+	</li>
+	<li>Testing
+		<ul>
+			<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/firm-testsuite">firm-testsuite</a> - c-compiler / firm optimisation testsuite</li>
+			<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/sisyphus">Sisyphus</a> - a (generic) testrunner aimed at compiler tests</li>
 		</ul>
 	</li>
 </ul>
