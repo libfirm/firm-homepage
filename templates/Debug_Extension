@@ -152,18 +152,13 @@ p array_len($arg0)
 end
 
 # The following should be used for libfirm after 1.18.0
-define dump
-call dump_ir_graph(current_ir_graph, "XXX")
+define dumpg
+if $argc == 1
+	call dump_ir_graph($arg0, "XXX")
+else
+	call dump_ir_graph(current_ir_graph, "XXX")
 end
-
-# The following 2 macros make sense for libfirm until 1.18.0
-#define dumps
-#call dump_ir_block_graph_sched(current_ir_graph, "-XXS")
-#end
-#
-#define dumpx
-#call dump_ir_block_graph(current_ir_graph, "-XXX")
-#end
+end
 
 define firmd
 call firm_debug($arg0)
@@ -177,20 +172,16 @@ define keep
 call add_End_keepalive(get_irg_end(current_ir_graph), $arg0)
 end
 
-define pred
-print gdb_node_helper(get_irn_n($arg0, $arg1))
-end
-
 # cparser
-define expr
+define cpexpr
 call print_expression($arg0), (void)putchar('\n')
 end
 
-define stmt
+define cpstmt
 call print_statement($arg0)
 end
 
-define type
+define cptype
 call print_type($arg0), (void)putchar('\n')
 end
 </pre>
