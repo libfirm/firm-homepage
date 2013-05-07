@@ -50,7 +50,7 @@
 </li><li> control transfer instruction like jumps
 </li><li> data flow operations such as loads, stores, additions, etc.
 </li></ul>
-<p>libFirm has <a class="external text" href="http://www.info.uni-karlsruhe.de/~firm/libfirm/a00628.html">several routines</a> to dump irgs to text files in the VCG format. The <a class="external text" href="http://www.info.uni-karlsruhe.de/software.php/id=6&amp;lang=en">yComp</a> Tool is very well suited to visualize these graphs. In the following, we will use these visualizations to present the fundamental concepts of the irgs. 
+<p>libFirm has several routines to dump irgs to text files in the VCG format. The <a class="external text" href="http://www.info.uni-karlsruhe.de/software.php/id=6&amp;lang=en">yComp</a> Tool is very well suited to visualize these graphs. In the following, we will use these visualizations to present the fundamental concepts of the irgs.
 </p>
 <h3><span class="mw-headline" id="Basic_IRG_Elements"> Basic IRG Elements </span></h3>
 <p>The first irg we will consider is almost minimal. It was constructed by the C frontend of our compiler and represents the code of following C function 
