@@ -55,8 +55,7 @@
 <h3><span class="mw-headline" id="Basic_IRG_Elements"> Basic IRG Elements </span></h3>
 <p>The first irg we will consider is almost minimal. It was constructed by the C frontend of our compiler and represents the code of following C function 
 </p>
-<pre>
-void empty(void) { }
+<pre>void empty(void) { }
 </pre>
 <div class="thumb tright"><div class="thumbinner" style="width:338px;"><a href="File:IRG_Empty.png" class="image"><img alt="" src="images/IRG_Empty.png" width="336" height="498" class="thumbimage" /></a>  <div class="thumbcaption">A minimal irg</div></div></div>
 <p>You will notice that there are several nodes in different colors with names and numbers. Furthermore, the edges have different colors, line styles and numbers attached. Let us go through all these elements step by step and meet first peculiarities of Firm. 
