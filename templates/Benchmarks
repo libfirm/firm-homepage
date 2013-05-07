@@ -4,7 +4,7 @@
 <p>We have performed a number of performance tests with the SPEC2000/CINT suite to evaluate FIRM's performance and compare it with other C compilers.
 </p>
 <h2> <span class="mw-headline" id="Notes"> Notes </span></h2>
-<p>The benchmarks were performed with our EDG based C frontend <a href="Edgfe" title="Edgfe">Edgfe</a>. As our compiler doesn't support C++ yet, we didn't do any testing with the 252.eon benchmark which means our spec runs are invalid according to official spec rules. We did respect all other spec rules and the numbers for all other benchmarks are an accurate indicator for FIRM's perfomance!
+<p>The benchmarks were performed with our EDG based C frontend Edgfe. As our compiler doesn't support C++ yet, we didn't do any testing with the 252.eon benchmark which means our spec runs are invalid according to official spec rules. We did respect all other spec rules and the numbers for all other benchmarks are an accurate indicator for FIRM's perfomance!
 </p><p>We compared with the [<a class="external text" href="http://www.gcc.gnu.org">gcc compiler</a>], the llvm-gcc compiler from the [<a class="external text" href="http://www.llvm.org">llvm project</a>], and [<a class="external text" href="http://www.intel.com/cd/software/products/asmo-na/eng/compilers/index.htm">intels compiler</a>] (icc).
 </p><p>The exact version numbers and details about the compiler switches can be found in the result sheets below.
 </p><p><b>The benchmarks were performed in November 2007</b> Newer benchmarks demonstrating even better performance will be put here soon.

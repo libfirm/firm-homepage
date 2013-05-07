@@ -26,7 +26,6 @@
 			<li> <a class="external text" href="http://github.com/MatzeB/bytecode2firm">bytecode2firm</a> - Javabytecode frontend</li>
 			<li> <a class="external text" href="http://github.com/MatzeB/fluffy">Fluffy Language</a></li>
 			<li> <a class="external text" href="http://pp.info.uni-karlsruhe.de/git/firm-bf">brainfuck</a></li>
-			<li><a href="Edgfe" title="Edgfe">C-Frontend (based on edison design group code)</a></li>
 		</ul>
 	</li>
 </ul>
