@@ -5,6 +5,7 @@ body {
 	color: black;
 }
 
+div.header,
 div.content {
 	width: 60em;
 	margin-left: auto;

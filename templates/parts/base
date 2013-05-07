@@ -10,12 +10,13 @@
 		{%- endblock %}
 	</head>
 	<body>
+		<div class="header">
+			<a href="Index"><img src="logo.png"/></a>
+		</div>
 		<div class="content-wrapper">
 			<div class="content">
 				<div class="sidebar">
 					{% block sidebar %}
-						<a href="Index"><img src="logo.png"/></a>
-
 						<h3>Navigation</h3>
 						<ul>
 							<li><a href="Index">About</a></li>
@@ -35,6 +36,8 @@
 					{% endblock %}
 				</div>
 			</div>
+		</div>
+		<div class="footer">
 		</div>
 	</body>
 </html>
