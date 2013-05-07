@@ -1,19 +1,18 @@
 body {
 	margin-bottom: .5em;
-	font-family: "Verdana", Arial, sans-serif;
 	line-height: 1.4em;
 	color: black;
 }
 
 div.header,
 div.content {
-	width: 60em;
+	width: 50em;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 div.document {
-	width: 50em;
+	width: 40em;
 	float: right;
 }
 
@@ -24,9 +23,7 @@ div.sidebar {
 }
 
 div.sidebar h3 {
-	font-family: "Georgia", "Times New Roman", serif;
 	font-weight: normal;
-	color: #2e3436;
 	text-transform: uppercase;
 	font-size: 130%;
 	letter-spacing: .1em;
@@ -34,14 +31,13 @@ div.sidebar h3 {
 
 div.sidebar ul {
 	list-style-image: url(listitem.png);
-	margin-left: 5px;
+	margin-left: 0px;
+	padding-left: 0px;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	display: block;
-	font-family: "Georgia", "Times New Roman", serif;
 	font-weight: normal;
-	color: #204a87;
 }
 
 h1 {
@@ -51,8 +47,6 @@ h1 {
 }
 
 div.document pre {
-	border: 1px dashed #2f6fab;
-	background-color: #f9f9f9;
 	color: black;
 	padding: 1em;
 	line-height: 1.1em;
@@ -60,4 +54,41 @@ div.document pre {
 
 span.algo {
 	font-variant: small-caps;
+}
+
+/** COLORS **/
+
+a { color: #00a; }
+a:hover { color: #00f; }
+a:active { color: #55f; }
+
+a:visited,
+h1, h2, h3, h4, h5, h6 {
+	color: #410;
+}
+
+div.document pre {
+	border: 1px dashed #2f6fab;
+	background-color: #f9f9f9;
+}
+
+/** FONTS **/
+
+body {
+	font-family: "Verdana", Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Georgia", "Times New Roman", serif;
+}
+
+pre, code {
+	font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+}
+
+/** SPACING **/
+
+#footer {
+	clear: both;
+	margin-bottom: 5cm;
 }
