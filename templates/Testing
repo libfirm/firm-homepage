@@ -7,13 +7,13 @@
 <h1><span class="mw-headline" id="Testsuite"> Testsuite </span></h1>
 <p>We have a repository with lots of small test programs along with a testing driver script in:
 </p>
-<pre><a rel="nofollow" class="external free" href="http://pp.info.uni-karlsruhe.de/git/firm-testsuite.git">http://pp.info.uni-karlsruhe.de/git/firm-testsuite.git</a>
-(cgit at <a rel="nofollow" class="external free" href="http://pp.info.uni-karlsruhe.de/git/firm-testsuite/">http://pp.info.uni-karlsruhe.de/git/firm-testsuite/</a>)
+<pre><a class="external free" href="http://pp.info.uni-karlsruhe.de/git/firm-testsuite.git">http://pp.info.uni-karlsruhe.de/git/firm-testsuite.git</a>
+(cgit at <a class="external free" href="http://pp.info.uni-karlsruhe.de/git/firm-testsuite/">http://pp.info.uni-karlsruhe.de/git/firm-testsuite/</a>)
 </pre>
 <h1><span class="mw-headline" id="Buildbot"> Buildbot </span></h1>
 <p>We also started using buildbot for automatically running tests on pushs. If you are on the internal IPD Network you can find it here:
 </p>
-<pre><a rel="nofollow" class="external free" href="http://i44sun3.info.uni-karlsruhe.de:8010/">http://i44sun3.info.uni-karlsruhe.de:8010/</a>
+<pre><a class="external free" href="http://i44sun3.info.uni-karlsruhe.de:8010/">http://i44sun3.info.uni-karlsruhe.de:8010/</a>
 </pre>
 <p>If you have access to the firm account then you can edit the config like this:
 </p>

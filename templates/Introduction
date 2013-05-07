@@ -21,17 +21,17 @@
 </ul>
 </td></tr></table>
 <h2><span class="mw-headline" id="Introduction"> Introduction </span></h2>
-<p>lib<span class="algo">Firm</span> is a C library implementing the <span class="algo">Firm</span> low-level intermediate representation. <span class="algo">Firm</span> is used to represent a computer program in order to analyse and transform it. Its main application is compiler construction where <a rel="nofollow" class="external text" href="http://pp.info.uni-karlsruhe.de">we</a> use it to represent, optimize and transform C and Java programs to native machine code.
+<p>lib<span class="algo">Firm</span> is a C library implementing the <span class="algo">Firm</span> low-level intermediate representation. <span class="algo">Firm</span> is used to represent a computer program in order to analyse and transform it. Its main application is compiler construction where <a class="external text" href="http://pp.info.uni-karlsruhe.de">we</a> use it to represent, optimize and transform C and Java programs to native machine code.
 </p><p>The most important features of <span class="algo">Firm</span> are that it is
 </p>
 <ul><li> low-level which means that the representation of the program is closer to machine code than to the language.
 </li><li> completely graph based which means that there are no instruction lists or triple code, only data dependence and control flow graphs.
-</li><li> completely <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA</a> based which means that the code of the program is always in SSA form.
+</li><li> completely <a class="external text" href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA</a> based which means that the code of the program is always in SSA form.
 </li></ul>
 <p>A complete list of <a href="Features" title="Features">Features</a> is also available.
 </p><p>In the following, we will try to give you an idea about how programs are presented in <span class="algo">Firm</span>.
 </p><p>Firm is using most of the concepts described by Cliff Click. So for a more "scientific" description you might refer to:
-</p><p>Click, C. and Paleczny, M. 1995. A simple graph-based intermediate representation. In Papers From the 1995 ACM SIGPLAN Workshop on intermediate Representations (San Francisco, California, United States, January 22 - 22, 1995). ACM, New York, NY, 35-49. <a rel="nofollow" class="external free" href="http://dx.doi.org/10.1145/202529.202534">http://dx.doi.org/10.1145/202529.202534</a>
+</p><p>Click, C. and Paleczny, M. 1995. A simple graph-based intermediate representation. In Papers From the 1995 ACM SIGPLAN Workshop on intermediate Representations (San Francisco, California, United States, January 22 - 22, 1995). ACM, New York, NY, 35-49. <a class="external free" href="http://dx.doi.org/10.1145/202529.202534">http://dx.doi.org/10.1145/202529.202534</a>
 </p>
 <h2><span class="mw-headline" id="Overview"> Overview </span></h2>
 <p>A program (called <i>irp</i> in <a href="/firmw/index.php?title=FirmSpeek&amp;action=edit&amp;redlink=1" class="new" title="FirmSpeek (page does not exist)">FirmSpeek</a>) in lib<span class="algo">Firm</span> consists of three things:
@@ -50,7 +50,7 @@
 </li><li> control transfer instruction like jumps
 </li><li> data flow operations such as loads, stores, additions, etc.
 </li></ul>
-<p>libFirm has <a rel="nofollow" class="external text" href="http://www.info.uni-karlsruhe.de/~firm/libfirm/a00628.html">several routines</a> to dump irgs to text files in the VCG format. The <a rel="nofollow" class="external text" href="http://www.info.uni-karlsruhe.de/software.php/id=6&amp;lang=en">yComp</a> Tool is very well suited to visualize these graphs. In the following, we will use these visualizations to present the fundamental concepts of the irgs. 
+<p>libFirm has <a class="external text" href="http://www.info.uni-karlsruhe.de/~firm/libfirm/a00628.html">several routines</a> to dump irgs to text files in the VCG format. The <a class="external text" href="http://www.info.uni-karlsruhe.de/software.php/id=6&amp;lang=en">yComp</a> Tool is very well suited to visualize these graphs. In the following, we will use these visualizations to present the fundamental concepts of the irgs. 
 </p>
 <h3><span class="mw-headline" id="Basic_IRG_Elements"> Basic IRG Elements </span></h3>
 <p>The first irg we will consider is almost minimal. It was constructed by the C frontend of our compiler and represents the code of following C function 

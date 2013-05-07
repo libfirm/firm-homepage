@@ -8,7 +8,7 @@
 </p><p><b>We assume a 32bit Linux or OSX environment here</b>
 </p><p>Check it out with git:
 </p>
-<pre>git clone <a rel="nofollow" class="external free" href="http://pp.info.uni-karlsruhe.de/git/cparser/">http://pp.info.uni-karlsruhe.de/git/cparser/</a>
+<pre>git clone <a class="external free" href="http://pp.info.uni-karlsruhe.de/git/cparser/">http://pp.info.uni-karlsruhe.de/git/cparser/</a>
 cd cparser
 </pre>
 <p>If you want the latest release, instead of the developement version, checkout the latest tag.
@@ -27,6 +27,6 @@ cd cparser
 </pre>
 <p>Our compiler tries to be a drop in replacement for GCC, so it supports the same arguments.
 Try it on some C99 code, like <tt>cparser -Wall -O3 test.c</tt> or <tt>make CC=cparser</tt>.
-</p><p>If you find bugs, please report them in our <a rel="nofollow" class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/bugs/">issue tracker</a>.
+</p><p>If you find bugs, please report them in our <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/bugs/">issue tracker</a>.
 </p>
 {% endblock %}

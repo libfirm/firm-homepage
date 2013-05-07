@@ -79,6 +79,6 @@ GROUP BY c.bemain_compilation_unit
 </p><p><a href="File:Tableexample.png" class="image"><img alt="Tableexample.png" src="images/Tableexample.png" width="585" height="213" /></a>
 <a href="File:Plotexample.png" class="image"><img alt="Plotexample.png" src="images/Plotexample.png" width="383" height="227" /></a>
 </p><p>I have added some of my scripts into the firm svn repository as examples:
-<a rel="nofollow" class="external autonumber" href="http://github.com/MatzeB/libfirm/tree/master/scripts/statev_examples">[1]</a>
+<a class="external autonumber" href="http://github.com/MatzeB/libfirm/tree/master/scripts/statev_examples">[1]</a>
 </p>
 {% endblock %}

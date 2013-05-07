@@ -5,13 +5,13 @@
 {% block content %}
 
 <p>There's a public mailing list here:
-<a rel="nofollow" class="external free" href="https://lists.sourceforge.net/lists/listinfo/libfirm-user">https://lists.sourceforge.net/lists/listinfo/libfirm-user</a>
+<a class="external free" href="https://lists.sourceforge.net/lists/listinfo/libfirm-user">https://lists.sourceforge.net/lists/listinfo/libfirm-user</a>
 </p><p>You can contact the developers directly at:
 </p>
 <pre><i>firm@ipd.info.uni-karlsruhe.de</i>
 </pre>
 <p>We have a bugtracker:
-<a rel="nofollow" class="external free" href="http://pp.info.uni-karlsruhe.de/~firm/bugs">http://pp.info.uni-karlsruhe.de/~firm/bugs</a>
+<a class="external free" href="http://pp.info.uni-karlsruhe.de/~firm/bugs">http://pp.info.uni-karlsruhe.de/~firm/bugs</a>
 </p><p>(There is also the #firm channel on freenode. However it is currently not frequented regularily by the main developers).
 </p>
 {% endblock %}
