@@ -112,8 +112,7 @@
 <p>The debug extension is accessed using the builtin <span class="var">firm_debug(<i>command</i>)</span> function.
 </p><p>In gdb, issue a call
 </p>
-<pre>
-call firm_debug(&quot;.help&quot;)
+<pre>call firm_debug(&quot;.help&quot;)
 </pre>
 <p>In the Visual Studio Debugger, simply place a call into the watch window.
 </p>
@@ -196,8 +195,7 @@ VS2003/VS2005: &lt;Visual Studio folder&gt;\Common7\Packages\Debugger
 VS2003/VS2005: &lt;Visual Studio folder&gt;\Common7\Packages\Debugger
 </p><p>Add the following to the [AutoExpand] section:
 </p>
-<pre>
-; firm evaluator
+<pre>; firm evaluator
 _arch_register_class_t=name=&lt;name,s&gt;
 arch_register_class_t=name=&lt;name,s&gt;
 _arch_register_t=name=&lt;name,s&gt; idx=&lt;index,d&gt;
@@ -253,8 +251,7 @@ _bitset_t=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_bitset_Evaluate)
 <p><br />
 For the EDG Java frontend the following might be interesting:
 </p>
-<pre>
-; edgjfe
+<pre>; edgjfe
 a_text_buffer=size=&lt;size,u&gt; text=&lt;buffer,s&gt;
 </pre>
 

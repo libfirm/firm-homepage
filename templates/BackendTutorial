@@ -58,8 +58,7 @@ Example:
 <p>The flags are described as a hash with a name for every cpu flag as key pointing to another hash representing the actual flag description. This hash contains a key <span class="var">reg</span> pointing to the name of the flag register containing the current flag and a key <span class="var">bit</span> for the number of the bit representing the current flag within the register.
 Example:
 </p>
-<pre>
-%flags = (
+<pre>%flags = (
         CF =&gt; { reg =&gt; &quot;eflags&quot;, bit =&gt; 0 },
         PF =&gt; { reg =&gt; &quot;eflags&quot;, bit =&gt; 2 },
         AF =&gt; { reg =&gt; &quot;eflags&quot;, bit =&gt; 4 },
@@ -75,8 +74,7 @@ Example:
 <p>This variable is as hash used as abstract machine description. One can specify which function unit types are available and how many units of each type exists. The hash contains a unit type name as key pointing to an array listing all units of this type. The first entry in the array is the number of outports for each unit (usually 1) and all following ones are the names for the corresponding unit. Right now this description is used for the ILP scheduler to assign instructions to functional units.
 Example:
 </p>
-<pre>
-%cpu = (
+<pre>%cpu = (
   &quot;ALU&quot;   =&gt; [ 1, &quot;ALU1&quot;, &quot;ALU2&quot;, &quot;ALU3&quot;, &quot;ALU4&quot; ],
   &quot;MUL&quot;   =&gt; [ 1, &quot;MUL&quot; ],
   &quot;SHIFT&quot; =&gt; [ 1, &quot;SHIFT&quot; ],
@@ -88,8 +86,7 @@ Example:
 <p>The vliw support description is used along with the abstract machine description in <span class="var">%cpu</span> for the ILP scheduler to determine how many instruction can be executed within one cycle. It is a hash with two keys <span class="var">bundle_size</span> describing the number of instructions per bundle, and <span class="var">bundels_per_cycle</span> describing the number of bundles executed per cycle.
 Example (Itanium):
 </p>
-<pre>
-%vliw = (
+<pre>%vliw = (
     &quot;bundle_size&quot;       =&gt; 3,
     &quot;bundels_per_cycle&quot; =&gt; 2
 ); # vliw
@@ -98,8 +95,7 @@ Example (Itanium):
 <p>This variable is used to specify place holders one can use within the emit specification for the nodes. They can be used similar to <span class="var">printf</span> format specifiers.
 Example:
 </p>
-<pre>
-%emit_templates = (
+<pre>%emit_templates = (
     S0 =&gt; &quot;${arch}_emit_source_register(env, node, 0);&quot;,
     S1 =&gt; &quot;${arch}_emit_source_register(env, node, 1);&quot;,
     S2 =&gt; &quot;${arch}_emit_source_register(env, node, 2);&quot;,
@@ -149,8 +145,7 @@ mit den Registerbeschreibungen ist ein besonderer Hash, der als Schl&#252;ssel <
 gr&#246;&#223;ten <span class="algo">Firm</span> Mode, den ein Register dieser Klasse aufnehmen kann.
 </p><p>Beispiel:
 </p>
-<pre>
-%reg_classes = (
+<pre>%reg_classes = (
     gp =&gt; [
         { name =&gt; &quot;eax&quot;, type =&gt; 1 },
         { name =&gt; &quot;edx&quot;, type =&gt; 1 },
@@ -200,8 +195,7 @@ und zeigt auf die zugeh&#246;rige Knotenbeschreibung. Der endg&#252;ltige Knoten
 hier angegebenen Namen gelbildet.
 Beispiel:
 </p>
-<pre>
-$arch = &quot;ia32&quot;;
+<pre>$arch = &quot;ia32&quot;;
 
 %nodes = (
   &quot;Add&quot; =&gt; {
@@ -344,8 +338,7 @@ Die Angabe der Registeranforderungen ist optional und kann entfallen, allerdings
 </pre>
 <p><span class="var">op1</span> bis <span class="var">opX</span> stehen f&#252;r die Operanden, die der Knoten verwendet, wobei <span class="var">X</span> die Anzahl der Eing&#228;nge ist. Der Standardkonstruktor sieht wie folgt aus (<span class="var">Y</span> steht für die Anzahl der Ausgänge):
 </p>
-<pre>
-ir_node *new_rd_&lt;Knotenname&gt;(dbg_info *db, ir_graph *irg, ir_node *block, ir_node *op1, ..., ir_node *opX, ir_mode *mode)
+<pre>ir_node *new_rd_&lt;Knotenname&gt;(dbg_info *db, ir_graph *irg, ir_node *block, ir_node *op1, ..., ir_node *opX, ir_mode *mode)
 {
   ir_node *res;
   ir_node *in[X];
@@ -401,8 +394,7 @@ ir_node *new_rd_&lt;Knotenname&gt;(dbg_info *db, ir_graph *irg, ir_node *block, 
 <dd>Wenn kein Standardkonstruktor verwendet wird, dann kann kann man an dieser Stelle auch andere Argumente f&#252;r	die Funktionssignatur des Konstruktors angeben. Die Angabe erfolgt als Array von Hashes, wobei jeder Hash zwei Schl&#252;ssel enth&#228;lt -- <span class="var">type</span> f&#252;r den Typ des Arguments und <span class="var">name</span> f&#252;r den Variablennamen. Zu beachten ist, dass die ersten drei Parameter trotzdem automatisch als <span class="var">dbg_info *db</span>, <span class="var">ir_graph *irg</span> und <span class="var">ir_node *block</span> generiert werden. D.h. alle hier angegebenen Paramter werden zus&#228;tzlich zu diesen drei erzeugt.
 Beispiel passend zum obigen selbst definierten Konstruktor:
 </p>
-<pre>
-&quot;args&quot; =&gt; [
+<pre>&quot;args&quot; =&gt; [
             { &quot;type&quot; =&gt; &quot;int&quot;,        &quot;name&quot; =&gt; &quot;n&quot; },
             { &quot;type&quot; =&gt; &quot;ir_node **&quot;, &quot;name&quot; =&gt; &quot;in&quot; }
           ]
@@ -428,8 +420,7 @@ Beispiel passend zum obigen selbst definierten Konstruktor:
 <p></dl>
 Optional kann noch eine Zahl vor dem Punkt angegeben werden, die die Einr&#252;cktiefe der <span class="var">printf</span> Sequenzen im generierten Code entspricht. Die erzeugte Ausgabefunktion sieht folgenderma&#223;en aus:
 </p>
-<pre>
-void emit_&lt;Knotenname&gt;(ir_node *n, emit_env_t *env) {
+<pre>void emit_&lt;Knotenname&gt;(ir_node *n, emit_env_t *env) {
   FILE *F = env-&gt;out;
 
   Code aus &quot;emit&quot; mit ersetzten Makros
@@ -441,8 +432,7 @@ void emit_&lt;Knotenname&gt;(ir_node *n, emit_env_t *env) {
 </pre>
 <p>Komplexeres Beispiel (Min-Knoten auf <span class="var">ia32</span>):
 </p>
-<pre>
-&quot;emit&quot; =&gt;
+<pre>&quot;emit&quot; =&gt;
 '2. cmp&#160;%S0,&#160;%S1 /* prepare Min(%A0,&#160;%A1) */
   if (mode_is_signed(get_irn_mode(n))) {
 2. cmovg&#160;%D0,&#160;%S1 /*&#160;%S0 is greater&#160;%S1 */
@@ -475,8 +465,7 @@ void emit_&lt;Knotenname&gt;(ir_node *n, emit_env_t *env) {
 <dt><span class="var">cmp_attr</span>
 <dd>An dieser Stelle kann der Quellcode zum vergleichen von Attributen zweier Knoten des gleichen Typs angegeben werden. Dies ist notwendig, da <span class="algo">Firm</span> beim Erzeugen der Knoten bereits CSE (Common Subexpression Elimination) betreibt. Dazu wird der neue Knoten mit allen anderen verglichen. Wenn sich heraus stellt, dass er zu einem anderen gleich ist, dann wird der alte Knoten verwendet und kein neuer erzeugt. Zwei Knoten sind in <span class="algo">Firm</span> gleich, wenn sie den gleichen opcode besitzen (also von der gleichen Art sind), die selben Vorg&#228;nger besitzen und u.a. die Attributvergleichsfunktion die Gleichheit der Attribute best&#228;tigt. Bei Konstanten treffen die beiden ersten Eigenschaften offensichtlich immer zu, denn sie besitzen keinen Vorg&#228;nger. Daher muss die Attributvergleichsfunktion implementiert werden, da ansonsten alle Konstanten bei der Umwandlung in Backend spezifische Konstanten gleich werden w&#252;rden. Die erzeugte Funktion sieht folgenderma&#223;en aus:
 </p>
-<pre>
-static int cmp_attr_&lt;Knotenname&gt;(ir_node *a, ir_node *b) {
+<pre>static int cmp_attr_&lt;Knotenname&gt;(ir_node *a, ir_node *b) {
   &lt;arch&gt;_attr_t *attr_a = get_&lt;arch&gt;_attr(a);
   &lt;arch&gt;_attr_t *attr_b = get_&lt;arch&gt;_attr(b);
 
