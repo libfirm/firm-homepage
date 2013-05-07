@@ -88,6 +88,7 @@ div.sidebar a {
 	text-decoration: none;
 }
 
+div.content #toc,
 div.footer span { font-size: 0.9em; }
 
 /** SPACING **/
@@ -106,6 +107,23 @@ div.header {
 
 div.content { width: 50em; }
 
+div.document { position: relative; }
+
+div.content #toc {
+	position: absolute;
+	left: 50em;
+	width: 20em;
+}
+
+div.content #toc ul,
+div.content #toc ol {
+	padding-left: 0;
+}
+div.content #toc li li {
+	padding-left: 1em;
+}
+
+div.content #toc li,
 div.sidebar ul {
 	list-style-type: none;
 	margin-left: 0px;
