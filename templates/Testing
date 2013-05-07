@@ -11,7 +11,7 @@
 browse at <a class="external free" href="http://pp.info.uni-karlsruhe.de/git/firm-testsuite/">http://pp.info.uni-karlsruhe.de/git/firm-testsuite/</a>
 </pre>
 <h1><span class="mw-headline" id="Buildbot"> Buildbot </span></h1>
-<p>We also started using buildbot for automatically running tests on pushs. If you are on the internal IPD Network you can find it here:
+<p>We also started using buildbot for automatically running tests on pushs. You can find it here:
 </p>
 <pre><a class="external free" href="http://buildbot.info.uni-karlsruhe.de/">http://buildbot.info.uni-karlsruhe.de/</a>
 </pre>
