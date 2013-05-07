@@ -2,9 +2,8 @@
 {% block title %}Index{% endblock %}
 {% block documenttitle %}{% endblock %}
 {% block content %}
-<h1 id="About">About</h1>
 <p>
-	lib<span class="algo">Firm</span> is a library that provides an intermediate representation and optimisations for compilers. Programs are represented in a graph based <a class="external text" href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA form</a>.
+	lib<span class="algo">Firm</span> is a C-library that provides an intermediate representation, optimisations, and backends for compilers. Programs are represented in a graph based <a class="external text" href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA form</a>.
 </p>
 <ul>
 	<li><a href="Introduction" title="Introduction">Introduction</a></li>
@@ -16,9 +15,6 @@
 	<li><a href="Documentation" title="Documentation">Documentation</a></li>
 	<li><a href="Contact" title="Contact">Contact</a></li>
 </ul>
-
-<h1 id="News">News</h1>
-
 
 <h1 id="Downloads">Downloads</h1>
 <ul>
