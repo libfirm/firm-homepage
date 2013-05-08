@@ -22,6 +22,8 @@ for filename in glob("%s/*" % templatedir):
 		continue
 	base = os.path.basename(filename)
 	outfile = "%s/%s" % (outdir, base)
+	if not outfile.endswith(".html"):
+		outfile += ".html"
 	template = env.get_template(base)
 	print "GEN %s" % outfile
 	vars = { }
