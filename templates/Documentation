@@ -3,17 +3,17 @@
 {% block content %}
 
 <ul>
-	<li> <a href="Introduction.html" title="Introduction">Introduction</a></li>
+	<li> <a href="Introduction" title="Introduction">Introduction</a></li>
 	<li> API Documentation: <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/api/1.20">1.20</a> <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/api/1.21">1.21</a> <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/api/latest">development version</a></li>
 	<li> Firm Node Types: <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/api/1.20/nodes.html">1.20</a> <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/api/1.21/nodes.html">1.21</a> <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/api/latest/nodes.html">development version</a></li>
-	<li> <a href="Debug_Extension.html" title="Debug Extension">Debug Extension</a></li>
-	<li> <a href="Statistics.html" title="Statistics">Statistics</a></li>
-	<li> <a href="Endless_Loops.html" title="Endless Loops">Endless Loops</a></li>
-	<li> <a href="Unreachable_Code.html" title="Unreachable Code">Unreachable Code</a></li>
-	<li> <a href="Edge_Types.html" title="Edge Types">Edge Types</a></li>
+	<li> <a href="Debug_Extension" title="Debug Extension">Debug Extension</a></li>
+	<li> <a href="Statistics" title="Statistics">Statistics</a></li>
+	<li> <a href="Endless_Loops" title="Endless Loops">Endless Loops</a></li>
+	<li> <a href="Unreachable_Code" title="Unreachable Code">Unreachable Code</a></li>
+	<li> <a href="Edge_Types" title="Edge Types">Edge Types</a></li>
 	<li> <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/tutorial">Frontend Tutorial</a></li>
-	<li> <a href="Frontends.html" title="Frontends">Frontends</a></li>
-	<li> <a href="Backends.html" title="Backends">Backends</a></li>
-	<li> <a href="LLVM.html" title="LLVM">LLVM</a>: similarities and differences</li>
+	<li> <a href="Frontends" title="Frontends">Frontends</a></li>
+	<li> <a href="Backends" title="Backends">Backends</a></li>
+	<li> <a href="LLVM" title="LLVM">LLVM</a>: similarities and differences</li>
 </ul>
 {% endblock %}

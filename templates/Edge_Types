@@ -56,7 +56,7 @@ Intuitively, a store operation consumes the whole memory state
 and produces a new state.
 </p>
 <h4><span class="mw-headline" id="Keeps_.28violet.29"> Keeps (violet) </span></h4>
-<p>If code is dead, but <a href="Unreachable_Code.html" title="Unreachable Code">reachable</a>, e.g. infinite loops,
+<p>If code is dead, but <a href="Unreachable_Code" title="Unreachable Code">reachable</a>, e.g. infinite loops,
 the keep edges are Firm's hack to "keep" the code,
 because they provide a path from the End node.
 </p>

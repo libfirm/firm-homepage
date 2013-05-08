@@ -7,13 +7,13 @@
 </p>
 
 <ul>
-	<li><a href="Quick_Start.html">Quick Start</a></li>
+	<li><a href="Quick_Start">Quick Start</a></li>
 	<li><a class="external text" href="http://kreacher.isla-de-muerta.de/~matze/online_compiler">Online Demo</a></li>
 </ul>
 
 <h1 id="Downloads">Downloads</h1>
 <ul>
-	<li><b><a href="Download.html" title="Download">Download lib<span class="algo">Firm</span></a></b></li>
+	<li><b><a href="Download" title="Download">Download lib<span class="algo">Firm</span></a></b></li>
 	<li>Tools
 		<ul>
 			<li><a class="external text" href="http://www.info.uni-karlsruhe.de/software/ycomp">yComp</a> - visualization for program graphs</li>
@@ -44,13 +44,13 @@
 
 <h1 id="Development">Development</h1>
 <ul>
-	<li><a href="NewDevelopers.html" title="NewDevelopers">Advice for new Developers</a></li>
-	<li><a href="Coding_Conventions.html" title="Coding Conventions">Coding Conventions</a></li>
+	<li><a href="NewDevelopers" title="NewDevelopers">Advice for new Developers</a></li>
+	<li><a href="Coding_Conventions" title="Coding Conventions">Coding Conventions</a></li>
 	<li> <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/bugs">Bugtracker</a></li>
-	<li><a href="Debug_Extension.html" title="Debug Extension">Debug Extension</a></li>
-	<li><a href="Sourcecode_Repositories.html" title="Sourcecode Repositories">Sourcecode Repositories</a></li>
-	<li><a href="Testing.html" title="Testing">Testing</a></li>
-	<li><a href="TODO.html" title="TODO">TODO</a></li>
+	<li><a href="Debug_Extension" title="Debug Extension">Debug Extension</a></li>
+	<li><a href="Sourcecode_Repositories" title="Sourcecode Repositories">Sourcecode Repositories</a></li>
+	<li><a href="Testing" title="Testing">Testing</a></li>
+	<li><a href="TODO" title="TODO">TODO</a></li>
 </ul>
 
 {% endblock %}
