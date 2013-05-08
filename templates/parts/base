@@ -18,12 +18,12 @@
 				<div class="sidebar">
 					{% block sidebar %}
 						<ul>
-							<li><a href="Index">About</a></li>
-							<li><a href="Features">Features</a></li>
-							<li><a href="Documentation">Documentation</a></li>
-							<li><a href="Index#Downloads">Downloads</a></li>
-							<li><a href="Index#Development">Development</a></li>
-							<li><a href="Contact">Contact</a></li>
+							<li><a href="Index.html">About</a></li>
+							<li><a href="Features.html">Features</a></li>
+							<li><a href="Documentation.html">Documentation</a></li>
+							<li><a href="Index.html#Downloads">Downloads</a></li>
+							<li><a href="Index.html#Development">Development</a></li>
+							<li><a href="Contact.html">Contact</a></li>
 						</ul>
 						<ul class="external">
 							<li><a href="http://pp.ipd.kit.edu/~firm/bugs">Bugtracker</a></li>

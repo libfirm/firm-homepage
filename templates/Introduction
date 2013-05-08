@@ -28,7 +28,7 @@
 </li><li> completely graph based which means that there are no instruction lists or triple code, only data dependence and control flow graphs.
 </li><li> completely <a class="external text" href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA</a> based which means that the code of the program is always in SSA form.
 </li></ul>
-<p>A complete list of <a href="Features" title="Features">Features</a> is also available.
+<p>A complete list of <a href="Features.html" title="Features">Features</a> is also available.
 </p><p>In the following, we will try to give you an idea about how programs are presented in <span class="algo">Firm</span>.
 </p><p>Firm is using most of the concepts described by Cliff Click. So for a more "scientific" description you might refer to:
 </p><p>Click, C. and Paleczny, M. 1995. A simple graph-based intermediate representation. In Papers From the 1995 ACM SIGPLAN Workshop on intermediate Representations (San Francisco, California, United States, January 22 - 22, 1995). ACM, New York, NY, 35-49. <a class="external free" href="http://dx.doi.org/10.1145/202529.202534">http://dx.doi.org/10.1145/202529.202534</a>

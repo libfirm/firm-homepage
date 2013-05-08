@@ -22,8 +22,8 @@
 <p>TODO: move these into the bugtracker&#160;;-)
 </p>
 <h3><span class="mw-headline" id="Firm"> <span style="font-variant:small-caps">Firm</span> </span></h3>
-<ul><li> <a href="CFOpt2" title="CFOpt2">CFOpt2</a>
-</li><li> <a href="PhaseManagement" title="PhaseManagement">PhaseManagement</a>
+<ul><li> <a href="CFOpt2.html" title="CFOpt2">CFOpt2</a>
+</li><li> <a href="PhaseManagement.html" title="PhaseManagement">PhaseManagement</a>
 </li><li> It would be a cool thing to make firm tarvals actually represent expressions (add, sub) of symconsts and constants - limited by what the backend/linker can support. This would make handling of constant folding and matching addressmode in the backend a lot easier since you only have to look for Const nodes and don't have to combine Const+SymConst to ia32_Const anymore. It would also help the combo optimisation.
 </li><li> Implement a new (fixpoint based) control flow optimization
 </li><li> Optimize Cmps in deconv (find criteria when this is possible)
