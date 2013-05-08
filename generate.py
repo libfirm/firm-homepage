@@ -12,7 +12,7 @@ def ensure_dir(name):
 outdir = "output"
 ensure_dir(outdir)
 
-os.system("cp -rvp static/* output/")
+os.system("cp -rvp static/* static/.htaccess output/")
 
 # Create pages from templates
 templatedir = os.path.join(os.path.dirname(__file__), 'templates')
