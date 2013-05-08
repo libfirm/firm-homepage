@@ -4,10 +4,9 @@
 {%- endblock %}
 {% block content %}
 
-<ul><li> works exclusively on a graph-based SSA representation ("sea of nodes") until assembler code emission.  Based on the work of C. Click and M. Trapp
-</li><li> written in portable C. Known to run on MSVC 6-10 Windows 32/64, gcc on Linux, FreeBSD,  Cygwin
-</li><li> includes doxygen documentation
-</li><li> support for object oriented type hierarchies
+<ul><li> Works exclusively on a graph-based SSA representation ("sea of nodes") until emission of assembly code, based on the work of C. Click and M. Trapp
+</li><li> Written in portable C: runs on MSVC 6-10 Windows 32/64, gcc on Linux, Mac OS X, FreeBSD, Cygwin
+</li><li> Includes doxygen documentation
 </li><li> Analyses:
 <ul><li> dominance
 </li><li> loop tree
@@ -19,7 +18,7 @@
 </li><li> alias analysis
 </li><li> class hierarchy analysis
 </li></ul>
-</li><li> Optimisations:
+</li><li> Optimizations:
 <ul><li> dead code elimination (<i>happens implicitly</i>)
 </li><li> constant folding (<i>happens on the fly</i>)
 </li><li> local common subexpression elimination (<i>happens on the fly</i>)
@@ -38,20 +37,18 @@
 </li><li> inlining
 </li><li> procedure cloning
 </li></ul>
-</li><li> extensive checkers
-</li><li> enhanced debugging support: breakpoints on node creation, entity creation, graph dumping, visual studio debug extension
-</li><li> lowering of intrinsics, double word arithmetics, bitfields
-</li><li> generic backend features:
+</li><li> Mature code generation for x86 (32-bit) with support for x87 and SSE2 floating point
+</li><li> Mature code generation for SPARC
+</li><li> Extensive checkers
+</li><li> Enhanced debugging support: breakpoints on node creation/entity creation, graph dumping, visual studio debug extension
+</li><li> Lowering of intrinsics, double word arithmetics, bitfields
+</li><li> Generic backend features:
 <ul><li> novel SSA based register allocator
 </li><li> several spilling algorithms
 </li><li> several SSA copy coalescing algorithms
 </li><li> algorithms for instruction and basic block scheduling
 </li><li> ABI handling helpers
 </li></ul>
-</li><li> working ia32 backend with support for x87 and SSE2 floating point
-</li><li> unfinished backends for ARM, SPARC32
-</li></ul>
-<ul><li> connections to the Edison Design Group C and Java frontends available.
 </li></ul>
 
 {% endblock %}
