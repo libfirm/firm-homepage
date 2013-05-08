@@ -3,7 +3,7 @@
 {% block documenttitle %}{% endblock %}
 {% block content %}
 <p>
-	lib<span class="algo">Firm</span> is a C-library that provides an intermediate representation, optimi&shy;sations, and backends for compilers. Programs are represented in a graph based <a class="external text" href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA form</a>.
+	lib<span class="algo">Firm</span> is a C-library that provides an intermediate representation, optimizations, and backends for compilers. Programs are represented in a graph-based <a class="external text" href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA form</a>.
 </p>
 
 <ul>
