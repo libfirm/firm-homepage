@@ -28,17 +28,18 @@
 <h1><span class="mw-headline" id="Indentation_and_formatting"> Indentation and formatting </span></h1>
 <p>Example:
 </p>
-<pre>ir_node *maybe_create(int a, int b)
+{% code "c" %}
+ir_node *maybe_create(int a, int b)
 {
     ir_node *z = NULL;
-    if (a + b &lt; 10) {
+    if (a + b < 10) {
         z = create_node(a, b);
     } else {
         do_something();
     }
     return z;
 }
-</pre>
+{% endcode %}
 <ul><li> function and variable names are all in lowercase; words are separated with an underscore '_'
 </li><li> the star from pointer declarations is put next to the name to be declared (Wrong: ir_node* foo;  Right: ir_node *foo;)
 </li><li> opening curly braces for functions start on a new line
@@ -55,28 +56,30 @@
 </li></ul>
 <p>Indentation Example (using &lt;T&gt; to show tabs).
 </p>
-<pre>void func(void)
+{% code "c" %}
+void func(void)
 {
-&lt;T&gt;if (bla &lt; 20 &amp;&amp; foobar_bar(long_variable_name) || another_long_thingy
-&lt;T&gt;    &amp;&amp; this_was_a_long_condition) {
-&lt;T&gt;&lt;T&gt;print();
-&lt;T&gt;&lt;T&gt;foobar(a, b, more_long_stuff_here,
-&lt;T&gt;&lt;T&gt;       and_this_is + another * (longish - argument);
-&lt;T&gt;}
+<T>if (bla < 20 && foobar_bar(long_variable_name) || another_long_thingy
+<T>    && this_was_a_long_condition) {
+<T><T>print();
+<T><T>foobar(a, b, more_long_stuff_here,
+<T><T>       and_this_is + another * (longish - argument);
+<T>}
 }
-</pre>
+{% endcode %}
 <p>This style allows different people to set tab to different sizes and still get nice layout. Most firm developers tend to set tab to 4 spaces though.
 </p>
 <ul><li> Case labels should not get extra indentation. Correct example:
 </li></ul>
-<pre>switch (foo) {
+{% code "c" %}
+switch (foo) {
 case BLA_ENUM_VAL:
     FooBar();
     break;
 default:
     break;
 }
-</pre>
+{% endcode %}
 <h2><span class="mw-headline" id="C99"> C99 </span></h2>
 <p>We would like to use C99. Unfortunately MSVC doesn't support this standard till today. So you should consider:
 </p>
@@ -109,7 +112,8 @@ align-pointer=name
 <h3><span class="mw-headline" id="Whitespace_Check"> Whitespace Check </span></h3>
 <p>A simple python script to check at least the tab/whitespace rules:
 </p>
-<pre>#!/usr/bin/env python
+{% code "python" %}
+#!/usr/bin/env python
 import sys
 import re
 
@@ -118,28 +122,30 @@ file_list = sys.argv[1:]
 for filename in file_list:
     file = open(filename, "r")
     num  = 1
+    lastline = None
     for line in file.readlines():
         # Tab characters are only allowed as very first characters on a line!
         if re.search("[^\t]\t", line):
-            print "%s:%d:  tabulator not at beginning of line"&#160;% (filename, num)
+            print "%s:%d:  tabulator not at beginning of line" % (filename, num)
         if re.search(" +$", line):
-            print "%s:%d:  trailing whitespace"&#160;% (filename, num)
+            print "%s:%d:  trailing whitespace" % (filename, num)
         num += 1
         lastline = line
-    if lastline[-1:]&#160;!= '\n':
-        print "%s:%d: No newline at end of file"&#160;% (filename, num)
-</pre>
+    if lastline != None and lastline[-1:] != '\n':
+        print "%s:%d: No newline at end of file" % (filename, num)
+{% endcode %}
 <h3><span class="mw-headline" id="Emacs"> Emacs </span></h3>
 <p>The following style spec appears to make Emacs obey the coding conventions:
 </p>
-<pre>(c-add-style "firm"                                        
-            '("stroustrup"                                
-              (case-label . 0)                            
-              (statement-case-intro . +)                  
-              (statement-case-open . +)                   
-              (indent-tabs-mode . t)                      
-              (c-basic-offset   . 4)                      
+{% code "common-lisp" %}
+(c-add-style "firm"
+            '("stroustrup"
+              (case-label . 0)
+              (statement-case-intro . +)
+              (statement-case-open . +)
+              (indent-tabs-mode . t)
+              (c-basic-offset   . 4)
               (tab-width . 4)) nil)
-</pre>
+{% endcode %}
 
 {% endblock %}

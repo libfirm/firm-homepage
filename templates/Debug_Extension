@@ -102,12 +102,14 @@
 <p>When firm starts up the environment variable FIRMDBG is interpreted as debug commands. Examples:
 </p><p>Break when node number 123 is created:
 </p>
-<pre>&gt; FIRMDBG="create 123" my_firm_compiler
-</pre>
+{% code "bash" %}
+$ FIRMDBG="create 123" my_firm_compiler
+{% endcode %}
 <p>Enable full debug logging for the firm.be.prefalloc module:
 </p>
-<pre>&gt; FIRMDBG="setmask firm.be.prefalloc -1" my_firm_compiler
-</pre>
+{% code "bash" %}
+$ FIRMDBG="setmask firm.be.prefalloc -1" my_firm_compiler
+{% endcode %}
 <h2><span class="mw-headline" id="Inside_a_debugger"> Inside a debugger </span></h2>
 <p>The debug extension is accessed using the builtin <span class="var">firm_debug(<i>command</i>)</span> function.
 </p><p>In gdb, issue a call

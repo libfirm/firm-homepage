@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from glob   import glob
 from jinja2 import Environment, FileSystemLoader
+from codeextension import CodeExtension
 import os
 
 def ensure_dir(name):
@@ -16,7 +17,8 @@ os.system("cp -rvp static/* static/.htaccess output/")
 
 # Create pages from templates
 templatedir = os.path.join(os.path.dirname(__file__), 'templates')
-env = Environment(loader=FileSystemLoader(templatedir))
+env = Environment(loader=FileSystemLoader(templatedir),
+                  extensions=[CodeExtension])
 for filename in glob("%s/*" % templatedir):
 	if not os.path.isfile(filename):
 		continue

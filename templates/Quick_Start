@@ -8,23 +8,27 @@
 </p><p><b>We assume a 32bit Linux or OSX environment here</b>
 </p><p>Check it out with git:
 </p>
-<pre>git clone <a class="external free" href="http://pp.info.uni-karlsruhe.de/git/cparser/">http://pp.info.uni-karlsruhe.de/git/cparser/</a>
-cd cparser
-</pre>
+{% code 'bash' %}
+$ git clone http://pp.info.uni-karlsruhe.de/git/cparser.git
+$ cd cparser
+{% endcode %}
 <p>If you want the latest release, instead of the developement version, checkout the latest tag.
 </p><p>Additionally, we need the libFirm library, which is included as a submodule.
 </p>
-<pre>git submodule update --init
-</pre>
+{% code 'bash' %}
+$ git submodule update --init
+{% endcode %}
 <p>Now build everything. You need a C compiler, GNU Make, Perl, and Python.
 </p>
-<pre>make
-</pre>
+{% code 'bash' %}
+$ make
+{% endcode %}
 <p>You probably have a multicore machine? Then use something like <tt>make -j4</tt> for a parallel build.
 </p><p>Now you should have a working binary.
 </p>
-<pre>build/cparser --version
-</pre>
+{% code 'bash' %}
+$ build/cparser --version
+{% endcode %}
 <p>Our compiler tries to be a drop in replacement for GCC, so it supports the same arguments.
 Try it on some C99 code, like <tt>cparser -Wall -O3 test.c</tt> or <tt>make CC=cparser</tt>.
 </p><p>If you find bugs, please report them in our <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/bugs/">issue tracker</a>.
