@@ -21,37 +21,33 @@ If you're interested in trying out lib<span class="algo">Firm</span>, visit the 
 You can also try out lib<span class="algo">Firm</span> <a class="external text" href="http://kreacher.isla-de-muerta.de/~matze/online_compiler">in your browser</a>!
 
 <h1 id="Downloads">Downloads</h1>
-<ul>
-	<li><a href="Download" title="Download">Download lib<span class="algo">Firm</span></a></li>
-	<li>Tools
+	<i>Tools:</i>
 		<ul>
-			<li><a class="external text" href="http://www.info.uni-karlsruhe.de/software/ycomp">yComp</a> - visualization for program graphs</li>
+			<li><a class="external text" href="http://www.info.uni-karlsruhe.de/software/ycomp">yComp</a>: Visualization tool for intermediate representation graphs</li>
 		</ul>
-	</li>
-	<li>Frontends
-		<ul>
-			<li><a class="external text" href="http://sourceforge.net/projects/cparser/">CParser</a> - C-Frontend</li>
-			<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/X10i/">X10i</a> - X10 native code compiler (for <a class="external text" href="http://www.invasic.de">invasic</a> architectures)</li>
-			<li><a class="external text" href="http://github.com/MatzeB/bytecode2firm">bytecode2firm</a> - Javabytecode frontend</li>
-			<li><a class="external text" href="http://github.com/MatzeB/fluffy">Fluffy Language</a></li>
-			<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/firm-bf">brainfuck</a> - Brainfuck native code compiler (and a good tutorial)</li>
-		</ul>
-	</li>
-	<li>Libraries
-		<ul>
-			<li><a class="external text" href="http://github.com/MatzeB/JFirm/">JFirm</a> - Java-Bindings (aimed at compiler construction courses)</li>
-			<li><a class="external text" href="http://github.com/MatzeB/liboo/">libOO</a> - lowering of object orientated code</li>
-		</ul>
-	</li>
-	<li>Testing
-		<ul>
-			<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/firm-testsuite">firm-testsuite</a> - c-compiler / firm optimisation testsuite</li>
-			<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/sisyphus">Sisyphus</a> - a (generic) testrunner aimed at compiler tests</li>
-		</ul>
-	</li>
-</ul>
 
-<h1 id="Development">Development</h1>
+	<i>Frontends:</i>
+		<ul>
+			<li><a class="external text" href="http://sourceforge.net/projects/cparser/">CParser</a>: GCC-compatible C frontend with full C99 support</li>
+			<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/X10i/">X10i</a>: X10 native code compiler (for <a class="external text" href="http://www.invasic.de">invasic</a> architectures)</li>
+			<li><a class="external text" href="http://github.com/MatzeB/bytecode2firm">bytecode2firm</a>: Java bytecode frontend</li>
+			<li><a class="external text" href="http://github.com/MatzeB/fluffy">Fluffy</a>: Frontend for the fluffy language</li>
+			<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/firm-bf">brainfuck</a>: Brainfuck frontend (and a good tutorial)</li>
+		</ul>
+
+	<i>Libraries:</i>
+		<ul>
+			<li><a class="external text" href="http://github.com/MatzeB/JFirm/">JFirm</a>: Java bindings for lib<span class="algo">Firm</span></li>
+			<li><a class="external text" href="http://github.com/MatzeB/liboo/">libOO</a>: Support library for dealing with object-oriented constructs</li>
+		</ul>
+
+	<i>Testing:</i>
+		<ul>
+			<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/firm-testsuite">firm-testsuite</a>: C compiler and Firm optimization testsuite</li>
+			<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/sisyphus">Sisyphus</a>: A generic regression tester aimed at compiler tests</li>
+		</ul>
+
+<h1 id="Development">Getting Involved</h1>
 <ul>
 	<li><a href="NewDevelopers" title="NewDevelopers">Advice for new Developers</a></li>
 	<li><a href="Coding_Conventions" title="Coding Conventions">Coding Conventions</a></li>
