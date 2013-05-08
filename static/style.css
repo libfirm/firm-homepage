@@ -68,6 +68,12 @@ div.document pre {
 	background-color: #eee;
 }
 
+div.content .thumb {
+	border: 1px solid #410;
+	border-width: 1px 0;
+	padding: 2px 0;
+}
+
 /** FONTS **/
 
 body {
@@ -88,6 +94,7 @@ div.sidebar a {
 	text-decoration: none;
 }
 
+div.content .thumb,
 div.content #toc,
 div.footer span { font-size: 0.9em; }
 
