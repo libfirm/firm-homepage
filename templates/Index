@@ -3,17 +3,26 @@
 {% block documenttitle %}{% endblock %}
 {% block content %}
 <p>
-	lib<span class="algo">Firm</span> is a C-library that provides an intermediate representation, optimizations, and backends for compilers. Programs are represented in a graph-based <a class="external text" href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA form</a>.
+	lib<span class="algo">Firm</span> is a C-library that provides a graph-based intermediate representation, optimizations, and assembly code generation suitable for use in compilers.
 </p>
 
+<h1 id="Features">Features</h1>
 <ul>
-	<li><a href="Quick_Start">Quick Start</a></li>
-	<li><a class="external text" href="http://kreacher.isla-de-muerta.de/~matze/online_compiler">Online Demo</a></li>
+	<li>Completely graph-based, source- and target-independent intermediate representation in <a class="external text" href="http://en.wikipedia.org/wiki/Static_single_assignment_form">SSA form</a></li>
+	<li>Accompanying GCC-compatible C frontend with full C99 support</li>
+	<li>Extensive set of optimizations</li>
+	<li>High-quality register allocation</li>
+	<li>Mature code generation support for x86 (32-bit) and SPARC</li>
 </ul>
+For a more complete list of features, see our <a href="Features" title="Features">Features</a> page.
+
+<h1 id="Interested">Interested?</h1>
+If you're interested in trying out lib<span class="algo">Firm</span>, visit the <a href="Quick_Start">Quick Start</a> page.<br />
+You can also try out lib<span class="algo">Firm</span> <a class="external text" href="http://kreacher.isla-de-muerta.de/~matze/online_compiler">in your browser</a>!
 
 <h1 id="Downloads">Downloads</h1>
 <ul>
-	<li><b><a href="Download" title="Download">Download lib<span class="algo">Firm</span></a></b></li>
+	<li><a href="Download" title="Download">Download lib<span class="algo">Firm</span></a></li>
 	<li>Tools
 		<ul>
 			<li><a class="external text" href="http://www.info.uni-karlsruhe.de/software/ycomp">yComp</a> - visualization for program graphs</li>
