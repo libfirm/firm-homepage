@@ -23,11 +23,11 @@
 							<li><a href="Documentation">Documentation</a></li>
 							<li><a href="Index#Downloads">Downloads</a></li>
 							<li><a href="Index#Development">Development</a></li>
-							<li><a href="http://pp.ipd.kit.edu/~firm/bugs">Bugtracker</a></li>
 							<li><a href="Contact">Contact</a></li>
 						</ul>
-						<ul>
-							<li><a class="external" href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
+						<ul class="external">
+							<li><a href="http://pp.ipd.kit.edu/~firm/bugs">Bugtracker</a></li>
+							<li><a href="http://pp.info.uni-karlsruhe.de/projects/firm_publications.php">Publications</a></li>
 						</ul>
 
 					{% endblock %}
