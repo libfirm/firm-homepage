@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<div class="header">
-			<a href="Index"><img src="logo.png"/></a>
+			<a href="Index"><img src="logo.png" alt="Firm Logo" /></a>
 		</div>
 		<div class="content-wrapper">
 			<div class="content">
