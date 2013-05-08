@@ -30,10 +30,12 @@ deb-src <a class="external free" href="http://pp.info.uni-karlsruhe.de/~zwinkau/
 </p>
 
 <h2><span class="mw-headline" id="Git_Source"> Git Source </span></h2>
-<pre>git clone <a class="external free" href="http://pp.info.uni-karlsruhe.de/git/libfirm.git/">http://pp.info.uni-karlsruhe.de/git/libfirm.git/</a>
-</pre>
+{% code "bash" %}
+$ git clone http://pp.info.uni-karlsruhe.de/git/libfirm.git
+{% endcode %}
 <p>Now you can use make to build libfirm and cparser:
 </p>
-<pre>make
-</pre>
+{% code "bash" %}
+$ make
+{% endcode %}
 {% endblock %}

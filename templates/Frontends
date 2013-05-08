@@ -20,8 +20,9 @@ Hence you should not layout this type or set its size.
 <h2><span class="mw-headline" id="Endless_loops"> Endless loops </span></h2>
 <p>Endless loops are a tricky case, since they don't reach the end-block (or return node) so noone is using the data produced by them. However the memory changes and control flow changes still need to be present (it's an endless loop and you can actually experience the things that happened before the loop). So the correct thing when creating loops or label blocks that could potentially form a loop is using keep_alive on the block itself and the current memory:
 </p>
-<pre>keep_alive(potential_endless_loop_block);
+{% code "c" %}
+keep_alive(potential_endless_loop_block);
 keep_alive(get_store());
-</pre>
+{% endcode %}
 
 {% endblock %}

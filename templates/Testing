@@ -17,11 +17,12 @@ browse at <a class="external free" href="http://pp.info.uni-karlsruhe.de/git/fir
 </pre>
 <p>If you have access to the firm account then you can edit the config like this:
 </p>
-<pre>ssh firm@i44sun3
-cd buildbot_config
+{% code "bash" %}
+$ ssh firm@i44sun3
+$ cd buildbot_config
 (edit master.cfg)
-git commit -m "did some changes on the master config" master.cfg
-./install_master_config.sh
-</pre>
+$ git commit -m "did some changes on the master config" master.cfg
+$ ./install_master_config.sh
+{% endcode %}
 
 {% endblock %}

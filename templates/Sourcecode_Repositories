@@ -4,11 +4,12 @@
 <p>
 	The main development repositories use git and can be found here:
 </p>
-<pre>git clone <a class="external free" href="http://pp.info.uni-karlsruhe.de/git/firm-build.git">http://pp.info.uni-karlsruhe.de/git/firm-build.git</a>
-git clone <a class="external free" href="http://pp.info.uni-karlsruhe.de/git/libfirm.git">http://pp.info.uni-karlsruhe.de/git/libfirm.git</a>
-git clone <a class="external free" href="http://pp.info.uni-karlsruhe.de/git/cparser.git">http://pp.info.uni-karlsruhe.de/git/cparser.git</a>
-git clone <a class="external free" href="http://pp.info.uni-karlsruhe.de/git/firm-bf.git">http://pp.info.uni-karlsruhe.de/git/firm-bf.git</a>
-</pre>
+{% code "bash" %}
+$ git clone http://pp.info.uni-karlsruhe.de/git/firm-build.git
+$ git clone http://pp.info.uni-karlsruhe.de/git/libfirm.git
+$ git clone http://pp.info.uni-karlsruhe.de/git/cparser.git
+$ git clone http://pp.info.uni-karlsruhe.de/git/firm-bf.git
+{% endcode %}
 <p>
 	You may also browse the repositories with git-web:
 </p>
