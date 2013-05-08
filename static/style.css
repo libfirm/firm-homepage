@@ -118,6 +118,7 @@ div.document { position: relative; }
 
 div.content #toc {
 	position: absolute;
+	top: 0;
 	left: 50em;
 	width: 20em;
 }
