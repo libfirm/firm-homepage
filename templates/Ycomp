@@ -1,0 +1,24 @@
+{% extends "parts/base" %}
+{%- block title -%}
+	Ycomp
+{%- endblock %}
+{% block content %}
+
+<p>
+	yComp is a visualization tool for program dependency graphs in VCG format.
+</p>
+
+<h2 id="Features">Features</h2>
+<ul>
+	<li>Fully automatic layouting of graphs, producing high quality output</li>
+	<li>Easy to use GUI supporting panning, zooming and keyboard shortcuts for fast navigation</li>
+	<li>Support for exporting graphs as SVG</li>
+	<li>Support for exporting graphs as PGF/TikZ for simple integration into LaTeX documents</li>
+</ul>
+
+<h2 id="Download">Download</h2>
+You can download yComp <a class="external text" href="http://www.info.uni-karlsruhe.de/software/ycomp/yComp-1.3.17.zip">here</a>.
+A Java Runtime Environment (version 5 or higher) is needed to run yComp.
+
+
+{% endblock %}
