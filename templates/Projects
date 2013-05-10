@@ -1,5 +1,5 @@
 {% extends "parts/base" %}
-{% block title %}Projects using lib<span class="algo">Firm</span>{% endblock %}
+{% block title %}Projects using Firm{% endblock %}
 {% block content %}
 
 <i>Tools:</i>
