@@ -4,7 +4,7 @@
 
 <i>Tools:</i>
 	<ul>
-		<li><a class="external text" href="http://www.info.uni-karlsruhe.de/software/ycomp">yComp</a>: Visualization tool for intermediate representation graphs</li>
+		<li><a href="Ycomp">yComp</a>: Visualization tool for intermediate representation graphs</li>
 	</ul>
 
 <i>Frontends:</i>
