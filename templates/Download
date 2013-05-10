@@ -4,23 +4,58 @@
 {%- endblock %}
 {% block content %}
 
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
-<ul>
-	<li class="toclevel-1 tocsection-1"><a href="#Source_Release"><span class="tocnumber">1</span> <span class="toctext">Source Release</span></a></li>
-	<li class="toclevel-1 tocsection-2"><a href="#Ubuntu"><span class="tocnumber">2</span> <span class="toctext">Ubuntu</span></a></li>
-	<li class="toclevel-1 tocsection-3"><a href="#Snapshot"><span class="tocnumber">3</span> <span class="toctext">Development Snapshot</span></a></li>
-</ul>
-</td></tr></table>
-<h2><span class="mw-headline" id="Source_Release"> Source Release </span></h2>
+<p>
+	You want to try out <span class="algo">Firm</span>?
+	<span class="algo">Firm</span> itself is just a library, so you probably want our C frontend <tt>cparser</tt> as well.
+</p>
+<p>
+	We provide <a href="#Git">git instructions</a>, a <a href="#Tarball">tarball</a> and <a href="#Ubuntu">Ubuntu packages</a>.
+</p>
+
+<h2 id="Git">Git</h2>
+<p>Check it out with git:
+</p>
+{% code 'bash' %}
+$ git clone http://pp.info.uni-karlsruhe.de/git/cparser.git
+$ cd cparser
+{% endcode %}
+<p>If you want the latest stable release, instead of the current development version, checkout the latest tag:
+</p>
+{% code 'bash' %}
+$ git checkout $(git describe --abbrev=0 --tags)
+{% endcode %}
+<p>Additionally, we need the <span class="algo">Firm</span> library, which is included as a submodule.
+</p>
+{% code 'bash' %}
+$ git submodule update --init
+{% endcode %}
+<p>Now build everything. You need a C compiler, GNU Make, Perl, and Python.
+</p>
+{% code 'bash' %}
+$ make
+{% endcode %}
+<p>You probably have a multicore machine? Then use something like <tt>make -j4</tt> for a parallel build.
+</p><p>Now you should have a working binary.
+</p>
+{% code 'bash' %}
+$ build/cparser --version
+{% endcode %}
+<p>Our compiler tries to be a drop in replacement for GCC, so it supports the same arguments.
+Try it on some C99 code, like <tt>cparser -Wall -O3 test.c</tt> or <tt>make CC=cparser</tt>.
+</p><p>If you find bugs, please report them in our <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/bugs/">issue tracker</a>.
+</p>
+
+<h2 id="Tarball">Source Release</h2>
 <p>You can download the source tarball here:
 </p>
 <pre><a class="external free" href="https://sourceforge.net/projects/libfirm/files/libfirm/">https://sourceforge.net/projects/libfirm/files/libfirm/</a>
 </pre>
 <p>Afterwards a usual <tt>./configure &amp;&amp; make</tt> will do the rest.
 </p>
-<h2><span class="mw-headline" id="Ubuntu"> Ubuntu </span></h2>
+
+<h2 id="Ubuntu">Ubuntu Packages</h2>
 <p>An experimental repository for Ubuntu karmic is available, which contains a libfirm-dev package.
-The packages were not checked by Ubuntu devs, so use <b>at own risk</b>.
+The packages were not checked by Ubuntu developers, so use <b>at your own risk</b>.
 Add the following to your sources.list:
 </p>
 <pre>deb <a class="external free" href="http://pp.info.uni-karlsruhe.de/~zwinkau/repo/Ubuntu">http://pp.info.uni-karlsruhe.de/~zwinkau/repo/Ubuntu</a> karmic IPD
@@ -29,13 +64,4 @@ deb-src <a class="external free" href="http://pp.info.uni-karlsruhe.de/~zwinkau/
 <p>The reason for the libfirm-dev package is mostly as a build dependency for <a class="external text" href="http://cparser.sourceforge.net/">cparser</a>, which is also in the repository.
 </p>
 
-<h2><span class="mw-headline" id="Snapshot">Development Snapshot</span></h2>
-{% code "bash" %}
-$ git clone http://pp.info.uni-karlsruhe.de/git/libfirm.git
-{% endcode %}
-<p>Now you can use make to build libfirm and cparser:
-</p>
-{% code "bash" %}
-$ make
-{% endcode %}
 {% endblock %}

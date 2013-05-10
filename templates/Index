@@ -17,7 +17,7 @@
 For a more complete list of features, see our <a href="Features" title="Features">Features</a> page.
 
 <h1 id="Interested">Interested?</h1>
-If you're interested in trying out <span class="algo">Firm</span>, visit the <a href="Quick_Start">Quick Start</a> page.<br />
+If you're interested in trying out <span class="algo">Firm</span>, visit the <a href="Download">Download</a> page to get you started.<br />
 You can also try out <span class="algo">Firm</span> <a class="external text" href="http://kreacher.isla-de-muerta.de/~matze/online_compiler">in your browser</a>!
 
 {% endblock %}
