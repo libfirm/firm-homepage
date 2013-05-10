@@ -38,7 +38,7 @@ $ make
 </p><p>Now you should have a working binary.
 </p>
 {% code 'bash' %}
-$ build/cparser --version
+$ build/debug/cparser --version
 {% endcode %}
 <p>Our compiler tries to be a drop in replacement for GCC, so it supports the same arguments.
 Try it on some C99 code, like <tt>cparser -Wall -O3 test.c</tt> or <tt>make CC=cparser</tt>.
