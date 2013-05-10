@@ -3,7 +3,7 @@
 {% block documenttitle %}{% endblock %}
 {% block content %}
 <p>
-	lib<span class="algo">Firm</span> is a C-library that provides a graph-based intermediate representation, optimizations, and assembly code generation suitable for use in compilers.
+	<span class="algo">Firm</span> is a C-library that provides a graph-based intermediate representation, optimizations, and assembly code generation suitable for use in compilers.
 </p>
 
 <h1 id="Features">Features</h1>
@@ -17,7 +17,7 @@
 For a more complete list of features, see our <a href="Features" title="Features">Features</a> page.
 
 <h1 id="Interested">Interested?</h1>
-If you're interested in trying out lib<span class="algo">Firm</span>, visit the <a href="Quick_Start">Quick Start</a> page.<br />
-You can also try out lib<span class="algo">Firm</span> <a class="external text" href="http://kreacher.isla-de-muerta.de/~matze/online_compiler">in your browser</a>!
+If you're interested in trying out <span class="algo">Firm</span>, visit the <a href="Quick_Start">Quick Start</a> page.<br />
+You can also try out <span class="algo">Firm</span> <a class="external text" href="http://kreacher.isla-de-muerta.de/~matze/online_compiler">in your browser</a>!
 
 {% endblock %}
