@@ -4,51 +4,63 @@
 {%- endblock %}
 {% block content %}
 
-<ul><li> Works exclusively on a graph-based SSA representation ("sea of nodes") until emission of assembly code, based on the work of C. Click and M. Trapp
-</li><li> Written in portable C: runs on MSVC 6-10 Windows 32/64, gcc on Linux, Mac OS X, FreeBSD, Cygwin
-</li><li> Includes doxygen documentation
-</li><li> Analyses:
-<ul><li> dominance
-</li><li> loop tree
-</li><li> execution frequency
-</li><li> control dependencies
-</li><li> inter-procedural call graph
-</li><li> rapid type
-</li><li> def-use
-</li><li> alias analysis
-</li><li> class hierarchy analysis
-</li></ul>
-</li><li> Optimizations:
-<ul><li> dead code elimination (<i>happens implicitly</i>)
-</li><li> constant folding (<i>happens on the fly</i>)
-</li><li> local common subexpression elimination (<i>happens on the fly</i>)
-</li><li> arithmetic identities (<i>happens on the fly</i>)
-</li><li> unreachable code elimination
-</li><li> global common subexpression elimination
-</li><li> code placement
-</li><li> operator strength reduction
-</li><li> scalar replacement
-</li><li> load/store optimisation
-</li><li> control flow optimisations
-</li><li> if-conversion
-</li><li> partial condition evaluation
-</li><li> reassociation
-</li><li> tail recursion elimination
-</li><li> inlining
-</li><li> procedure cloning
-</li></ul>
-</li><li> Mature code generation for x86 (32-bit) with support for x87 and SSE2 floating point
-</li><li> Mature code generation for SPARC
-</li><li> Extensive checkers
-</li><li> Enhanced debugging support: breakpoints on node creation/entity creation, graph dumping, visual studio debug extension
-</li><li> Lowering of intrinsics, double word arithmetics, bitfields
-</li><li> Generic backend features:
-<ul><li> novel SSA based register allocator
-</li><li> several spilling algorithms
-</li><li> several SSA copy coalescing algorithms
-</li><li> algorithms for instruction and basic block scheduling
-</li><li> ABI handling helpers
-</li></ul>
-</li></ul>
+<h2>About</h2>
+<ul>
+	<li> Works exclusively on a graph-based SSA representation ("sea of nodes") until emission of assembly code, based on the work of C. Click and M. Trapp</li>
+	<li> Written in portable C: runs on MSVC 6-10 Windows 32/64, gcc on Linux, Mac OS X, FreeBSD, Cygwin</li>
+	<li> Includes doxygen documentation</li>
+</ul>
+
+<h2>Analyses</h2>
+<ul>
+	<li>dominance</li>
+	<li>loop tree</li>
+	<li>execution frequency (estimated, profiling with instrumentation)</li>
+	<li>control dependencies</li>
+	<li>inter-procedural call graph</li>
+	<li>rapid type</li>
+	<li>def-use</li>
+	<li>alias analysis</li>
+	<li>class hierarchy analysis</li>
+</ul>
+
+<h2>Optimizations</h2>
+<ul>
+	<li>dead code elimination (<i>happens implicitly</i>)</li>
+	<li>constant folding (<i>happens on the fly</i>)</li>
+	<li>local common subexpression elimination (<i>happens on the fly</i>)</li>
+	<li>arithmetic identities (<i>happens on the fly</i>)</li>
+	<li>unreachable code elimination</li>
+	<li>global common subexpression elimination</li>
+	<li>code placement</li>
+	<li>operator strength reduction</li>
+	<li>scalar replacement</li>
+	<li>load/store optimisation</li>
+	<li>control flow optimisations</li>
+	<li>if-conversion</li>
+	<li>partial condition evaluation</li>
+	<li>reassociation</li>
+	<li>tail recursion elimination</li>
+	<li>inlining</li>
+	<li>procedure cloning</li>
+</ul>
+
+<h2>Code Generation</h2>
+<ul>
+	<li>Mature code generation for x86 (32-bit) with support for x87 and SSE2 floating point</li>
+	<li>Mature code generation for SPARC</li>
+	<li>novel SSA based register allocator</li>
+	<li>several spilling algorithms</li>
+	<li>several SSA copy coalescing algorithms</li>
+	<li>algorithms for instruction and basic block scheduling</li>
+	<li>ABI handling helpers</li>
+</ul>
+
+<h2>Development Support</h2>
+<ul>
+	<li>Extensive checkers</li>
+	<li>builtin debugger: breakpoints on node creation/entity creation, graph dumping, visual studio debug extension</li>
+	<li>Lowering of intrinsics, double word arithmetics, bitfields</li>
+</ul>
 
 {% endblock %}
