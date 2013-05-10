@@ -42,7 +42,11 @@ $ build/debug/cparser --version
 {% endcode %}
 <p>Our compiler tries to be a drop in replacement for GCC, so it supports the same arguments.
 Try it on some C99 code, like <tt>cparser -Wall -O3 test.c</tt> or <tt>make CC=cparser</tt>.
-</p><p>If you find bugs, please report them in our <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/bugs/">issue tracker</a>.
+</p>
+<p>
+	Note that on 64-bit systems, you have to additionally pass <tt>-m32</tt> because <tt>cparser</tt> generates 32-bit code by default.
+</p>
+<p>If you find bugs, please report them in our <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/bugs/">issue tracker</a>.
 </p>
 
 <h2 id="Tarball">Source Release</h2>
