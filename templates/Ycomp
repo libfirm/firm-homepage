@@ -20,5 +20,9 @@
 You can download yComp <a class="external text" href="http://www.info.uni-karlsruhe.de/software/ycomp/yComp-1.3.17.zip">here</a>.
 A Java Runtime Environment (version 5 or higher) is needed to run yComp.
 
+<h2 id="Screenshot">Screenshot</h2>
+<p>
+	<img width="600" src="images/ycomp_screenshot.png" alt="ycomp screenshot"/>
+</p>
 
 {% endblock %}
