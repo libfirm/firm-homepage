@@ -1,7 +1,5 @@
 {% extends "parts/base" %}
-{%- block title -%}
-	Ycomp
-{%- endblock %}
+{%- block title -%}yComp{%- endblock %}
 {% block content %}
 
 <p>
