@@ -23,78 +23,83 @@
 </td></tr></table>
 <h1><span class="mw-headline" id="Commands"> Commands </span></h1>
 <table border="1" cellspacing="0">
-<tr>
-<td width="25%">init </td>
-<td width="60%">break after initialization
-</td></tr>
-<tr>
-<td>create nr </td>
-<td> break if node nr was created
-</td></tr>
-<tr>
-<td>replace nr </td>
-<td> break if node nr is replaced by another node
-</td></tr>
-<tr>
-<td>lower nr </td>
-<td> break before node nr is lowered
-</td></tr>
-<tr>
-<td>remirg nr/name </td>
-<td> break if the irg of nr or entity name is deleted
-</td></tr>
-<tr>
-<td>newent nr/name </td>
-<td> break if the entity nr or name was created
-</td></tr>
-<tr>
-<td>newtype nr/name </td>
-<td> break if the type nr or name was created
-</td></tr>
-<tr>
-<td>bp </td>
-<td> show all breakpoints
-</td></tr>
-<tr>
-<td>enable nr </td>
-<td> enable breakpoint nr
-</td></tr>
-<tr>
-<td>disable nr </td>
-<td> disable breakpoint nr
-</td></tr>
-<tr>
-<td>showtype nr/name </td>
-<td> show content of type nr or name
-</td></tr>
-<tr>
-<td>showent nr/name </td>
-<td> show content of entity nr or name
-</td></tr>
-<tr>
-<td>setmask name msk </td>
-<td> sets the debug module to mask msk
-</td></tr>
-<tr>
-<td>setlvl name lvl </td>
-<td> sets the debug module name to level lvl
-</td></tr>
-<tr>
-<td>setoutfile name file </td>
-<td> redirects debug output of module name to file
-</td></tr>
-<tr>
-<td>irgname name </td>
-<td> prints address and graph number of a method given by its name
-</td></tr>
-<tr>
-<td>irgldname name </td>
-<td> prints address and graph number of a method given by its ldname
-</td></tr>
-<tr>
-<td>help </td>
-<td> list all commands
-</td></tr></table>
+	<tr>
+		<td width="25%">init </td>
+		<td width="60%">break after initialization</td>
+	</tr>
+	<tr>
+		<td>create nr </td>
+		<td> break if node nr was created</td>
+	</tr>
+	<tr>
+		<td>replace nr </td>
+		<td> break if node nr is replaced by another node</td>
+	</tr>
+	<tr>
+		<td>lower nr </td>
+		<td> break before node nr is lowered</td>
+	</tr>
+	<tr>
+		<td>remirg nr/name </td>
+		<td> break if the irg of nr or entity name is deleted</td>
+	</tr>
+	<tr>
+		<td>newent nr/name </td>
+		<td> break if the entity nr or name was created</td>
+	</tr>
+	<tr>
+		<td>newtype nr/name </td>
+		<td> break if the type nr or name was created</td>
+	</tr>
+	<tr>
+		<td>bp </td>
+		<td> show all breakpoints</td>
+	</tr>
+	<tr>
+		<td>enable nr </td>
+		<td> enable breakpoint nr</td>
+	</tr>
+	<tr>
+		<td>disable nr </td>
+		<td> disable breakpoint nr</td>
+	</tr>
+	<tr>
+		<td>showtype nr/name </td>
+		<td> show content of type nr or name</td>
+	</tr>
+	<tr>
+		<td>showent nr/name </td>
+		<td> show content of entity nr or name</td>
+	</tr>
+	<tr>
+		<td>setmask name msk </td>
+		<td> sets the debug module to mask msk</td>
+	</tr>
+	<tr>
+		<td>setlvl name lvl </td>
+		<td> sets the debug module name to level lvl</td>
+	</tr>
+	<tr>
+		<td>setoutfile name file </td>
+		<td> redirects debug output of module name to file</td>
+	</tr>
+	<tr>
+		<td>irgname name </td>
+		<td> prints address and graph number of a method given by its name</td>
+	</tr>
+	<tr>
+		<td>irgldname name </td>
+		<td> prints address and graph number of a method given by its ldname</td>
+	</tr>
+	<tr>
+		<td>help </td>
+		<td> list all commands</td>
+	</tr>
+	<tr>
+		<td>dumpfilter name</td>
+		<td>only dump graphs containing the given name</td>
+	</tr>
+</table>
 <h1><span class="mw-headline" id="Usage"> Usage </span></h1>
 <p>lib<span class="algo">Firm</span> contains a builtin debug extension helping set breakpoints and inspecting data.
 </p>
