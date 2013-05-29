@@ -15,8 +15,14 @@
 </ul>
 
 <h2 id="Download">Download</h2>
-You can download yComp <a class="external text" href="http://www.info.uni-karlsruhe.de/software/ycomp/yComp-1.3.17.zip">here</a>.
+You can download yComp-1.3.18 <a class="external text" href="http://pp.ipd.kit.edu/firm/download/yComp-1.3.18.zip">here</a>.
 A Java Runtime Environment (version 5 or higher) is needed to run yComp.
+
+<h2 id="License">License</h1>
+
+<p>This software is based on the yFiles library.</p>
+
+<p>yWorks GmbH granted an academic license for „yFiles“ to IPD Goos: An academic license restricts the use of the software (yComp) to non-commercial purposes (research, teaching, projects, courses and application development).</p>
 
 <h2 id="Screenshot">Screenshot</h2>
 <p>
