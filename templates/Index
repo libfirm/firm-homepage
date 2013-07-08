@@ -1,5 +1,5 @@
 {% extends "parts/base" %}
-{% block title %}Index{% endblock %}
+{% block title %}libFirm - optimization and machine code generation{% endblock %}
 {% block documenttitle %}{% endblock %}
 {% block content %}
 <p>
