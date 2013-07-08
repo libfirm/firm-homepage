@@ -1,5 +1,5 @@
 {% extends "parts/base" %}
-{%- block title -%}yComp{%- endblock %}
+{%- block title -%}yComp - VCG viewer and compiler graph visualization tool{%- endblock %}
 {% block content %}
 
 <p>
