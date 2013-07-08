@@ -17,7 +17,7 @@
 </td></tr></table>
 <h1> <span class="mw-headline" id="What_is_unreachable_code"> What is unreachable code </span></h1>
 <p>Unreachable Code, is code which can't be reached (by control-flow) from the beginning of the function. It will consequently never be executed and can be removed.
-(Note that unreachable code is not necessarily dead code, these are 2 different concepts)
+(Note that unreachable code is dead code because removing it will not change program semantics, but you can also have dead code which is reachable.)
 </p><p>By definition the end block is always reachable.
 Optimizations that change control flow are responsible for insert keep edges accordingly.
 </p>
