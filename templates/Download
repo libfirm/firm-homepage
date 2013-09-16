@@ -19,11 +19,6 @@
 $ git clone http://pp.info.uni-karlsruhe.de/git/cparser.git
 $ cd cparser
 {% endcode %}
-<p>If you want the latest stable release, instead of the current development version, checkout the latest tag:
-</p>
-{% code 'bash' %}
-$ git checkout $(git describe --abbrev=0 --tags)
-{% endcode %}
 <p>Additionally, we need the <span class="algo">Firm</span> library, which is included as a submodule.
 </p>
 {% code 'bash' %}
