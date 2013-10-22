@@ -11,7 +11,7 @@
 	<ul>
 		<li><a class="external text" href="http://sourceforge.net/projects/cparser/">CParser</a>: GCC-compatible C frontend with full C99 support</li>
 		<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/X10i/">X10i</a>: X10 native code compiler (for <a class="external text" href="http://www.invasic.de">invasic</a> architectures)</li>
-		<li><a class="external text" href="http://github.com/MatzeB/bytecode2firm">bytecode2firm</a>: Java bytecode frontend</li>
+		<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/bytecode2firm/">bytecode2firm</a>: Java bytecode frontend</li>
 		<li><a class="external text" href="http://github.com/MatzeB/fluffy">Fluffy</a>: Frontend for the fluffy language</li>
 		<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/firm-bf">brainfuck</a>: Brainfuck frontend (and a good tutorial)</li>
 	</ul>
