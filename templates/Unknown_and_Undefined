@@ -1,0 +1,79 @@
+{%- from "parts/macros" import node -%}
+{% extends "parts/base" %}
+{%- block title -%}Unknown Values and Undefined Behaviour{%- endblock -%}
+{% block content %}
+
+In some languages like C it is possible to write programs that access indeterminate/uninitialized values.
+There are two ways to represent such values:
+Using an {{node('Unknown')}} node which represents a value that the compiler can choose freely, and a {{node('Bad')}} node which results in undefined behaviour if accessed which allows the compiler to perform more aggressive optimizations.
+
+<h2>Unknown Nodes</h2>
+
+{{node('Unknown')}} nodes represent a value that is unknown to the programmer and may be freely choosen by the compiler.
+<ul>
+	<li>An unknown value can be replaced by a constant at any time.</li>
+	<li>Common Subexpression Elimination is legal but not recommended as it reduces the freedom to choose different values.</li>
+	<li>Replacing operations involving Unknown with Unknown is illegal if the relation between the previous Unknown value and the result can be observed (the Unknown has multiple users):
+{% code "c" %}
+int x; // represented as Unknown;
+if (x == x+5) { /* replacing x+5 with Unknown may fulfill
+                   impossible relation */
+	panic("impossible to get here");
+}
+{% endcode %}
+	</li>
+	<li>Replacing operations involving Unknown with Unknown is illegal if the possible results of the expression do not include all values:
+{% code "c" %}
+/* Must not be replaced by a new Unknown */
+Unknown | 1   // but may be replaced with 1 or ~0 if
+              // Unknown has no other users
+Unknown * 2   // but may be replaced with any even number
+              // if Unknown has no other users
+Unknown & 0   // but may be replaced with 0
+/* May be replaced by Unknown if sole user of Unknown */
+Unknown + y
+Unknown < 42
+Unknown ^ 0xCAFEBABE
+{% endcode %}
+	</li>
+	<li>An unknown value always results in the same value:
+{% code "c" %}
+int x; // represented as Unknown;
+x-x; // may be replaced by 0
+{% endcode %}
+	</li>
+</ul>
+
+<h2>Bad Nodes</h2>
+While Unknown values may be used to conservatively capture the behaviour of indeterminate values, says accessing them produces undefined behaviour which allows more aggressive optimization (or even <a href="http://catb.org/jargon/html/N/nasal-demons.html">Nasal Daemons</a>):
+{% code "c" %}
+int x;
+if (rand())
+	x = 5;
+return x+3; // may be replaced by 8
+{% endcode %}
+Such undefined behaviour on access is expressed with {{node('Bad')}} nodes.
+<ul>
+	<li>Using a Bad node results in undefined behaviour. A {{node('Phi')}} or {{node('Block')}} node only uses their operands if actual control flow happens on the respective path.
+{% code "c" %}
+/* The following may be replaced by Bad
+   or a call to abort() */
+Bad + 5
+*x = Bad;
+if (Bad) { } else { }
+
+int x; // represented by Bad
+if (rand()) {
+	y = 5;
+}
+x_ = phi(x, y); // may be replaced by y, but not by Bad.
+                // An abort() call can be placed in the
+                // else branch of the preceding if
+return x_;
+{% endcode %}
+	</li>
+	<li>Bad nodes are used to represent unreachable code. Values and Control Flow coming from unreachable code can be replaced by a Bad node.</li>
+	<li>Currently there are bugs in firm that lead to invalid graphs when Bad is used for undefined behaviour (using it for unreachable code is fine).</li>
+</ul>
+
+{% endblock %}
