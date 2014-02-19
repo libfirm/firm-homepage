@@ -4,8 +4,8 @@
 
 <ul>
 	<li> <a href="Introduction" title="Introduction">Introduction</a></li>
-	<li> API Documentation: <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/api/1.20">1.20</a> <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/api/1.21">1.21</a> <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/api/latest">development version</a></li>
-	<li> Firm Node Types: <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/api/1.20/nodes.html">1.20</a> <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/api/1.21/nodes.html">1.21</a> <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/api/latest/nodes.html">development version</a></li>
+	<li> API Documentation: <a class="external text" href="api_1.20/index.html">1.20</a> <a class="external text" href="api_1.21/index.html">1.21</a> <a class="external text" href="api_latest/index.html">development version</a></li>
+	<li> Firm Node Types: <a class="external text" href="api_1.20/nodes.html">1.20</a> <a class="external text" href="api_1.21/nodes.html">1.21</a> <a class="external text" href="Nodes_latest">development version</a></li>
 	<li> <a href="Debug_Extension" title="Debug Extension">Debug Extension</a></li>
 	<li> <a href="Statistics" title="Statistics">Statistics</a></li>
 	<li> <a href="Endless_Loops" title="Endless Loops">Endless Loops</a></li>
