@@ -2,11 +2,6 @@
 {% block title %}Projects using Firm{% endblock %}
 {% block content %}
 
-<i>Tools:</i>
-	<ul>
-		<li><a href="yComp">yComp</a>: Visualization tool for intermediate representation graphs</li>
-	</ul>
-
 <i>Frontends:</i>
 	<ul>
 		<li><a class="external text" href="http://sourceforge.net/projects/cparser/">CParser</a>: GCC-compatible C frontend with full C99 support</li>
@@ -14,6 +9,12 @@
 		<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/bytecode2firm/">bytecode2firm</a>: Java bytecode frontend</li>
 		<li><a class="external text" href="http://github.com/MatzeB/fluffy">Fluffy</a>: Frontend for the fluffy language</li>
 		<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/firm-bf">brainfuck</a>: Brainfuck frontend (and a good tutorial)</li>
+	</ul>
+
+<i>Tools:</i>
+	<ul>
+		<li><a href="yComp">yComp</a>: Visualization tool for intermediate representation graphs</li>
+		<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/sisyphus">Sisyphus</a>: A generic regression tester aimed at compiler tests</li>
 	</ul>
 
 <i>Libraries:</i>
@@ -25,7 +26,6 @@
 <i>Testing:</i>
 	<ul>
 		<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/firm-testsuite">firm-testsuite</a>: C compiler and Firm optimization testsuite</li>
-		<li><a class="external text" href="http://pp.info.uni-karlsruhe.de/git/sisyphus">Sisyphus</a>: A generic regression tester aimed at compiler tests</li>
 	</ul>
 
 
