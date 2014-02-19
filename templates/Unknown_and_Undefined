@@ -45,7 +45,7 @@ x-x; // may be replaced by 0
 </ul>
 
 <h2>Bad Nodes</h2>
-While Unknown values may be used to conservatively capture the behaviour of indeterminate values, says accessing them produces undefined behaviour which allows more aggressive optimization (or even <a href="http://catb.org/jargon/html/N/nasal-demons.html">Nasal Daemons</a>):
+While Unknown values may be used to conservatively capture the behaviour of indeterminate values, says accessing them produces undefined behaviour which allows more aggressive optimization (or even <a href="http://catb.org/jargon/html/N/nasal-demons.html" class="external">Nasal Daemons</a>):
 {% code "c" %}
 int x;
 if (rand())
