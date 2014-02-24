@@ -29,7 +29,6 @@ $ git submodule update --init
 {% code 'bash' %}
 $ make
 {% endcode %}
-<p>You probably have a multicore machine? Then use something like <tt>make -j4</tt> for a parallel build.
 </p><p>Now you should have a working binary.
 </p>
 {% code 'bash' %}
