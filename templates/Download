@@ -34,8 +34,10 @@ $ make
 {% code 'bash' %}
 $ build/debug/cparser --version
 {% endcode %}
-<p>Our compiler tries to be a drop in replacement for GCC, so it supports the same arguments.
-Try it on some C99 code, like <tt>cparser -Wall -O3 test.c</tt> or <tt>make CC=cparser</tt>.
+
+<h3 id="Usage">Usage</h3>
+<p>Our compiler tries to be a drop in replacement for GCC, so it supports the same arguments. Make it accesible through your PATH environment variable (we tend to create a symlink of build/debug/cparser into $HOME/.local/bin here which is in our PATH).</p>
+<p>Try it on some C99 code, like <tt>cparser -Wall -O3 test.c</tt> or <tt>CC=cparser make</tt> on a project with a Makefile.
 </p>
 <p>
 	Note that on 64-bit systems, you have to additionally pass <tt>-m32</tt> because <tt>cparser</tt> generates 32-bit code by default.
