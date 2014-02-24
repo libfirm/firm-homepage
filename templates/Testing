@@ -7,8 +7,8 @@
 <h1><span class="mw-headline" id="Testsuite"> Testsuite </span></h1>
 <p>We have a repository with lots of small test programs along with a testing driver script in:
 </p>
-<pre><a class="external free" href="http://pp.info.uni-karlsruhe.de/git/firm-testsuite.git">http://pp.info.uni-karlsruhe.de/git/firm-testsuite.git</a>
-browse at <a class="external free" href="http://pp.info.uni-karlsruhe.de/git/firm-testsuite/">http://pp.info.uni-karlsruhe.de/git/firm-testsuite/</a>
+<pre><a class="external free" href="http://pp.ipd.kit.edu/git/firm-testsuite.git">http://pp.ipd.kit.edu/git/firm-testsuite.git</a>
+browse at <a class="external free" href="http://pp.ipd.kit.edu/git/firm-testsuite/">http://pp.ipd.kit.edu/git/firm-testsuite/</a>
 </pre>
 <h1><span class="mw-headline" id="Buildbot"> Buildbot </span></h1>
 <p>We also started using buildbot for automatically running tests on pushs. You can find it here:

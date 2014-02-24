@@ -21,7 +21,7 @@
 </ul>
 </td></tr></table>
 <h2><span class="mw-headline" id="Introduction"> Introduction </span></h2>
-<p>lib<span class="algo">Firm</span> is a C library implementing the <span class="algo">Firm</span> low-level intermediate representation. <span class="algo">Firm</span> is used to represent a computer program in order to analyse and transform it. Its main application is compiler construction where <a class="external text" href="http://pp.info.uni-karlsruhe.de">we</a> use it to represent, optimize and transform C and Java programs to native machine code.
+<p>lib<span class="algo">Firm</span> is a C library implementing the <span class="algo">Firm</span> low-level intermediate representation. <span class="algo">Firm</span> is used to represent a computer program in order to analyse and transform it. Its main application is compiler construction where <a class="external text" href="http://pp.ipd.kit.edu">we</a> use it to represent, optimize and transform C and Java programs to native machine code.
 </p><p>The most important features of <span class="algo">Firm</span> are that it is
 </p>
 <ul><li> low-level which means that the representation of the program is closer to machine code than to the language.
@@ -50,7 +50,7 @@
 </li><li> control transfer instruction like jumps
 </li><li> data flow operations such as loads, stores, additions, etc.
 </li></ul>
-<p>libFirm has several routines to dump irgs to text files in the VCG format. The <a class="external text" href="http://www.info.uni-karlsruhe.de/software.php/id=6&amp;lang=en">yComp</a> Tool is very well suited to visualize these graphs. In the following, we will use these visualizations to present the fundamental concepts of the irgs.
+<p>libFirm has several routines to dump irgs to text files in the VCG format. The <a href="yComp">yComp</a> Tool is very well suited to visualize these graphs. In the following, we will use these visualizations to present the fundamental concepts of the irgs.
 </p>
 <h3><span class="mw-headline" id="Basic_IRG_Elements"> Basic IRG Elements </span></h3>
 <p>The first irg we will consider is almost minimal. It was constructed by the C frontend of our compiler and represents the code of following C function 

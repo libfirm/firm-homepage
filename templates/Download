@@ -16,7 +16,7 @@
 <p>Check it out with git:
 </p>
 {% code 'bash' %}
-$ git clone http://pp.info.uni-karlsruhe.de/git/cparser.git
+$ git clone http://pp.ipd.kit.edu/git/cparser.git
 $ cd cparser
 {% endcode %}
 <p>Additionally, we need the <span class="algo">Firm</span> library, which is included as a submodule.
@@ -41,7 +41,7 @@ Try it on some C99 code, like <tt>cparser -Wall -O3 test.c</tt> or <tt>make CC=c
 <p>
 	Note that on 64-bit systems, you have to additionally pass <tt>-m32</tt> because <tt>cparser</tt> generates 32-bit code by default.
 </p>
-<p>If you find bugs, please report them in our <a class="external text" href="http://pp.info.uni-karlsruhe.de/~firm/bugs/">issue tracker</a>.
+<p>If you find bugs, please report them in our <a class="external text" href="http://pp.ipd.kit.edu/~firm/bugs/">issue tracker</a>.
 </p>
 
 <h2 id="Tarball">Source Release</h2>
@@ -57,8 +57,8 @@ Try it on some C99 code, like <tt>cparser -Wall -O3 test.c</tt> or <tt>make CC=c
 The packages were not checked by Ubuntu developers, so use <b>at your own risk</b>.
 Add the following to your sources.list:
 </p>
-<pre>deb <a class="external free" href="http://pp.info.uni-karlsruhe.de/~zwinkau/repo/Ubuntu">http://pp.info.uni-karlsruhe.de/~zwinkau/repo/Ubuntu</a> karmic IPD
-deb-src <a class="external free" href="http://pp.info.uni-karlsruhe.de/~zwinkau/repo/Ubuntu">http://pp.info.uni-karlsruhe.de/~zwinkau/repo/Ubuntu</a> karmic IPD
+<pre>deb <a class="external free" href="http://pp.ipd.kit.edu/~zwinkau/repo/Ubuntu">http://pp.ipd.kit.edu/~zwinkau/repo/Ubuntu</a> karmic IPD
+deb-src <a class="external free" href="http://pp.ipd.kit.edu/~zwinkau/repo/Ubuntu">http://pp.ipd.kit.edu/~zwinkau/repo/Ubuntu</a> karmic IPD
 </pre>
 <p>The reason for the libfirm-dev package is mostly as a build dependency for <a class="external text" href="http://cparser.sourceforge.net/">cparser</a>, which is also in the repository.
 </p>
