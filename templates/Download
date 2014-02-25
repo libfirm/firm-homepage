@@ -24,13 +24,11 @@ $ cd cparser
 {% code 'bash' %}
 $ git submodule update --init
 {% endcode %}
-<p>Now build everything. You need a C compiler, GNU Make, Perl, and Python.
-</p>
+<p>Now build everything. You need a C compiler, GNU Make, Perl, and Python.</p>
 {% code 'bash' %}
 $ make
 {% endcode %}
-</p><p>Now you should have a working binary.
-</p>
+<p>Now you should have a working binary.</p>
 {% code 'bash' %}
 $ build/debug/cparser --version
 {% endcode %}

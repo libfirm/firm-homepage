@@ -10,7 +10,7 @@
 </div>
 <p><b>TODO: </b>
 </p>
-<ul><li> <b>adapt to current syntax, this version is slightly outdated</b>
+<ul><li> <b>adapt to current syntax, this version is outdated</b>
 </li><li> <b>complete english translation</b>
 </li></ul>
 <table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
@@ -204,141 +204,140 @@ Beispiel:
   ...
 );
 </pre>
-<p>Der resultierende Knoten hei&#223;t <span class="var">ia32_Add</span>.
-</p><p>Die Knotenbeschreibung ist wiederum ein Hash, f&#252;r den die folgenden Schl&#252;ssel definiert sind:
-</p><p><dl>
-<dt><span class="var">op_flags</span>
-<dd>Die hier angebenen Flags entsprechen den <span class="var">irop_flags</span> aus <span class="algo">Firm</span>. Sollen mehrere Flags gesetzt sein, so sind sie mit <span class="var">|</span> zu verbinden. Folgende Werte sind definiert:
+<p>Der resultierende Knoten hei&#223;t <span class="var">ia32_Add</span>.</p>
+<p>Die Knotenbeschreibung ist wiederum ein Hash, f&#252;r den die folgenden Schl&#252;ssel definiert sind:
 </p>
+<p>
+	<dl>
+		<dt><span class="var">op_flags</span></dt>
+		<dd>Die hier angebenen Flags entsprechen den <span class="var">irop_flags</span> aus <span class="algo">Firm</span>. Sollen mehrere Flags gesetzt sein, so sind sie mit <span class="var">|</span> zu verbinden. Folgende Werte sind definiert:</dd>
+	</dl>
+</p>
+<p>
 <ul>
-<li><span class="var">N</span> - <span class="var">irop_flag_none</span>
-<li><span class="var">L</span> - <span class="var">irop_flag_labeled</span>
-<li><span class="var">C</span> - <span class="var">irop_flag_commutative</span>
-<li><span class="var">X</span> - <span class="var">irop_flag_cfopcode</span>
-<li><span class="var">I</span> - <span class="var">irop_flag_ip_cfopcode</span>
-<li><span class="var">F</span> - <span class="var">irop_flag_fragile</span>
-<li><span class="var">Y</span> - <span class="var">irop_flag_forking</span>
-<li><span class="var">H</span> - <span class="var">irop_flag_highlevel</span>
-<li><span class="var">c</span> - <span class="var">irop_flag_constlike</span>
-<li><span class="var">K</span> - <span class="var">irop_flag_keep</span>
+<li><span class="var">N</span> - <span class="var">irop_flag_none</span></li>
+<li><span class="var">L</span> - <span class="var">irop_flag_labeled</span></li>
+<li><span class="var">C</span> - <span class="var">irop_flag_commutative</span></li>
+<li><span class="var">X</span> - <span class="var">irop_flag_cfopcode</span></li>
+<li><span class="var">I</span> - <span class="var">irop_flag_ip_cfopcode</span></li>
+<li><span class="var">F</span> - <span class="var">irop_flag_fragile</span></li>
+<li><span class="var">Y</span> - <span class="var">irop_flag_forking</span></li>
+<li><span class="var">H</span> - <span class="var">irop_flag_highlevel</span></li>
+<li><span class="var">c</span> - <span class="var">irop_flag_constlike</span></li>
+<li><span class="var">K</span> - <span class="var">irop_flag_keep</span></li>
 </ul>
-<p>Dieser Eintrag ist optional und kann auch entfallen, dann wird als Standard <span class="var">N</span> verwendet. Beispiel
+Dieser Eintrag ist optional und kann auch entfallen, dann wird als Standard <span class="var">N</span> verwendet. Beispiel
 </p>
-<pre> <span class="var">op_flags =&gt; "L|X"</span>
-</pre>
-<p></dl>
-</p><p><dl>
-<dt><span class="var">irn_flags</span>
-<dd>Mit diesen Flags kann man die Registerallokation des jeweiligen Knotens steuern. Es k&#246;nnen ebenfalls mehrere Flags gesetzt sein, die dann entsprechend mit <span class="var">|</span> verbunden werden. Folgende Werte sind definiert:
-</p>
+<pre><span class="var">op_flags =&gt; "L|X"</span></pre>
+<p>
+	<dl>
+	<dt><span class="var">irn_flags</span></dt>
+	<dd>Mit diesen Flags kann man die Registerallokation des jeweiligen Knotens steuern. Es k&#246;nnen ebenfalls mehrere Flags gesetzt sein, die dann entsprechend mit <span class="var">|</span> verbunden werden. Folgende Werte sind definiert:
 <ul>
-<li><span class="var">N</span> - <span class="var">dont_spill</span>, d.h. der Wert dieses Knotens kann nicht ausgelagert werden, falls der Registerdruck zu hoch wird
-<li><span class="var">R</span> - <span class="var">rematerializable</span>, d.h. es ist u.U. billiger den Wert neu zu berechnen, anstatt ihn auszulagern
-<li><span class="var">I</span> - <span class="var">ignore</span>, d.h. dieser Knoten soll vom Registerallokator nicht beachtet werden, die Registerzuteilung muss dann von Hand geschehen
+<li><span class="var">N</span> - <span class="var">dont_spill</span>, d.h. der Wert dieses Knotens kann nicht ausgelagert werden, falls der Registerdruck zu hoch wird</li>
+<li><span class="var">R</span> - <span class="var">rematerializable</span>, d.h. es ist u.U. billiger den Wert neu zu berechnen, anstatt ihn auszulagern</li>
+<li><span class="var">I</span> - <span class="var">ignore</span>, d.h. dieser Knoten soll vom Registerallokator nicht beachtet werden, die Registerzuteilung muss dann von Hand geschehen</li>
 </ul>
-<p>Der Eintrag ist optional und kann entfallen, dann werden keine besonderen Flags gesetzt. Beispiel:
-</p>
-<pre> <span class="var">irn_flags =&gt; "R"</span>
-</pre>
-<p></dl>
-</p><p><dl>
-<dt><span class="var">arity</span>
-<dd>Die <span class="var">arity</span> gibt die Anzahl der Eing&#228;nge des Knotens an. Folgende Werte k&#246;nnen angeben werden:
-<dl>
-<dt><span class="var">0,1,2,...</span>
-<dd>ein beliebige Dezimalzahl gr&#246;&#223;er oder gleich 0, jeder dieser Knoten hat dann die hier festgelegte Zahl an Eing&#228;ngen
-<dt><span class="var">variable</span>
-<dd>die Anzahl der Eing&#228;nge pro Knoten ist verschieden, aber nach der Konstruktion fest (z.B. bei <span class="var">Call</span> Knoten)
-<dt><span class="var">dynamic</span>
-<dd>die Anzahl der Eing&#228;nge kann auch nach der Knotenkonstuktion noch variieren
-<dt><span class="var">any</span>
-<dd>die Stelligkeit ist nicht n&#228;her festgelegt
+<p>Der Eintrag ist optional und kann entfallen, dann werden keine besonderen Flags gesetzt. Beispiel:</p>
+<pre> <span class="var">irn_flags =&gt; "R"</span></pre>
+	</dd>
 </dl>
+</p>
+<p>
+	<dl>
+		<dt><span class="var">arity</span></dt>
+		<dd>Die <span class="var">arity</span> gibt die Anzahl der Eing&#228;nge des Knotens an. Folgende Werte k&#246;nnen angeben werden:
+			<dl>
+				<dt><span class="var">0,1,2,...</span></dt>
+				<dd>ein beliebige Dezimalzahl gr&#246;&#223;er oder gleich 0, jeder dieser Knoten hat dann die hier festgelegte Zahl an Eing&#228;ngen</dd>
+				<dt><span class="var">variable</span></dt>
+				<dd>die Anzahl der Eing&#228;nge pro Knoten ist verschieden, aber nach der Konstruktion fest (z.B. bei <span class="var">Call</span> Knoten)</dd>
+				<dt><span class="var">dynamic</span></dt>
+				<dd>die Anzahl der Eing&#228;nge kann auch nach der Knotenkonstuktion noch variieren</dd>
+				<dt><span class="var">any</span></dt>
+				<dd>die Stelligkeit ist nicht n&#228;her festgelegt</dd>
+			</dl>
 Dieser Eintrag ist optional und kann entfallen, dann wird die Stelligkeit aus der Angabe der Registeranforderungen f&#252;r die Eing&#228;nge berechnet. Man muss ihn also nur setzen, wenn man explizit eine andere Stelligkeit angeben will. Beispiel
+<pre><span class="var">arity =&gt; "variable"</span></pre>
+		</dd>
+	</dl>
 </p>
-<pre> <span class="var">arity =&gt; "variable"</span>
-</pre>
-<p></dl>
-</p><p><dl>
-<dt><span class="var">state</span>
-<dd>Hiermit wird angegeben, in welchem Zustand sich Knoten dieses Typs befinden. Folgende Werte sind definiert
-<dl>
-<dt><span class="var">floats</span>
-<dd>Knoten diesen Typs k&#246;nnen beliebig zwischen Bl&#246;cken verschoben werden
-<dt><span class="var">pinned</span>
-<dd>Knoten diesen Typs k&#246;nnen nicht aus dem Block heraus verschoben werden, in dem sie erzeugt wurden
-<dt><span class="var">exc_pinned</span>
-<dd>Knoten diesen Typs k&#246;nnen nicht aus dem Block heraus verschoben werden, in dem sie erzeugt wurden, falls sie eine Ausnahme erzeugen k&#246;nnen
-<dt><span class="var">mem_pinned</span>
-<dd>Knoten diesen Typs k&#246;nnen nicht aus dem Block heraus verschoben werden, in dem sie erzeugt wurden,	falls sie eine Ausnahmeerzeugen k&#246;nnen oder auf Speicher zugreifen
-</dl>
-Dieser Eintrag ist optional und kann entfallen, dann wird als Standard <span class="var">floats</span> verwendet. Beispiel
+<p>
+	<dl>
+		<dt><span class="var">state</span></dt>
+		<dd>Hiermit wird angegeben, in welchem Zustand sich Knoten dieses Typs befinden. Folgende Werte sind definiert
+			<dl>
+				<dt><span class="var">floats</span></dt>
+				<dd>Knoten diesen Typs k&#246;nnen beliebig zwischen Bl&#246;cken verschoben werden</dd>
+				<dt><span class="var">pinned</span></dt>
+				<dd>Knoten diesen Typs k&#246;nnen nicht aus dem Block heraus verschoben werden, in dem sie erzeugt wurden</dd>
+				<dt><span class="var">exc_pinned</span></dt>
+				<dd>Knoten diesen Typs k&#246;nnen nicht aus dem Block heraus verschoben werden, in dem sie erzeugt wurden, falls sie eine Ausnahme erzeugen k&#246;nnen</dd>
+				<dt><span class="var">mem_pinned</span></dt>
+				<dd>Knoten diesen Typs k&#246;nnen nicht aus dem Block heraus verschoben werden, in dem sie erzeugt wurden,	falls sie eine Ausnahmeerzeugen k&#246;nnen oder auf Speicher zugreifen</dd>
+			</dl>
+			<p>Dieser Eintrag ist optional und kann entfallen, dann wird als Standard <span class="var">floats</span> verwendet. Beispiel</p>
+			<pre><span class="var">state =&gt; "pinned"</span></pre>
+		</dd>
+	</dl>
 </p>
-<pre> <span class="var">state =&gt; "pinned"</span>
-</pre>
-<p></dl>
-</p><p><dl>
-<dt><span class="var">reg_req</span>
-<dd>Dieser Wert dient der Beschreibung der Registeranforderungen f&#252;r die Knotenein- und -ausg&#228;nge. Die Angabe erfolgt als Hash mit zwei Schl&#252;sseln -- <span class="var">in</span> f&#252;r die Eing&#228;nge und <span class="var">out</span> f&#252;r die Ausg&#228;nge. Jeder dieser beiden Schl&#252;ssel zeigt auf ein Array mit Strings, die die Anforderungen f&#252;r den jeweiligen Ein-/Ausgang beschreiben. Aus der Anzahl der Strings im Feld f&#252;r <span class="var">in</span> kann auch die Stelligkeit (siehe <span class="var">arity</span>) berechnet werden. Es gilt die folgende Syntax
-<dl>
-<dt><span class="var">none</span>
-<dd>Dies bedeutet, dass keine Register zugeteilt werden sollen (z.B. bei Ein-/Ausg&#228;ngen von Speicherkanten).
-<dt><span class="var">Name einer Registerklasse</span>
-<dd>Wenn der Name einer der in <span class="var">%reg_classes</span> definierten Registerklassen angegeben wird, dann kann jedes Register dieser Klasse verwendet werden.
-<dt><span class="var">Name eines oder mehrere Register einer Klasse</span>
-<dd>Man kann die m&#246;glichen Register auch aufz&#228;hlen (getrennt durch Leerzeichen), dann sind nur die erw&#228;hnten Register zul&#228;ssig. Beispiel
+<p>
+	<dl>
+		<dt><span class="var">reg_req</span></dt>
+		<dd>Dieser Wert dient der Beschreibung der Registeranforderungen f&#252;r die Knotenein- und -ausg&#228;nge. Die Angabe erfolgt als Hash mit zwei Schl&#252;sseln -- <span class="var">in</span> f&#252;r die Eing&#228;nge und <span class="var">out</span> f&#252;r die Ausg&#228;nge. Jeder dieser beiden Schl&#252;ssel zeigt auf ein Array mit Strings, die die Anforderungen f&#252;r den jeweiligen Ein-/Ausgang beschreiben. Aus der Anzahl der Strings im Feld f&#252;r <span class="var">in</span> kann auch die Stelligkeit (siehe <span class="var">arity</span>) berechnet werden. Es gilt die folgende Syntax
+			<dl>
+				<dt><span class="var">none</span></dt>
+				<dd>Dies bedeutet, dass keine Register zugeteilt werden sollen (z.B. bei Ein-/Ausg&#228;ngen von Speicherkanten).</dd>
+				<dt><span class="var">Name einer Registerklasse</span></dt>
+				<dd>Wenn der Name einer der in <span class="var">%reg_classes</span> definierten Registerklassen angegeben wird, dann kann jedes Register dieser Klasse verwendet werden.</dd>
+				<dt><span class="var">Name eines oder mehrere Register einer Klasse</span></dt>
+				<dd>
+					<p>Man kann die m&#246;glichen Register auch aufz&#228;hlen (getrennt durch Leerzeichen), dann sind nur die erw&#228;hnten Register zul&#228;ssig. Beispiel</p>
+					<pre><span class="var">"eax edx"</span></pre>
+					<p>Es ist auch m&#246;glich die Register zu negieren, dann hei&#223;t das, das alle bis auf die negierten Register zul&#228;ssig sind.
+	Beispiel</p>
+					<pre><span class="var">"!ebx&#160;!ecx"</span></pre>
+					<p>Das Mischen von Registern verschiedener Klassen ist nicht zul&#228;ssig. Das Mischen von negierten Registern und nicht negierten Registern ist ebenfalls nicht zul&#228;ssig.</p>
+					<pre><span class="var">"eax xmm0"</span> -&gt; falsch
+					<span class="var">"!eax edx"</span> -&gt; falsch
+					</pre>
+				</dd>
+				<dt><span class="var">in_rX</span></dt>
+				<dd>
+					<p>Nur bei den Ausgabeanforderungen zul&#228;ssig. Damit kann man den Wunsch ausdr&#252;cken, dass der durch <span class="var">X</span> (<span class="var">X</span> &gt;= 1) angegebene Eingang das gleiche Register ,,zugewiesen<i> bekommen soll wie der aktuelle Ausgang. Dies kann vom Registerallokator allerdings nicht immer erf&#252;llt werden, so dass ggfs.  hinterher von Hand eine Kopie eingf&#252;gt werden muss.</i>
+					Beispiel:</p>
+					<pre><span class="var">"in_r1"</span></pre>
+					<p>Es ist auch m&#246;glich diese Angabe zu negieren und damit ungleiche Register zu fordern. Im Gegensatz zur Gleichf&#228;rbung ist dies dann nicht nur ein Wunsch, sondern eine Forderung, die auch immer sichergestellt wird.
+					Beispiel:</p>
+					<pre><span class="var">"!in_r2"</span></pre>
+					<p>Es ist m&#246;glich normale und negierte Angabe zu mischen, allerdings ist nur eine normale und/oder negierte Angabe pro Ausgang zul&#228;ssig.</p>
+					<pre><span class="var">"in_r1&#160;!in_r2"</span>  -&gt; richtig
+					<span class="var">"in_r1 in_r2"</span>   -&gt; falsch
+					<span class="var">"!in_r1&#160;!in_r2"</span> -&gt; falsch
+					</pre>
+					<p>Ebenfalls m&#246;glich ist das Msichen mit der Angabe von Registernamen, so dass sich z.B. die Anforderung: ,,Das Ergebnis liegt immer in Register <span class="var">eax</span>. Der erste Operand sollte ebenfalls in <span class="var">eax</span> sein, es darf aber auf keinen Fall der zweite Operand in <span class="var">eax</span> liegen.<i> folgenderma&#223;en realisieren l&#228;&#223;t:</i></p>
+					<pre><span class="var">"eax in_r1&#160;!in_r2"</span></pre>
+				</dd>
+			</dl>
+			<p>Die Angabe der Registeranforderungen ist optional und kann entfallen, allerdings muss dann die Stelligkeit spezifiziert werden. Zu bemerken sei noch, dass Eing&#228;ngen keine Register zugeteilt werden, sondern die Angabe der Anforderungen dient der Steuerung der Zuteilung der Register zu den Ausg&#228;ngen und ggfs. dem Einf&#252;gen von Kopien. Beispiel:</p>
+			<pre><span class="var">"in" =&gt; [ "gp", "gp" ], "out" =&gt; [ "in_r1" ] }</span></pre>
+		</dd>
+	</dl>
 </p>
-<pre> <span class="var">"eax edx"</span>
-</pre>
-<p>Es ist auch m&#246;glich die Register zu negieren, dann hei&#223;t das, das alle bis auf die negierten Register zul&#228;ssig sind.
-Beispiel
+<p>
+	<dl>
+		<dt><span class="var">comment</span>&#160;</dt>
+		<dd> Optionaler C-Kommentar, der vor den erzeugten Knotenkonstruktor eingef&#252;gt wird.\\ Bsp.: <span class="var">comment =&gt; "Store(ptr, val, mem) = ST ptr,val"</span></dd>
+	</dl>
 </p>
-<pre> <span class="var">"!ebx&#160;!ecx"</span>
-</pre>
-<p>Das Mischen von Registern verschiedener Klassen ist nicht zul&#228;ssig. Das Mischen von negierten Registern und nicht negierten Registern ist ebenfalls nicht zul&#228;ssig.
-</p>
-<pre>  <span class="var">"eax xmm0"</span> -&gt; falsch
-  <span class="var">"!eax edx"</span> -&gt; falsch
-</pre>
-<p><dt><span class="var">in_rX</span>
-<dd>Nur bei den Ausgabeanforderungen zul&#228;ssig. Damit kann man den Wunsch ausdr&#252;cken, dass der durch <span class="var">X</span> (<span class="var">X</span> &gt;= 1) angegebene Eingang das gleiche Register ,,zugewiesen<i> bekommen soll wie der aktuelle Ausgang. Dies kann vom Registerallokator allerdings nicht immer erf&#252;llt werden, so dass ggfs.  hinterher von Hand eine Kopie eingf&#252;gt werden muss.</i>
-Beispiel:
-</p>
-<pre> <span class="var">"in_r1"</span>
-</pre>
-<p>Es ist auch m&#246;glich diese Angabe zu negieren und damit ungleiche Register zu fordern. Im Gegensatz zur Gleichf&#228;rbung ist dies dann nicht nur ein Wunsch, sondern eine Forderung, die auch immer sichergestellt wird.
-Beispiel:
-</p>
-<pre> <span class="var">"!in_r2"</span>
-</pre>
-<p>Es ist m&#246;glich normale und negierte Angabe zu mischen, allerdings ist nur eine normale und/oder negierte Angabe pro Ausgang zul&#228;ssig.
-</p>
-<pre> <span class="var">"in_r1&#160;!in_r2"</span>  -&gt; richtig
- <span class="var">"in_r1 in_r2"</span>   -&gt; falsch
- <span class="var">"!in_r1&#160;!in_r2"</span> -&gt; falsch
-</pre>
-<p>Ebenfalls m&#246;glich ist das Msichen mit der Angabe von Registernamen, so dass sich z.B. die Anforderung: ,,Das Ergebnis liegt immer in Register <span class="var">eax</span>. Der erste Operand sollte ebenfalls in <span class="var">eax</span> sein, es darf aber auf keinen Fall der zweite Operand in <span class="var">eax</span> liegen.<i> folgenderma&#223;en realisieren l&#228;&#223;t:</i>
-</p>
-<pre> <span class="var">"eax in_r1&#160;!in_r2"</span>
-</pre>
-<p></dl>
-Die Angabe der Registeranforderungen ist optional und kann entfallen, allerdings muss dann die Stelligkeit spezifiziert werden. Zu bemerken sei noch, dass Eing&#228;ngen keine Register zugeteilt werden, sondern die Angabe der Anforderungen dient der Steuerung der Zuteilung der Register zu den Ausg&#228;ngen und ggfs. dem Einf&#252;gen von Kopien. Beispiel:
-</p>
-<pre> <span class="var">"in" =&gt; [ "gp", "gp" ], "out" =&gt; [ "in_r1" ] }</span>
-</pre>
-<p></dl>
-</p>
-<dl><dt> <span class="var">comment</span>&#160;</dt><dd> Optionaler C-Kommentar, der vor den erzeugten Knotenkonstruktor eingef&#252;gt wird.\\ Bsp.: <span class="var">comment =&gt; "Store(ptr, val, mem) = ST ptr,val"</span>
-</dd></dl>
-<p><dl>
-<dt><span class="var">rd_constructor</span>
-<dd>Hiermit kann optional der Quellcode des Knotenkonstruktors angegeben werden, falls nicht der Standardkonstruktor verwendet werden soll. Die Signatur wird fogenderma&#223;en generiert:
-</p>
-<pre> ir_node *new_rd_&lt;Knotenname&gt;(dbg_info *db, ir_graph *irg, ir_node *block, ir_node *op1 ..., ir_node *opX, ir_mode *mode)
-</pre>
-<p><span class="var">op1</span> bis <span class="var">opX</span> stehen f&#252;r die Operanden, die der Knoten verwendet, wobei <span class="var">X</span> die Anzahl der Eing&#228;nge ist. Der Standardkonstruktor sieht wie folgt aus (<span class="var">Y</span> steht für die Anzahl der Ausgänge):
-</p>
-<pre>ir_node *new_rd_&lt;Knotenname&gt;(dbg_info *db, ir_graph *irg, ir_node *block, ir_node *op1, ..., ir_node *opX, ir_mode *mode)
+<p>
+	<dl>
+		<dt><span class="var">rd_constructor</span></dt>
+		<dd>
+			<p>Hiermit kann optional der Quellcode des Knotenkonstruktors angegeben werden, falls nicht der Standardkonstruktor verwendet werden soll. Die Signatur wird fogenderma&#223;en generiert:</p>
+			<pre>ir_node *new_rd_&lt;Knotenname&gt;(dbg_info *db, ir_graph *irg, ir_node *block, ir_node *op1 ..., ir_node *opX, ir_mode *mode)</pre>
+			<p><span class="var">op1</span> bis <span class="var">opX</span> stehen f&#252;r die Operanden, die der Knoten verwendet, wobei <span class="var">X</span> die Anzahl der Eing&#228;nge ist. Der Standardkonstruktor sieht wie folgt aus (<span class="var">Y</span> steht für die Anzahl der Ausgänge):</p>
+			<pre>ir_node *new_rd_&lt;Knotenname&gt;(dbg_info *db, ir_graph *irg, ir_node *block, ir_node *op1, ..., ir_node *opX, ir_mode *mode)
 {
   ir_node *res;
   ir_node *in[X];
@@ -376,63 +375,63 @@ Die Angabe der Registeranforderungen ist optional und kann entfallen, allerdings
   irn_vrfy_irg(res, irg);
   return res;
 }
-</pre>
-<p>Wenn explizit kein Konstruktor erzeugt werden soll, dann muss der Schl&#252;ssel auf <span class="var">NONE</span> gesetzt werden:
-</p>
-<pre> <span class="var">rd_constructor =&gt; "NONE"</span>
-</pre>
-<p>Beispiel f&#252;r die Angabe eines eigenen Konstruktors
-</p>
-<pre> "rd_constructor" =&gt;
+			</pre>
+			<p>Wenn explizit kein Konstruktor erzeugt werden soll, dann muss der Schl&#252;ssel auf <span class="var">NONE</span> gesetzt werden:</p>
+			<pre><span class="var">rd_constructor =&gt; "NONE"</span></pre>
+			<p>Beispiel f&#252;r die Angabe eines eigenen Konstruktors</p>
+			<pre> "rd_constructor" =&gt;
  "  if (!op_ia32_Return) assert(0);
       return new_ir_node(db, irg, block, op_ia32_Return, mode_X, n, in);
  "
-</pre>
-<p></dl>
-</p><p><dl>
-<dt><span class="var">args</span>
-<dd>Wenn kein Standardkonstruktor verwendet wird, dann kann kann man an dieser Stelle auch andere Argumente f&#252;r	die Funktionssignatur des Konstruktors angeben. Die Angabe erfolgt als Array von Hashes, wobei jeder Hash zwei Schl&#252;ssel enth&#228;lt -- <span class="var">type</span> f&#252;r den Typ des Arguments und <span class="var">name</span> f&#252;r den Variablennamen. Zu beachten ist, dass die ersten drei Parameter trotzdem automatisch als <span class="var">dbg_info *db</span>, <span class="var">ir_graph *irg</span> und <span class="var">ir_node *block</span> generiert werden. D.h. alle hier angegebenen Paramter werden zus&#228;tzlich zu diesen drei erzeugt.
-Beispiel passend zum obigen selbst definierten Konstruktor:
+			</pre>
+		</dd>
+	</dl>
 </p>
-<pre>&quot;args&quot; =&gt; [
+<p>
+	<dl>
+		<dt><span class="var">args</span></dt>
+		<dd>
+			<p>Wenn kein Standardkonstruktor verwendet wird, dann kann kann man an dieser Stelle auch andere Argumente f&#252;r	die Funktionssignatur des Konstruktors angeben. Die Angabe erfolgt als Array von Hashes, wobei jeder Hash zwei Schl&#252;ssel enth&#228;lt -- <span class="var">type</span> f&#252;r den Typ des Arguments und <span class="var">name</span> f&#252;r den Variablennamen. Zu beachten ist, dass die ersten drei Parameter trotzdem automatisch als <span class="var">dbg_info *db</span>, <span class="var">ir_graph *irg</span> und <span class="var">ir_node *block</span> generiert werden. D.h. alle hier angegebenen Paramter werden zus&#228;tzlich zu diesen drei erzeugt.
+			Beispiel passend zum obigen selbst definierten Konstruktor:</p>
+			<pre>&quot;args&quot; =&gt; [
             { &quot;type&quot; =&gt; &quot;int&quot;,        &quot;name&quot; =&gt; &quot;n&quot; },
             { &quot;type&quot; =&gt; &quot;ir_node **&quot;, &quot;name&quot; =&gt; &quot;in&quot; }
           ]
-</pre>
-<p></dl>
-</p><p><dl>
-<dt><span class="var">emit</span>
-<dd>Mit diesem Schl&#252;ssel l&#228;&#223;t sich automatisch eine Ausgabefunktion erzeugen. Spezifiziert werden kann sie mittels normalem C-Code und Ausgabemakros. Die Makros sind durch einen Punkt <span class="var">.</span> am Anfang der Zeile gekennzeichnet und werden durch eine <span class="var">printf</span> Sequenz ersetzt. Daher ist auch Syntax der Makros an <span class="var">printf</span> angelehnt. Abgesehen von den &#252;blichen Formatangaben sind folgende Platzhalter definiert:
-<dl>
-<dt><span class="var">%Sx</span>
-<dd>Gibt das Register von Eingang <span class="var">x</span> aus (<span class="var">x</span> &gt;= 0)
-<dt><span class="var">%Dx</span>
-<dd>Gibt das Register von Ausgang <span class="var">x</span> aus (<span class="var">x</span> &gt;= 0)
-<dt><span class="var">%Ax</span>
-<dd>Gibt den Namen des <span class="algo">Firm</span> Knotens an Eingang <span class="var">x</span> aus (<span class="var">x</span> &gt;= 0)
-<dt><span class="var">%M</span>
-<dd>Gibt einen String in Abh&#228;ngigkeit des Modes des Knotens aus
-<dt><span class="var">%name_einer_funktion</span>
-<dd>Es wird das Resultat der angegebenen Funktion als Parameter an <span class="var">printf</span> &#252;bergeben.  Diese	Funktion bekommt den Knoten als	Eingabe und muss einen String zur&#252;ckliefern. Das Makro <span class="var">. add&#160;%ia32_add_params</span> wird also in folgenden Code umgewandelt:
+			</pre>
+		</dd>
+	</dl>
 </p>
-<pre> <span class="var">printf("%s", ia32_add_params(n))</span>
-</pre>
-<p></dl>
-Optional kann noch eine Zahl vor dem Punkt angegeben werden, die die Einr&#252;cktiefe der <span class="var">printf</span> Sequenzen im generierten Code entspricht. Die erzeugte Ausgabefunktion sieht folgenderma&#223;en aus:
-</p>
-<pre>void emit_&lt;Knotenname&gt;(ir_node *n, emit_env_t *env) {
+<p>
+	<dl>
+		<dt><span class="var">emit</span></dt>
+		<dd>
+			<p>Mit diesem Schl&#252;ssel l&#228;&#223;t sich automatisch eine Ausgabefunktion erzeugen. Spezifiziert werden kann sie mittels normalem C-Code und Ausgabemakros. Die Makros sind durch einen Punkt <span class="var">.</span> am Anfang der Zeile gekennzeichnet und werden durch eine <span class="var">printf</span> Sequenz ersetzt. Daher ist auch Syntax der Makros an <span class="var">printf</span> angelehnt. Abgesehen von den &#252;blichen Formatangaben sind folgende Platzhalter definiert:</p>
+			<dl>
+				<dt><span class="var">%Sx</span></dt>
+				<dd>Gibt das Register von Eingang <span class="var">x</span> aus (<span class="var">x</span> &gt;= 0)</dd>
+				<dt><span class="var">%Dx</span></dt>
+				<dd>Gibt das Register von Ausgang <span class="var">x</span> aus (<span class="var">x</span> &gt;= 0)</dd>
+				<dt><span class="var">%Ax</span></dt>
+				<dd>Gibt den Namen des <span class="algo">Firm</span> Knotens an Eingang <span class="var">x</span> aus (<span class="var">x</span> &gt;= 0)</dd>
+				<dt><span class="var">%M</span></dt>
+				<dd>Gibt einen String in Abh&#228;ngigkeit des Modes des Knotens aus</dd>
+				<dt><span class="var">%name_einer_funktion</span></dt>
+				<dd>
+					<p>Es wird das Resultat der angegebenen Funktion als Parameter an <span class="var">printf</span> &#252;bergeben.  Diese	Funktion bekommt den Knoten als	Eingabe und muss einen String zur&#252;ckliefern. Das Makro <span class="var">. add&#160;%ia32_add_params</span> wird also in folgenden Code umgewandelt:</p>
+					<pre><span class="var">printf("%s", ia32_add_params(n))</span></pre>
+				</dd>
+			</dl>
+			<p>Optional kann noch eine Zahl vor dem Punkt angegeben werden, die die Einr&#252;cktiefe der <span class="var">printf</span> Sequenzen im generierten Code entspricht. Die erzeugte Ausgabefunktion sieht folgenderma&#223;en aus:</p>
+			<pre>void emit_&lt;Knotenname&gt;(ir_node *n, emit_env_t *env) {
   FILE *F = env-&gt;out;
 
   Code aus &quot;emit&quot; mit ersetzten Makros
 }
-</pre>
-<p>Beispiel einer einfachen Addition:
-</p>
-<pre> <span class="var">"emit" =&gt; '. add&#160;%S0,&#160;%S1,&#160;%D0 \t /* Add(%A0,&#160;%A1) */'</span>
-</pre>
-<p>Komplexeres Beispiel (Min-Knoten auf <span class="var">ia32</span>):
-</p>
-<pre>&quot;emit&quot; =&gt;
+			</pre>
+			<p>Beispiel einer einfachen Addition:</p>
+			<pre><span class="var">"emit" =&gt; '. add&#160;%S0,&#160;%S1,&#160;%D0 \t /* Add(%A0,&#160;%A1) */'</span></pre>
+			<p>Komplexeres Beispiel (Min-Knoten auf <span class="var">ia32</span>):</p>
+			<pre>&quot;emit&quot; =&gt;
 '2. cmp&#160;%S0,&#160;%S1 /* prepare Min(%A0,&#160;%A1) */
   if (mode_is_signed(get_irn_mode(n))) {
 2. cmovg&#160;%D0,&#160;%S1 /*&#160;%S0 is greater&#160;%S1 */
@@ -441,76 +440,86 @@ Optional kann noch eine Zahl vor dem Punkt angegeben werden, die die Einr&#252;c
 2. cmova&#160;%D0,&#160;%S1,&#160;%D0 /*&#160;%S0 is above&#160;%S1 */
   }
 '
-</pre>
-<p></dl>
-</p><p><dl>
-<dt><span class="var">attr</span>
-<dd>Wenn man zus&#228;tzlich noch Attribute an den Standardkonmstruktor &#252;bergeben will, dann kann hier eine mit Komma separierte Liste von Variablen angeben werden, die an die Argumentliste des Standardkonstruktors angef&#252;gt wird. Beispiel:
+			</pre>
+		</dd>
+	</dl>
 </p>
-<pre> <span class="var">"attr" =&gt; "int a_min, int a_max"</span>
-</pre>
-<p></dl>
-</p><p><dl>
-<dt><span class="var">init_attr</span>
-<dd>Wenn man zus&#228;tzliche Attribute zum Standardkonstruktor hinzugef&#252;gt hat, dann wird hier die Initialisierung der Attribute durchgef&#252;hrt. Es wird automatisch eine Variablendeklaration erzeugt und die Knotenattribute des neu erzeugten Knotens an diese zugewiesen:
+<p>
+	<dl>
+		<dt><span class="var">attr</span></dt>
+		<dd>
+			<p>Wenn man zus&#228;tzlich noch Attribute an den Standardkonmstruktor &#252;bergeben will, dann kann hier eine mit Komma separierte Liste von Variablen angeben werden, die an die Argumentliste des Standardkonstruktors angef&#252;gt wird. Beispiel:</p>
+			<pre><span class="var">"attr" =&gt; "int a_min, int a_max"</span></pre>
+		</dd>
+		<dt><span class="var">init_attr</span></dt>
+		<dd>
+			<p>Wenn man zus&#228;tzliche Attribute zum Standardkonstruktor hinzugef&#252;gt hat, dann wird hier die Initialisierung der Attribute durchgef&#252;hrt. Es wird automatisch eine Variablendeklaration erzeugt und die Knotenattribute des neu erzeugten Knotens an diese zugewiesen:</p>
+			<pre><span class="var">$arch_attr_t *attr = get_$arch_attr(res);</span></pre>
+			<p>Diese Variable kann zur Initialisierung verwendet werden. Beispiel passend zur vorherigen Spezifikation zus&#228;tzlicher Attribute:</p>
+			<pre><span class="var">"init_attr" =&gt; "  attr-&gt;min = a_min; attr-&gt;max = a_max;"</span></pre>
+		</dd>
+	</dl>
 </p>
-<pre> <span class="var">$arch_attr_t *attr = get_$arch_attr(res);</span>
-</pre>
-<p>Diese Variable kann zur Initialisierung verwendet werden. Beispiel passend zur vorherigen Spezifikation zus&#228;tzlicher Attribute:
-</p>
-<pre> <span class="var">"init_attr" =&gt; "  attr-&gt;min = a_min; attr-&gt;max = a_max;"</span>
-</pre>
-<p></dl>
-</p><p><dl>
-<dt><span class="var">cmp_attr</span>
-<dd>An dieser Stelle kann der Quellcode zum vergleichen von Attributen zweier Knoten des gleichen Typs angegeben werden. Dies ist notwendig, da <span class="algo">Firm</span> beim Erzeugen der Knoten bereits CSE (Common Subexpression Elimination) betreibt. Dazu wird der neue Knoten mit allen anderen verglichen. Wenn sich heraus stellt, dass er zu einem anderen gleich ist, dann wird der alte Knoten verwendet und kein neuer erzeugt. Zwei Knoten sind in <span class="algo">Firm</span> gleich, wenn sie den gleichen opcode besitzen (also von der gleichen Art sind), die selben Vorg&#228;nger besitzen und u.a. die Attributvergleichsfunktion die Gleichheit der Attribute best&#228;tigt. Bei Konstanten treffen die beiden ersten Eigenschaften offensichtlich immer zu, denn sie besitzen keinen Vorg&#228;nger. Daher muss die Attributvergleichsfunktion implementiert werden, da ansonsten alle Konstanten bei der Umwandlung in Backend spezifische Konstanten gleich werden w&#252;rden. Die erzeugte Funktion sieht folgenderma&#223;en aus:
-</p>
-<pre>static int cmp_attr_&lt;Knotenname&gt;(ir_node *a, ir_node *b) {
+<p>
+	<dl>
+		<dt><span class="var">cmp_attr</span></dt>
+		<dd>
+			<p>An dieser Stelle kann der Quellcode zum vergleichen von Attributen zweier Knoten des gleichen Typs angegeben werden. Dies ist notwendig, da <span class="algo">Firm</span> beim Erzeugen der Knoten bereits CSE (Common Subexpression Elimination) betreibt. Dazu wird der neue Knoten mit allen anderen verglichen. Wenn sich heraus stellt, dass er zu einem anderen gleich ist, dann wird der alte Knoten verwendet und kein neuer erzeugt. Zwei Knoten sind in <span class="algo">Firm</span> gleich, wenn sie den gleichen opcode besitzen (also von der gleichen Art sind), die selben Vorg&#228;nger besitzen und u.a. die Attributvergleichsfunktion die Gleichheit der Attribute best&#228;tigt. Bei Konstanten treffen die beiden ersten Eigenschaften offensichtlich immer zu, denn sie besitzen keinen Vorg&#228;nger. Daher muss die Attributvergleichsfunktion implementiert werden, da ansonsten alle Konstanten bei der Umwandlung in Backend spezifische Konstanten gleich werden w&#252;rden. Die erzeugte Funktion sieht folgenderma&#223;en aus:</p>
+			<pre>static int cmp_attr_&lt;Knotenname&gt;(ir_node *a, ir_node *b) {
   &lt;arch&gt;_attr_t *attr_a = get_&lt;arch&gt;_attr(a);
   &lt;arch&gt;_attr_t *attr_b = get_&lt;arch&gt;_attr(b);
 
   Code aus &quot;cmp_attr&quot;
 }
-</pre>
-<p>Es kann also im C-Code auf die Attribute der beiden zu vergleichenden Knoten mittels <span class="var">attr_a</span> und <span class="var">attr_b</span> zugegriffen werden.
-</dl>
+			</pre>
+			<p>Es kann also im C-Code auf die Attribute der beiden zu vergleichenden Knoten mittels <span class="var">attr_a</span> und <span class="var">attr_b</span> zugegriffen werden.</p>
+		</dd>
+	</dl>
 </p>
-<h2><span class="mw-headline" id="Generierte_Dateien_und_Funktionen"> Generierte Dateien und Funktionen </span></h2>
-<p>Es gibt drei Perlskripte, die aus der Spezifikation, die Knotenkonstruktoren, die Strukturen f&#252;r die Registerallokation und
-Ausgabefunktionen generieren.
-</p><p><dl>
-<dt><span class="var">generate_new_opcodes.pl</span>
-<dd>Dieses Skript erzeugt die folgenden Dateien:
-<dl>
-<dt><span class="var">gen_&lt;arch&gt;_new_nodes.c.inl</span>
-<dd>Enth&#228;lt die folgenden Funktionen:
-</p>
-<ul>
-<li><span class="var">void &lt;arch&gt;_create_opcodes(void)</span> -- Initialisiert und registriert die opcodes in <span class="algo">Firm</span>. Diese Funktion muss einmal bei der Initialisierung aufgerufen werden.
-<li><span class="var">ir_node *new_rd_&lt;Knotenname&gt;(...)</span> -- die Konstruktorfunktion f&#252;r jeden Knoten
-<li><span class="var">ir_op *get_op_&lt;Knotenname&gt;(void)</span> -- Liefert <span class="var">ir_op</span> f&#252;r jeden Knoten zur&#252;ck
-<li><span class="var">int is_&lt;Knotenname&gt;(const ir_node *n)</span> -- Liefert <span class="var">1</span>, wenn der &#252;bergebene Knoten vom Typ <span class="var">&lt;Knotenname&gt;</span> ist und <span class="var">0</span> sonst
-<li><span class="var">int is_&lt;arch&gt;_irn(const ir_node *node)</span> -- Liefert <span class="var">1</span>, wenn der &#252;bergebene Knoten zu den eigenen geh&#246;rt und <span class="var">0</span> sonst
-</ul>
-<p><dt><span class="var">gen_&lt;arch&gt;_new_nodes.h</span>
-<dd>Enth&#228;lt die Prototypen f&#252;r die oben genannten Funktionen.
-</dl>
-<dt><span class="var">generate_regalloc_if.pl</span>
-<dd>Dieses Skript erzeugt die folgenden Dateien:
-<dl>
-<dt><span class="var">gen_&lt;arch&gt;_regalloc_if.c</span>
-<dd>Enth&#228;lt die Definitionen der Registeranforderungsstrukturen, die Definition der Registerklassen, sowie eine Funktion zum Initialisieren der Registerstruktur <span class="var">void &lt;arch&gt;_register_init(void *isa_ptr)</span>, die einmalig bei der Initialisierung aufgerufen werden muss.
-<dt><span class="var">gen_&lt;arch&gt;_regalloc_if.h</span>
-<dd>Enth&#228;lt die Deklarationen obiger Strukturen und Funktionen sowie einige Definitionen f&#252;r Registernamen und Klassennamen.
-<dt><span class="var">gen_&lt;arch&gt;_regalloc_if_t.h</span>
-<dd>Enth&#228;lt Definitionen f&#252;r den internen Gebrauch und sollte nie eingebunden werden.
-</dl>
-<dt><span class="var">generate_emitter.pl</span>
-<dd>Dieses Skript erzeugt die folgenden Dateien:
-<dt><span class="var">gen_&lt;arch&gt;_emitter.c</span>
-<dd>Enth&#228;lt die Ausgabefunktionen f&#252;r jeden Knoten (falls definiert).
-<dt><span class="var">gen_&lt;arch&gt;_emitter.h</span>
-<dd>Enth&#228;lt die Prototypen der Ausgabefunktionen.
-</dl>
+
+<h2><span class="mw-headline" id="Generierte_Dateien_und_Funktionen">Generierte Dateien und Funktionen</span></h2>
+<p>Es gibt drei Perlskripte, die aus der Spezifikation, die Knotenkonstruktoren, die Strukturen f&#252;r die Registerallokation und Ausgabefunktionen generieren.</p>
+<p>
+	<dl>
+		<dt><span class="var">generate_new_opcodes.pl</span></dt>
+		<dd><p>Dieses Skript erzeugt die folgenden Dateien:</p>
+			<dl>
+				<dt><span class="var">gen_&lt;arch&gt;_new_nodes.c.inl</span></dt>
+				<dd>
+					<p>Enth&#228;lt die folgenden Funktionen:
+						<ul>
+							<li><span class="var">void &lt;arch&gt;_create_opcodes(void)</span> -- Initialisiert und registriert die opcodes in <span class="algo">Firm</span>. Diese Funktion muss einmal bei der Initialisierung aufgerufen werden.</li>
+							<li><span class="var">ir_node *new_rd_&lt;Knotenname&gt;(...)</span> -- die Konstruktorfunktion f&#252;r jeden Knoten</li>
+							<li><span class="var">ir_op *get_op_&lt;Knotenname&gt;(void)</span> -- Liefert <span class="var">ir_op</span> f&#252;r jeden Knoten zur&#252;ck</li>
+							<li><span class="var">int is_&lt;Knotenname&gt;(const ir_node *n)</span> -- Liefert <span class="var">1</span>, wenn der &#252;bergebene Knoten vom Typ <span class="var">&lt;Knotenname&gt;</span> ist und <span class="var">0</span> sonst</li>
+							<li><span class="var">int is_&lt;arch&gt;_irn(const ir_node *node)</span> -- Liefert <span class="var">1</span>, wenn der &#252;bergebene Knoten zu den eigenen geh&#246;rt und <span class="var">0</span> sonst</li>
+						</ul>
+					</p>
+				</dd>
+				<dt><span class="var">gen_&lt;arch&gt;_new_nodes.h</span></dt>
+				<dd>Enth&#228;lt die Prototypen f&#252;r die oben genannten Funktionen.</dd>
+			</dl>
+		</dd>
+		<dt><span class="var">generate_regalloc_if.pl</span></dt>
+		<dd><p>Dieses Skript erzeugt die folgenden Dateien:</p>
+			<dl>
+				<dt><span class="var">gen_&lt;arch&gt;_regalloc_if.c</span></dt>
+				<dd>Enth&#228;lt die Definitionen der Registeranforderungsstrukturen, die Definition der Registerklassen, sowie eine Funktion zum Initialisieren der Registerstruktur <span class="var">void &lt;arch&gt;_register_init(void *isa_ptr)</span>, die einmalig bei der Initialisierung aufgerufen werden muss.</dd>
+				<dt><span class="var">gen_&lt;arch&gt;_regalloc_if.h</span></dt>
+				<dd>Enth&#228;lt die Deklarationen obiger Strukturen und Funktionen sowie einige Definitionen f&#252;r Registernamen und Klassennamen.</dd>
+				<dt><span class="var">gen_&lt;arch&gt;_regalloc_if_t.h</span></dt>
+				<dd>Enth&#228;lt Definitionen f&#252;r den internen Gebrauch und sollte nie eingebunden werden.</dd>
+			</dl>
+		</dd>
+		<dt><span class="var">generate_emitter.pl</span></dt>
+		<dd><p>Dieses Skript erzeugt die folgenden Dateien:</p>
+			<dl>
+				<dt><span class="var">gen_&lt;arch&gt;_emitter.c</span></dt>
+				<dd>Enth&#228;lt die Ausgabefunktionen f&#252;r jeden Knoten (falls definiert).</dd>
+				<dt><span class="var">gen_&lt;arch&gt;_emitter.h</span></dt>
+				<dd>Enth&#228;lt die Prototypen der Ausgabefunktionen.</dd>
+			</dl>
+		</dd>
+	</dl>
 </p>
 {% endblock %}
