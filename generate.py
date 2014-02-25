@@ -30,3 +30,5 @@ for filename in glob("%s/*" % templatedir):
 	out = open(outfile, "w")
 	out.write(template.render(vars).encode("utf-8"))
 	out.close()
+	# Validate
+	os.system("xmllint --noout " + outfile)
