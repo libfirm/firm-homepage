@@ -175,7 +175,7 @@ print gdb_node_helper(current_ir_graph)
 end
 
 define keep
-call add_End_keepalive(get_irg_end(current_ir_graph), $arg0)
+call add_End_keepalive(get_irg_end(get_irn_irg($arg0)), $arg0)
 end
 
 # cparser
