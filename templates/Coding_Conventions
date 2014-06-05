@@ -120,7 +120,7 @@ void good_example(ir_node *arg0, bool swap_directions)
 <h1><span class="mw-headline" id="TipsTricks">Tips &amp; Tricks</span></h1>
 <ul>
 	<li><a href="Subclassing">Subclassing</a></li>
-	<li>Allocate memory with the macros from <a class="external text" href="http://pp.ipd.kit.edu/git/libFirm/tree/include/libfirm/adt/xmalloc.h">xmalloc.h</a> to be more robust against type errors.</li>
+	<li>Allocate memory with the macros from <a class="external text" href="http://pp.ipd.kit.edu/git/libfirm/tree/include/libfirm/adt/xmalloc.h">xmalloc.h</a> to be more robust against type errors.</li>
 	<li>Use the const modifier freely, even for non-pointers. It makes program understanding easier if you can immediately see that a variable is only assigned once.</li>
 </ul>
 
