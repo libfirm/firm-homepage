@@ -159,3 +159,7 @@ a.external {
 	padding-right: 12px;
 	background: url(externallink.png) no-repeat right center;
 }
+
+div.figure {
+	text-align: center;
+}

@@ -1,2 +1,5 @@
 output
 *.pyc
+vcg-examples/*.vcg
+vcg-examples/makevcgs.o
+vcg-examples/makevcgs
