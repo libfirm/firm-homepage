@@ -3,13 +3,18 @@
 #include <panic.h>
 #include <util.h>
 
-void begin_construction(void)
+void begin_construction(bool params_ret)
 {
-	ir_type *method_type = new_type_method(2, 1);
 	ir_type *type_int    = get_type_for_mode(mode_Is);
-	set_method_res_type(method_type, 0, type_int);
-	set_method_param_type(method_type, 0, type_int);
-	set_method_param_type(method_type, 1, type_int);
+	ir_type *method_type;
+	if (params_ret) {
+		method_type = new_type_method(2, 1);
+		set_method_res_type(method_type, 0, type_int);
+		set_method_param_type(method_type, 0, type_int);
+		set_method_param_type(method_type, 1, type_int);
+	} else {
+		method_type = new_type_method(0, 0);
+	}
 
 	ident     *id     = id_unique("foobar%u");
 	ir_entity *entity = new_entity(get_glob_type(), id, method_type);
@@ -28,6 +33,17 @@ FILE *begin_vcg(const char *filename)
 	ir_graph *irg = get_current_ir_graph();
 	inc_irg_visited(irg);
 	return out;
+}
+
+void dump_func(const char *filename)
+{
+	FILE *out = fopen(filename, "w");
+	if (out == NULL)
+		panic("couldn't create output");
+
+	dump_ir_graph_file(out, get_current_ir_graph());
+
+	fclose(out);
 }
 
 void end_vcg(FILE *out)
@@ -60,7 +76,7 @@ void dump_placeholder_for(FILE *F, ir_node *node)
 /* 5 + 3 */
 void simpleadd(void)
 {
-	begin_construction();
+	begin_construction(false);
 	ir_node *five  = new_Const_long(mode_Is, 5);
 	ir_node *three = new_Const_long(mode_Is, 3);
 	ir_node *add   = new_Add(five, three, mode_Is);
@@ -73,7 +89,7 @@ void simpleadd(void)
 /* x*x - 2 */
 void load_mul(void)
 {
-	begin_construction();
+	begin_construction(false);
 
 	ir_node *mem      = get_store();
 	ir_type *type_int = get_type_for_mode(mode_Is);
@@ -98,7 +114,7 @@ void load_mul(void)
 /* print_int(7); print_int(4); */
 void two_calls(void)
 {
-	begin_construction();
+	begin_construction(false);
 
 	ir_type *type_int = get_type_for_mode(mode_Is);
 	ir_type *pitype   = new_type_method(1, 0);
@@ -126,7 +142,7 @@ void two_calls(void)
 /* x.z */
 void member(void)
 {
-	begin_construction();
+	begin_construction(false);
 
 	ir_type   *strct    = new_type_struct(new_id_from_str("S"));
 	ir_type   *type_int = get_type_for_mode(mode_Is);
@@ -151,7 +167,7 @@ void member(void)
 /* Jump */
 void jump(void)
 {
-	begin_construction();
+	begin_construction(false);
 
 	ir_node *block1 = get_cur_block();
 	ir_node *jmp    = new_Jmp();
@@ -172,6 +188,7 @@ void jump(void)
 /* if (1 == 0) { return 4; } else { return 7; } */
 void condjmp(void)
 {
+	begin_construction(true);
 	ir_node *block0 = get_cur_block();
 	ir_node *c1     = new_Const_long(mode_Is, 1);
 	ir_node *c0     = new_Const_long(mode_Is, 0);
@@ -223,6 +240,7 @@ void condjmp(void)
 /* int x; if (7 > 4) { x = 9; } else { x = 3; } return x; */
 void phi(void)
 {
+	begin_construction(true);
 	ir_node *block0 = get_cur_block();
 	ir_node *c7     = new_Const_long(mode_Is, 7);
 	ir_node *c4     = new_Const_long(mode_Is, 4);
@@ -282,6 +300,45 @@ void phi(void)
 	end_vcg(out);
 }
 
+/* void empty(void) { } */
+void start_return(void)
+{
+	begin_construction(false);
+	ir_graph *irg = get_current_ir_graph();
+	ir_node  *mem = get_store();
+	ir_node  *ret = new_Return(mem, 0, NULL);
+	ir_node  *end_block = get_irg_end_block(irg);
+	add_immBlock_pred(end_block, ret);
+	irg_finalize_cons(irg);
+
+	FILE *out = begin_vcg("start_return.vcg");
+	dump_blocks_as_subgraphs(out, irg);
+	end_vcg(out);
+}
+
+/* int add(int x, int y) { return x + y; } */
+void params(void)
+{
+	begin_construction(true);
+	ir_graph *irg    = get_current_ir_graph();
+	ir_node  *params = get_irg_args(irg);
+	ir_node  *param0 = new_Proj(params, mode_Is, 0);
+	ir_node  *param1 = new_Proj(params, mode_Is, 1);
+	ir_node  *add    = new_Add(param0, param1, mode_Is);
+	ir_node  *in[]   = { add };
+	ir_node  *mem    = get_store();
+	ir_node  *ret    = new_Return(mem, ARRAY_SIZE(in), in);
+	ir_node  *end_block = get_irg_end_block(irg);
+	add_immBlock_pred(end_block, ret);
+	irg_finalize_cons(irg);
+
+	FILE *out = begin_vcg("params.vcg");
+	dump_blocks_as_subgraphs(out, irg);
+	end_vcg(out);
+}
+
+/* TODO: endless loop, compound parameter/return, alloca */
+
 int main(void)
 {
 	ir_init();
@@ -294,6 +351,8 @@ int main(void)
 	jump();
 	condjmp();
 	phi();
+	start_return();
+	params();
 
 	return 0;
 }

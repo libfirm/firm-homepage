@@ -74,4 +74,27 @@ return x;
 	<img src="phi.svg"/>
 </div>
 
+<h2>Function Begin/Return</h2>
+
+<h3>Start + Return + End</h3>
+{% code 'c' %}
+void empty(void)
+{
+}
+{% endcode %}
+<div class="figure">
+	<img src="start_return.svg"/>
+</div>
+
+<h3>Parameters</h3>
+{% code 'c' %}
+int add(int x, int y)
+{
+	return x + y;
+}
+{% endcode %}
+<div class="figure">
+	<img src="params.svg"/>
+</div>
+
 {% endblock %}
