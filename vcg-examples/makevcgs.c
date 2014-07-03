@@ -300,6 +300,53 @@ void phi(void)
 	end_vcg(out);
 }
 
+void loop(void)
+{
+	begin_construction(false);
+	ir_node *block0 = get_cur_block();
+	ir_node *jmp    = new_Jmp();
+
+	ir_node *block1 = new_immBlock();
+	add_immBlock_pred(block1, jmp);
+	add_immBlock_pred(block1, new_Dummy(mode_X));
+	set_cur_block(block1);
+	ir_node *c0     = new_Const_long(mode_Is, 0);
+	ir_node *c100   = new_Const_long(mode_Is, 100);
+	ir_node *in[]   = { c0, new_Dummy(mode_Is) };
+	ir_node *phi    = new_Phi(ARRAY_SIZE(in), in, mode_Is);
+	ir_node *c1     = new_Const_long(mode_Is, 1);
+	ir_node *add    = new_Add(phi, c1, mode_Is);
+	ir_node *cmp    = new_Cmp(add, c100, ir_relation_less);
+	ir_node *cond   = new_Cond(cmp);
+	ir_node *ptrue  = new_Proj(cond, mode_X, pn_Cond_true);
+	ir_node *pfalse = new_Proj(cond, mode_X, pn_Cond_false);
+	set_irn_n(block1, 1, ptrue);
+	set_irn_n(phi, 1, add);
+	mature_immBlock(block1);
+
+	ir_node *block2 = new_immBlock();
+	add_immBlock_pred(block2, pfalse);
+	set_cur_block(block2);
+	mature_immBlock(block2);
+
+	FILE *out = begin_vcg("loop.vcg");
+	dump_begin_block_subgraph(out, block0);
+	dump_node_with_preds(out, jmp);
+	dump_node_with_preds(out, c0);
+	dump_end_block_subgraph(out, block0);
+
+	dump_begin_block_subgraph(out, block1);
+	dump_node_with_preds(out, ptrue);
+	dump_node_with_preds(out, pfalse);
+	dump_end_block_subgraph(out, block1);
+	dump_block_edges(out, block1);
+
+	dump_begin_block_subgraph(out, block2);
+	dump_end_block_subgraph(out, block2);
+	dump_block_edges(out, block2);
+	end_vcg(out);
+}
+
 /* void empty(void) { } */
 void start_return(void)
 {
@@ -351,6 +398,7 @@ int main(void)
 	jump();
 	condjmp();
 	phi();
+	loop();
 	start_return();
 	params();
 

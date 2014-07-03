@@ -7,7 +7,7 @@ CPPFLAGS  = -I$(FIRM_HOME)/ir/common -I$(FIRM_HOME)/ir/tr -I$(FIRM_HOME)/ir/adt 
 CFLAGS    = -std=c99 -Wall -W
 SOURCES   = makevcgs.c
 OBJECTS   = $(SOURCES:%.c=%.o)
-VCGS      = twocalls.vcg member.vcg load_mul.vcg simpleadd.vcg jump.vcg condjump.vcg phi.vcg start_return.vcg params.vcg
+VCGS      = twocalls.vcg member.vcg load_mul.vcg simpleadd.vcg jump.vcg condjump.vcg phi.vcg loop.vcg start_return.vcg params.vcg
 SVGS      = $(VCGS:%.vcg=../output/%.svg)
 YCOMP    ?= ycomp
 
