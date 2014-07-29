@@ -4,25 +4,45 @@
 {%- endblock %}
 {% block content %}
 
-<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
-<ul>
-<li class="toclevel-1 tocsection-1"><a href="#The_Problem"><span class="tocnumber">1</span> <span class="toctext">The Problem</span></a></li>
-<li class="toclevel-1 tocsection-2"><a href="#Keep-alive-edges"><span class="tocnumber">2</span> <span class="toctext">Keep-alive-edges</span></a></li>
-<li class="toclevel-1 tocsection-3"><a href="#Optimisations"><span class="tocnumber">3</span> <span class="toctext">Optimisations</span></a></li>
-<li class="toclevel-1 tocsection-4"><a href="#Frontends"><span class="tocnumber">4</span> <span class="toctext">Frontends</span></a></li>
-</ul>
-</td></tr></table>
-<h2><span class="mw-headline" id="The_Problem"> The Problem </span></h2>
-<p>Endless-loops are tricky business because in this case there's no control flow going to the end node. In firm code that is not reachable by the end-node is considered dead - we simply loose all pointers and with them the knowledge that there are nodes.
+<h2><span class="mw-headline" id="The_Problem">The Problem</span></h2>
+<p>
+	(Potentially) endless loops are tricky to get right in a graph based representation. They pose two main problems:
+	<ul>
+		<li>Endless loops may not have any control flow leading to the End node. Worse in a dependency graph such loops are not connected with the End node and thus invisibile.</li>
+		<li>Endless loops are observable behaviour. Even if they don't contain any memory operations themselfes, they must use the memory leading into the loop and produce a new memory value. Failing to do that may lead to memory operations before the loop getting dropped or moved across the loop which is invalid for endless loops.</li>
+	</ul>
 </p>
-<h2><span class="mw-headline" id="Keep-alive-edges"> Keep-alive-edges </span></h2>
-<p>The solution is to add a special edge from the end-node to a block in the loop and if necessary another edge to the Memory input in front of the loop. We call this edge a keep-alive-edge. The edge is unusual in that it doesn't respect the SSA dominance property.
-Firm-Code expects that inside an endless loops at least 1 block is referenced by a keep-alive-edge!
+
+<h2><span class="mw-headline" id="Keep-alive-edges">Keep-alive-edges</span></h2>
+<p>
+	Our current solution to these problems, is to introduce a special edge class called keep-alive edges.
+	Keep-alive edges are inputs of the End node.
+	They are unusual in that they don't necessarily respect the SSA dominance property (the def may not dominate the use at the End node).
+
+	In a correct graph any potentially endless loop needs:
+	<ul>
+		<li>At least 1 block in the loop must be referenced by a keep-alive-edge</li>
+		<li>There must be at least 1 Phi node with memory mode which is referenced by a keep-alive-edge</li>
+	</ul>
+
+	The keep alive edges lead to the endless loop still being connected with the rest of the graph, the memory Phi node ensures that the loop uses and produces memory.
 </p>
-<h2><span class="mw-headline" id="Optimisations"> Optimisations </span></h2>
-<p>Optimisations that potentially create endless loops have to make sure to add keep-alive edges as needed.
+
+<h2><span class="mw-headline" id="Frontends">Frontends</span></h2>
+<p>
+	Dealing with potentially endless loops unfortunately requires special care by frontends. For any loop where termination is not ensured the frontend has to:
+	<ul>
+		<li>Call keep_alive() with 1 block of the loop</li>
+		<li>Call get_store() at least once to force a PhiM to be created</li>
+	</ul>
 </p>
-<h2><span class="mw-headline" id="Frontends"> Frontends </span></h2>
-<p>Frontends have to add keep-alive edges for potential endless loops. This is usually the case for goto-labels and stuff like while(true) when the frontend performs constant folding itself.
+
+<h2><span class="mw-headline" id="Optimisations">Correct Optimization</span></h2>
+<p>
+	Optimizations in firm should not be affected much. But they have to ensure that:
+	<ul>
+		<li>You must not remove memory Phi nodes with at least 1 self reference to ensure that the loops keep using/producing memory.</li>
+		<li>Phi and Block nodes can have the End node in their users list which may be surprising.</li>
+	</ul>
 </p>
 {% endblock %}
