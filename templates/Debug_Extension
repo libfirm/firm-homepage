@@ -157,10 +157,17 @@ define arrlen
 p array_len($arg0)
 end
 
-# The following should be used for libfirm after 1.18.0
 define dumpg
 if $argc == 1
-	call dump_ir_graph($arg0, "XXX")
+	if is_ir_graph($arg0)
+		call dump_ir_graph($arg0, "XXX")
+	else
+	if is_ir_node($arg0)
+		call dump_ir_graph(get_irn_irg($arg0), "XXX")
+	else
+		printf "Cannot determine graph of given argument\n"
+	end
+	end
 else
 	call dump_ir_graph(current_ir_graph, "XXX")
 end
@@ -171,7 +178,19 @@ call firm_debug($arg0)
 end
 
 define graph
-print gdb_node_helper(current_ir_graph)
+if $argc == 1
+	if is_ir_graph($arg0)
+		print gdb_node_helper($arg0)
+	else
+	if is_ir_node($arg0)
+		print gdb_node_helper(get_irn_irg($arg0))
+	else
+		printf "Cannot determine graph of given argument\n"
+	end
+	end
+else
+	call dump_ir_graph(current_ir_graph, "XXX")
+end
 end
 
 define keep
