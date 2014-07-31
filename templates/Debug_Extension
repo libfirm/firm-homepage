@@ -147,7 +147,7 @@ $ FIRMDBG="setmask firm.be.prefalloc -1" my_firm_compiler
 # FIRM
 
 # The following is able to print most important firm datastructures:
-# ir_node*, tarval*, ir_type*, ir_mode* and maybe others should work 
+# ir_node*, tarval*, ir_type*, ir_mode* and maybe others should work
 define irn
 print gdb_node_helper($arg0)
 end
@@ -194,7 +194,7 @@ end
 <h2><span class="mw-headline" id="Installation_for_the_FirmEvaluator_DLL_for_DevStudio.2FVisual_Studio"> Installation for the FirmEvaluator DLL for DevStudio/Visual Studio </span></h2>
 <p>The FirmEvaluator shows complex <span class="algo">Firm</span> data structures like nodes or bitsets directly in the Visula Studio Debuggers.
 </p><p><a href="File:FirmEvaluator.gif" class="image"><img alt="FirmEvaluator.gif" src="images/FirmEvaluator.gif" width="380" height="80" /></a>
-</p><p>Copy the firmEvaluator.dll to an appropriate place. 
+</p><p>Copy the firmEvaluator.dll to an appropriate place.
 </p><p>VC6: &lt;InstallRoot&gt;\Common\MSDev98\Bin\IDE
 VS2003/VS2005: &lt;Visual Studio folder&gt;\Common7\Packages\Debugger
 </p><p>Open the file AutoExp.dat in
