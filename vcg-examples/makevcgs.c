@@ -96,7 +96,7 @@ void load_mul(void)
 	ir_entity *x
 		= new_entity(get_glob_type(), new_id_from_str("x"), type_int);
 	ir_node *addr  = new_Address(x);
-	ir_node *load  = new_Load(mem, addr, mode_Is, cons_none);
+	ir_node *load  = new_Load(mem, addr, mode_Is, get_unknown_type(), cons_none);
 	ir_node *loadM = new_Proj(load, mode_M, pn_Load_M);
 	ir_node *res   = new_Proj(load, mode_Is, pn_Load_res);
 	ir_node *mul   = new_Mul(res, res, mode_Is);
@@ -152,7 +152,7 @@ void member(void)
 	ir_node *mem    = get_store();
 	ir_node *addr   = new_Address(x);
 	ir_node *member = new_Member(addr, z);
-	ir_node *load   = new_Load(mem, member, mode_Is, cons_none);
+	ir_node *load   = new_Load(mem, member, mode_Is, get_unknown_type(), cons_none);
 	ir_node *pmem   = new_Proj(load, mode_M, pn_Load_M);
 	ir_node *res    = new_Proj(load, mode_Is, pn_Load_res);
 
@@ -169,19 +169,21 @@ void jump(void)
 {
 	begin_construction(false);
 
-	ir_node *block1 = get_cur_block();
+	ir_node *block0 = new_immBlock();
+	mature_immBlock(block0);
+	set_cur_block(block0);
 	ir_node *jmp    = new_Jmp();
-	ir_node *block2 = new_immBlock();
-	add_immBlock_pred(block2, jmp);
-	mature_immBlock(block2);
+	ir_node *block1 = new_immBlock();
+	add_immBlock_pred(block1, jmp);
+	mature_immBlock(block1);
 
 	FILE *out = begin_vcg("jump.vcg");
-	dump_begin_block_subgraph(out, block1);
+	dump_begin_block_subgraph(out, block0);
 	dump_node_with_preds(out, jmp);
+	dump_end_block_subgraph(out, block0);
+	dump_begin_block_subgraph(out, block1);
 	dump_end_block_subgraph(out, block1);
-	dump_begin_block_subgraph(out, block2);
-	dump_end_block_subgraph(out, block2);
-	dump_block_edges(out, block2);
+	dump_block_edges(out, block1);
 	end_vcg(out);
 }
 
@@ -189,7 +191,10 @@ void jump(void)
 void condjmp(void)
 {
 	begin_construction(true);
-	ir_node *block0 = get_cur_block();
+
+	ir_node *block0 = new_immBlock();
+	mature_immBlock(block0);
+	set_cur_block(block0);
 	ir_node *c1     = new_Const_long(mode_Is, 1);
 	ir_node *c0     = new_Const_long(mode_Is, 0);
 	ir_node *cmp    = new_Cmp(c1, c0, ir_relation_equal);
@@ -241,7 +246,9 @@ void condjmp(void)
 void phi(void)
 {
 	begin_construction(true);
-	ir_node *block0 = get_cur_block();
+	ir_node *block0 = new_immBlock();
+	mature_immBlock(block0);
+	set_cur_block(block0);
 	ir_node *c7     = new_Const_long(mode_Is, 7);
 	ir_node *c4     = new_Const_long(mode_Is, 4);
 	ir_node *cmp    = new_Cmp(c7, c4, ir_relation_greater);
@@ -303,7 +310,9 @@ void phi(void)
 void loop(void)
 {
 	begin_construction(false);
-	ir_node *block0 = get_cur_block();
+	ir_node *block0 = new_immBlock();
+	mature_immBlock(block0);
+	set_cur_block(block0);
 	ir_node *jmp    = new_Jmp();
 
 	ir_node *block1 = new_immBlock();
