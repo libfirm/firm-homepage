@@ -16,7 +16,7 @@
 </ul>
 </td></tr></table>
 <h1> <span class="mw-headline" id="What_is_unreachable_code"> What is unreachable code </span></h1>
-<p>Unreachable Code, is code which can't be reached (by control-flow) from the beginning of the function. It will consequently never be executed and can be removed.
+<p>Unreachable Code, is code which cannot be reached (by control-flow) from the beginning of the function. It will consequently never be executed and can be removed.
 (Note that unreachable code is dead code because removing it will not change program semantics, but you can also have dead code which is reachable.)
 </p><p>By definition the end block is always reachable.
 Optimizations that change control flow are responsible for insert keep edges accordingly.
@@ -41,11 +41,11 @@ As this is not possible in a normal localopt rule, we use a trick:
 </p><p>Instead of removing the block we replace it by a special node called <i>Bad</i>.
 An additional localopt rule (called gigo) ensures that all nodes in a Bad block get replaced by Bad.
 So in effect all unreachable code is replaced by Bad.
-</p><p>Blocks and Phi-nodes can have Bad as input values. This however shouldn't inhibit further localopt rules (except that you have to ignore the Bad inputs). The Bad inputs can be removed in a phase where we can update the block and all contained phis at once. This is done in the "local" phase, where all unreachable code is already eliminated.
+</p><p>Blocks and Phi-nodes can have Bad as input values. This however should not inhibit further localopt rules (except that you have to ignore the Bad inputs). The Bad inputs can be removed in a phase where we can update the block and all contained phis at once. This is done in the "local" phase, where all unreachable code is already eliminated.
 </p>
 <h1> <span class="mw-headline" id="Caveats"> Caveats </span></h1>
 <p>Since Bad nodes in the block input are usually unexpected and lead to all sorts of surprises in normal code, they are usually not allowed. To avoid this we only enable localopt rules that replace blocks with Bad in the fixpoint localopt phase. Because in this case we are guaranteed that all nodes inside the block will be visited again and then replaced by Bad. The gigo rule is also applied before any other localopt rule so we should not encounter nodes with Bad as block input.
-</p><p>Dominance is not defined for unreachable code. So the SSA-property that a definition dominates its uses doesn't really apply. I'm not sure yet if this actually causes problems. So far its only a special case in the verifier.
+</p><p>Dominance is not defined for unreachable code. So the SSA-property that a definition dominates its uses does not really apply. I'm not sure yet if this actually causes problems. So far its only a special case in the verifier.
 </p>
 
 {% endblock content %}
