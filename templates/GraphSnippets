@@ -3,7 +3,7 @@
 {% block content %}
 
 <p><b>Attention:</b> The following graph snippets are for the latest revision in
-the git repository the, the last stable release may require slightly different
+the git repository. The last stable release may require slightly different
 graphs.</p>
 
 <h2>Basic Operations</h2>
