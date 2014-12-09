@@ -29,7 +29,7 @@ Optimizations that change control flow are responsible for insert keep edges acc
 We can easily express this conservative rule as local optimisation.
 </p>
 <h3> <span class="mw-headline" id="Marking_reachable_blocks"> Marking reachable blocks </span></h3>
-<p>This is best done using an optimistic dataflow analysis: If a block has at least one 1 reachable predecessor then it is reachable. If you iterate this until the fixpoint then you have catched all reachable blocks. All other blocks are unreachable. This should catch all cases of unreachable code. This style is 1 of the things the dataflow analysis in the "combo" phase calculates.
+<p>This is best done using an optimistic dataflow analysis: If a block has at least one reachable predecessor then it is reachable. If you iterate this until the fixpoint then you have catched all reachable blocks. All other blocks are unreachable. This should catch all cases of unreachable code. This style is one of the things the dataflow analysis in the "combo" phase calculates.
 </p><p>The principle of marking all reaching blocks also happens implicitely when we calculate the dominance relation.
 So you can identify unreachable blocks in firm by them having a dominance_depth of -1.
 </p>
