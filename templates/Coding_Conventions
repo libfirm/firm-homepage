@@ -126,15 +126,16 @@ void good_example(ir_node *arg0, bool swap_directions)
 
 <h1><span class="mw-headline" id="Tools"> Tools </span></h1>
 <h3><span class="mw-headline" id="AStyle"> AStyle </span></h3>
-<p>You can use astyle to enforce some of the rules above with the following options (needs astyle 1.24):
+<p>You can use astyle to enforce some of the rules above with the following options (needs astyle 2.00):
 </p>
-<pre>indent=tab=4
-brackets=stroustrup
-indent-cases
-indent-col1-comments
-pad-header
-keep-one-line-statements
-align-pointer=name
+<pre>--indent=tab=4
+--style=stroustrup
+--indent-cases
+--indent-col1-comments
+--pad-header
+--pad-oper
+--keep-one-line-statements
+--align-pointer=name
 </pre>
 <h3><span class="mw-headline" id="Whitespace_Check"> Whitespace Check </span></h3>
 <p>A simple python script to check at least the tab/whitespace rules:
