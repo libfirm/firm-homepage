@@ -4,7 +4,7 @@
 
 <i>Frontends:</i>
 	<ul>
-		<li><a class="external text" href="http://sourceforge.net/projects/cparser/">CParser</a>: GCC-compatible C frontend with full C99 support</li>
+		<li><a class="external text" href="http://github.com/MatzeB/cparser/">CParser</a>: GCC-compatible C frontend with full C99 support</li>
 		<li><a class="external text" href="http://pp.ipd.kit.edu/git/X10i/">X10i</a>: X10 native code compiler (for <a class="external text" href="http://www.invasic.de">invasic</a> architectures)</li>
 		<li><a class="external text" href="http://pp.ipd.kit.edu/git/bytecode2firm/">bytecode2firm</a>: Java bytecode frontend</li>
 		<li><a class="external text" href="http://github.com/MatzeB/fluffy">Fluffy</a>: Frontend for the fluffy language</li>
