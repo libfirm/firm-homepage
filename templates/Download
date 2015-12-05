@@ -13,16 +13,12 @@
 <p>Check it out with git:
 </p>
 {% code 'bash' %}
-$ git clone http://pp.ipd.kit.edu/git/cparser.git
-$ cd cparser
+$ git clone --recursive http://pp.ipd.kit.edu/git/cparser.git
 {% endcode %}
-<p>Additionally, we need the <span class="algo">Firm</span> library, which is included as a submodule.
-</p>
-{% code 'bash' %}
-$ git submodule update --init
-{% endcode %}
+<p>This will download cparser and recursively the <span class="algo">Firm</span> library.</p>
 <p>Now build everything. You need a C compiler, GNU Make, Perl, and Python.</p>
 {% code 'bash' %}
+$ cd cparser
 $ make
 {% endcode %}
 <p>Now you should have a working binary.</p>
