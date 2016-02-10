@@ -9,6 +9,7 @@
 		<li><a class="external text" href="http://pp.ipd.kit.edu/git/bytecode2firm/">bytecode2firm</a>: Java bytecode frontend</li>
 		<li><a class="external text" href="http://github.com/MatzeB/fluffy">Fluffy</a>: Frontend for the fluffy language</li>
 		<li><a class="external text" href="http://pp.ipd.kit.edu/git/firm-bf">brainfuck</a>: Brainfuck frontend (and a good tutorial)</li>
+		<li><a class="external text" href="https://github.com/anse1/firmforth">firmforth</a>: A just-in-time compiling forth interpreter (also small and comprehensible)</li>
 	</ul>
 
 <i>Tools:</i>
