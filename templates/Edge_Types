@@ -7,7 +7,7 @@
 <p>People, who know intermediate representations from text books,
 are often confused because Firm shows edges in the wrong direction.
 Instead of data flow, Firm provides data dependencies,
-which is usually more convenient in praxis.
+which is usually more convenient in practice.
 So, "forward" means from the End to the Start node.
 </p>
 <table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
@@ -74,7 +74,7 @@ but the corresponding flag is not set implicitly.
 </p>
 <h4><span class="mw-headline" id="Out_Edges"> Out Edges </span></h4>
 <p>These are like outs, but are updated automatically.
-This automatic updates can be switched on and off (edges_activate, edges_deactivate).
+These automatic updates can be switched on and off (edges_activate, edges_deactivate).
 However,
 keep in mind that
 this means that dead code does not disappear implicitly,
