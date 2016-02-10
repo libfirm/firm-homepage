@@ -4,10 +4,10 @@
 
 <i>Frontends:</i>
 	<ul>
-		<li><a class="external text" href="http://github.com/MatzeB/cparser/">CParser</a>: GCC-compatible C frontend with full C99 support</li>
+		<li><a class="external text" href="https://github.com/MatzeB/cparser/">CParser</a>: GCC-compatible C frontend with full C99 support</li>
 		<li><a class="external text" href="http://pp.ipd.kit.edu/git/X10i/">X10i</a>: X10 native code compiler (for <a class="external text" href="http://www.invasic.de">invasic</a> architectures)</li>
 		<li><a class="external text" href="http://pp.ipd.kit.edu/git/bytecode2firm/">bytecode2firm</a>: Java bytecode frontend</li>
-		<li><a class="external text" href="http://github.com/MatzeB/fluffy">Fluffy</a>: Frontend for the fluffy language</li>
+		<li><a class="external text" href="https://github.com/MatzeB/fluffy">Fluffy</a>: Frontend for the fluffy language</li>
 		<li><a class="external text" href="http://pp.ipd.kit.edu/git/firm-bf">brainfuck</a>: Brainfuck frontend (and a good tutorial)</li>
 		<li><a class="external text" href="https://github.com/anse1/firmforth">firmforth</a>: A just-in-time compiling forth interpreter (also small and comprehensible)</li>
 	</ul>
@@ -20,8 +20,8 @@
 
 <i>Libraries:</i>
 	<ul>
-		<li><a class="external text" href="http://github.com/MatzeB/JFirm/">JFirm</a>: Java bindings for lib<span class="algo">Firm</span></li>
-		<li><a class="external text" href="http://github.com/MatzeB/liboo/">libOO</a>: Support library for dealing with object-oriented constructs</li>
+		<li><a class="external text" href="https://github.com/MatzeB/JFirm/">JFirm</a>: Java bindings for lib<span class="algo">Firm</span></li>
+		<li><a class="external text" href="https://github.com/MatzeB/liboo/">libOO</a>: Support library for dealing with object-oriented constructs</li>
 	</ul>
 
 <i>Testing:</i>
