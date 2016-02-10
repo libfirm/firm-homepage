@@ -54,7 +54,7 @@ $ cparser --statev somefile.c
 
 <h1><span class="mw-headline" id="Generating_Events_Manually"> Generating Events Manually </span></h1>
 
-<p>We also successfully used the statev system from scripts in which case you have to produce the event stream manually. Anyway this is quiet easy. You have to generate an asciss file with the following conventions:
+<p>We also successfully used the statev system from scripts in which case you have to produce the event stream manually. Anyway this is quite easy. You have to generate an asciss file with the following conventions:
 </p>
 <pre># Push context named CTX with value VAL
 P;CTX;VAL
