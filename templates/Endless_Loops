@@ -9,7 +9,7 @@
 	(Potentially) endless loops are tricky to get right in a graph based representation. They pose two main problems:
 	<ul>
 		<li>Endless loops may not have any control flow leading to the End node. Worse in a dependency graph such loops are not connected with the End node and thus invisibile.</li>
-		<li>Endless loops are observable behaviour. Even if they don't contain any memory operations themselfes, they must use the memory leading into the loop and produce a new memory value. Failing to do that may lead to memory operations before the loop getting dropped or moved across the loop which is invalid for endless loops.</li>
+		<li>Endless loops are observable behaviour. Even if they don't contain any memory operations themselves, they must use the memory leading into the loop and produce a new memory value. Failing to do that may lead to memory operations before the loop getting dropped or moved across the loop which is invalid for endless loops.</li>
 	</ul>
 </p>
 
