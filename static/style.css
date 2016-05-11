@@ -38,6 +38,7 @@ div.document pre {
 	padding: 1em;
 	line-height: 1.1em;
 	tab-size: 4;
+	overflow-x: auto;
 }
 
 span.algo {
@@ -163,4 +164,71 @@ a.external {
 
 div.figure {
 	text-align: center;
+}
+
+/* Mobile Styles */
+
+@media (max-width: 799px) {
+	body {
+		max-width: 640px;
+		margin: 0 auto;
+	}
+
+	.content {
+		overflow: hidden;
+	}
+
+	.document {
+		margin: 1em;
+	}
+
+	div.header,
+	div.sidebar,
+	div.content,
+	div.document,
+	div.footer {
+		float: none;
+		width: auto;
+	}
+
+	div.header {
+		padding: 2em 1em;
+		text-align: center;
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	div.sidebar {
+		padding: 1em;
+		margin: -.1em -.25em;
+	}
+
+	div.sidebar ul {
+		margin: 0;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	div.sidebar li {
+		display: inline-block;
+		flex: 1 0 auto;
+		margin: .1em .25em;
+	}
+	div.sidebar li a {
+		display: block;
+		padding: .25em .5em;
+		text-align: center;
+	}
+	div.sidebar .external li a {
+		padding-right: 1em;
+		background-position: 98% 50%;
+	}
+
+	div.content #toc {
+		position: static;
+		width: auto;
+	}
 }
