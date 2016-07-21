@@ -29,21 +29,4 @@
 		<li><a class="external text" href="http://pp.ipd.kit.edu/git/firm-testsuite">firm-testsuite</a>: C compiler and Firm optimization testsuite</li>
 	</ul>
 
-<i>Student Projects:</i>
-	<dl>
-	<dd>
-	<p>
-		These projects all implement a full compiler for MiniJava, a subset of Java, using Firm.
-		They were realized in the scope of the <a class="external text" href="http://pp.info.uni-karlsruhe.de/lehre/WS201415/compprakt/">compiler lab</a> at KIT.
-		All compilers implement a complete frontend, use Firm as their intermediate representation and also reimplement several analyses and optimizations as well as the code generation for educational purposes.
-	</p>
-	</dd>
-	</dl>
-	<ul>
-		<li><a class="external text" href="https://github.com/MiniJavaInScala/mjis">MiniJavaInScala</a>: MiniJava compiler written in Scala</li>
-		<li><a class="external text" href="https://github.com/replimoc/compiler">Replimoc</a>: MiniJava compiler written in Java</li>
-		<li><a class="external text" href="https://github.com/OliverSch/compiler">FortyTwo</a>: MiniJava compiler written in Java</li>
-		<li><a class="external text" href="https://github.com/djrieger/mjplusplus">mjplusplus</a>: MiniJava compiler written in C++</li>
-	</ul>
-
 {% endblock %}
