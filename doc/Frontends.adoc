@@ -1,0 +1,35 @@
+Frontends
+=========
+
+[WARNING]
+====================
+This article is work in progress. It is incomplete and can contain errors. Help in finishing the article is appreciated.
+====================
+
+Frame Type
+----------
+
+Many languages allow allocating data on the stack.
+Stack data is valid until the function finishes.
+Each firm-graph has an associated type called frame-type.
+This is a struct-type which contains entities for data on the stack.
+
+Entities can be added to the frame-type.
+However calculation of the final entity offsets is left to libfirm.
+Hence you should not layout this type or set its size.
+
+Loops
+-----
+
+TODO
+
+Endless loops
+-------------
+
+Endless loops are a tricky case, since they don't reach the end-block (or return node) so noone is using the data produced by them.
+However the memory changes and control flow changes still need to be present (it's an endless loop and you can actually experience the things that happened before the loop).
+So the correct thing when creating loops or label blocks that could potentially form a loop is using keep_alive on querying the state at least once:
+
+[source,C]
+keep_alive(potential_endless_loop_block);
+get_store(); /* force construction of memory Phi */

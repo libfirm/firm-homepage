@@ -4,18 +4,18 @@ body {
 	color: black;
 }
 
-div.document {
+div.layout-document {
 	width: 40em;
 	float: right;
 }
 
-div.sidebar {
+div.layout-sidebar {
 	width: 10em;
 	float: left;
 	font-size: .9em;
 }
 
-div.sidebar h3 {
+div.layout-sidebar h3 {
 	font-weight: normal;
 	text-transform: uppercase;
 	font-size: 130%;
@@ -33,9 +33,10 @@ h1 {
 	margin-bottom: .8em;
 }
 
-div.document pre {
+div.layout-document pre {
 	color: black;
 	padding: 1em;
+	margin: 0;
 	line-height: 1.1em;
 	tab-size: 4;
 	overflow-x: auto;
@@ -43,6 +44,28 @@ div.document pre {
 
 span.algo {
 	font-variant: small-caps;
+}
+
+td p,
+li p {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+div.listingblock,
+div.imageblock,
+div.tableblock {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+div.title {
+	margin-top: 1em;
+	margin-bottom: 0.33em;
+}
+
+div.title + * {
+	margin-top: 0px;
 }
 
 /** COLORS **/
@@ -56,21 +79,21 @@ h1, h2, h3, h4, h5, h6 {
 	color: #410;
 }
 
-div.footer,
-div.sidebar li a {
+div.layout-footer,
+div.layout-sidebar li a {
 	background-color: #dcb;
 }
-div.sidebar li a:hover {
+div.layout-sidebar li a:hover {
 	color: #fff;
 	background-color: #410;
 }
 
-div.document pre {
+div.layout-document pre {
 	border: 1px dashed #410;
 	background-color: #eee;
 }
 
-div.content .thumb {
+div.layout-content .thumb {
 	border: 1px solid #410;
 	border-width: 1px 0;
 	padding: 2px 0;
@@ -92,67 +115,59 @@ pre, code {
 
 /** TEXT **/
 
-div.sidebar a {
+div.layout-sidebar a {
 	text-decoration: none;
 }
 
-div.content .thumb,
-div.content #toc,
-div.footer span { font-size: 0.9em; }
+div.layout-content .thumb,
+div.layout-footer span { font-size: 0.9em; }
 
 /** SPACING **/
 
-div.header,
-div.footer,
-div.content {
+div.layout-header,
+div.layout-footer,
+div.layout-content {
 	margin-left: auto;
 	margin-right: auto;
 }
 
-div.header {
+div.layout-header {
 	width: 40em;
 	padding-left: 10em;
 }
 
-div.content { width: 50em; }
+div.layout-content { width: 50em; }
 
-div.document { position: relative; }
+div.layout-document { position: relative; }
 
-div.content #toc {
-	position: absolute;
-	top: 0;
-	left: 50em;
-	width: 20em;
-}
-
-div.content #toc ul,
-div.content #toc ol {
-	padding-left: 0;
-}
-div.content #toc li li {
-	padding-left: 1em;
-}
-
-div.content #toc li,
-div.sidebar ul {
+div.layout-sidebar ul {
 	list-style-type: none;
 	margin-left: 0px;
 	padding-left: 0px;
 }
 
-div.sidebar li a {
+div.layout-sidebar li a {
 	display: block;
 	margin: 2px 0;
 	padding: 1px 4px;
 	border-radius: 0 5px;
 }
 
-div.footer { width: 48em; margin-top: 2em; padding: 1em 1em; }
+div.layout-toc ul {
+	list-style-type: none;
+	margin-left: 0px;
+	padding-left: 0px;
+}
+div.layout-toc ul ul {
+	padding-left: 1em;
+}
+
+div.layout-footer { width: 48em; margin-top: 2em; padding: 1em 1em; }
 
 .clear,
-div.footer { clear: both; }
+div.layout-footer { clear: both; }
 
-div.footer span { display: inline; }
+div.layout-footer span { display: inline; }
 
 /** GIMMICKS **/
 
@@ -162,7 +177,7 @@ a.external {
 	background: url(externallink.png) no-repeat right center;
 }
 
-div.figure {
+div.imageblock {
 	text-align: center;
 }
 
@@ -174,24 +189,24 @@ div.figure {
 		margin: 0 auto;
 	}
 
-	.content {
+	.layout-content {
 		overflow: hidden;
 	}
 
-	.document {
+	.layout-document {
 		margin: 1em;
 	}
 
-	div.header,
-	div.sidebar,
-	div.content,
-	div.document,
-	div.footer {
+	div.layout-header,
+	div.layout-sidebar,
+	div.layout-content,
+	div.layout-document,
+	div.layout-footer {
 		float: none;
 		width: auto;
 	}
 
-	div.header {
+	div.layout-header {
 		padding: 2em 1em;
 		text-align: center;
 	}
@@ -201,34 +216,29 @@ div.figure {
 		height: auto;
 	}
 
-	div.sidebar {
+	div.layout-sidebar {
 		padding: 1em;
 		margin: -.1em -.25em;
 	}
 
-	div.sidebar ul {
+	div.layout-sidebar ul {
 		margin: 0;
 		display: flex;
 		flex-wrap: wrap;
 	}
 
-	div.sidebar li {
+	div.layout-sidebar li {
 		display: inline-block;
 		flex: 1 0 auto;
 		margin: .1em .25em;
 	}
-	div.sidebar li a {
+	div.layout-sidebar li a {
 		display: block;
 		padding: .25em .5em;
 		text-align: center;
 	}
-	div.sidebar .external li a {
+	div.layout-sidebar .external li a {
 		padding-right: 1em;
 		background-position: 98% 50%;
-	}
-
-	div.content #toc {
-		position: static;
-		width: auto;
 	}
 }

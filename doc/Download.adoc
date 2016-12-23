@@ -1,0 +1,48 @@
+Download
+========
+
+:language: bash
+
+You want to try out libFirm?
+libFirm itself is just a library, so you probably want our C frontend `cparser` as well.
+
+Git
+---
+
+Check it out with git:
+
+[source]
+$ git clone --recursive http://pp.ipd.kit.edu/git/cparser.git
+
+This will download cparser and recursively the Firm library.
+
+Now build everything. You need a C compiler, GNU Make, Perl, and Python.
+
+[source]
+$ cd cparser
+$ make
+
+Now you should have a working binary.
+
+[source]
+$ build/debug/cparser --version
+
+Usage
+-----
+
+Our compiler tries to be a drop in replacement for GCC, so it supports the same arguments.
+Make it accesible through your PATH environment variable (we tend to create a symlink of 'build/debug/cparser' into '$HOME/.local/bin' here which is in our PATH).
+
+Try it on some C99 code:
+
+.Compile a single file test.c
+[source]
+$ cparser -Wall -O3 test.c
+
+.Using cparser in a Makefile based project
+[source]
+CC=cparser make
+
+Note that on 64-bit systems, you have to additionally pass `-m32` because `cparser` generates 32-bit code by default.
+
+If you find bugs, please report them in our http://pp.ipd.kit.edu/~firm/bugs/[issue tracker].

@@ -1,1 +1,8 @@
-- Rework what information should be shown on the left navigation menu
+asciidoc transition:
+- [WARNING] blocks do not show a warning icon...
+- The Table of Contents (":toc:" in longer articles) could be styled better
+- Change node docu generator to produce asciidoc?
+
+General TODO:
+- Link the Zen page?
+- Review git links: some of them should point to github now.

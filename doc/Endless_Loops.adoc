@@ -1,0 +1,45 @@
+Endless Loops
+=============
+
+The Problem
+-----------
+
+(Potentially) endless loops are tricky to get right in a graph based representation.
+They pose two main problems:
+
+* Endless loops may not have any control flow leading to the End node.
+  Worse in a dependency graph such loops are not connected with the End node and thus invisibile.
+* Endless loops are observable behaviour.
+  Even if they don't contain any memory operations themselves, they must use the memory leading into the loop and produce a new memory value.
+  Failing to do that may lead to memory operations before the loop getting dropped or moved across the loop which is invalid for endless loops.
+
+Keep-alive-edges
+----------------
+
+Our current solution to these problems, is to introduce a special edge class called keep-alive edges.
+Keep-alive edges are inputs of the End node.
+They are unusual in that they don't necessarily respect the SSA dominance property (the def may not dominate the use at the End node).
+
+In a correct graph any potentially endless loop needs:
+
+* At least 1 block in the loop must be referenced by a keep-alive-edge
+* There must be at least 1 Phi node with memory mode which is referenced by a keep-alive-edge
+
+The keep alive edges lead to the endless loop still being connected with the rest of the graph, the memory Phi node ensures that the loop uses and produces memory.
+
+Frontends
+---------
+
+Dealing with potentially endless loops unfortunately requires special care by frontends.
+For any loop where termination is not ensured the frontend has to:
+
+* Call `keep_alive()` with 1 block of the loop
+* Call `get_store()` at least once to force a PhiM to be created
+
+Correct Optimization
+--------------------
+
+Optimizations in firm should not be affected much. But they have to ensure that:
+		
+* You must not remove memory Phi nodes with at least 1 self reference to ensure that the loops keep using/producing memory.
+* Phi and Block nodes can have the End node in their users list which may be surprising.

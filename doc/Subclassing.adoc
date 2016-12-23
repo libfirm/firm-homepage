@@ -1,0 +1,108 @@
+Subclassing
+===========
+
+:language: C
+
+Subclassing
+-----------
+
+You can do object-oriented programming easily in C.
+In practice switches are often easier to handle than complicated visitor patterns...
+
+Modeling the Datastructures
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following pattern allows to factor out common fields of a set of structures, to handle some functionality with common code.
+This is especially usefull when building graph/tree like structures.
+
+Example of an simple expression tree:
+
+[source]
+----
+typedef enum {
+	EXPR_ADD,
+	EXPR_NEG
+} expression_kind_t;
+
+typedef union expression_t expression_t;
+
+typedef struct {
+	expression_kind_t  kind;
+	type_t            *type;
+} expression_base_t;
+
+typedef struct {
+	expression_base_t  base;
+	expression_t      *left;
+	expression_t      *right;
+} add_t;
+
+typedef struct {
+	expression_base_t  base;
+	expression_t      *op;
+} negate_t;
+
+union expression_t {
+	expression_kind_t kind;
+	expression_base_t base;
+	add_t             add;
+	neg_t             neg;
+};
+----
+
+This models `add_t` and `negate_t` as subclasses of `expression_base_t`.
+
+Typical Usage
+~~~~~~~~~~~~~
+
+The typical usage patterns presented here try to be type-safe as far as that is practical with C.
+They also make sure to always switch over the expression_kind enum without a default case so that when you extend the hierarchy with new subclasses you get compiler warnings and panics at runtime if you forgot to handle the new classes in some functions.
+
+.Allocation
+[source]
+----
+size_t get_size(expression_kind_t kind)
+{
+	switch (kind) {
+	case EXPR_ADD: return sizeof(add_t);
+	case EXPR_NEG: return sizeof(neg_t);
+	}
+	panic("invalid expression kind");
+}
+
+expression_t *allocate_expression(expression_kind_t kind)
+{
+	size_t size = get_size(kind);
+	expression_t *result = xmalloc(size);
+	result->kind = kind;
+	return result;
+}
+----
+
+.Initialisation
+[source]
+expression_t *add = allocate_expression(EXPR_ADD);
+add->add.left = left_expr;
+add->add.right = right_expr;
+
+.Branching based on expression type
+[source]
+----
+static void print_add(const add_t *add) { /*...*/ }
+static void print_neg(const neg_t *neg)
+{
+	/* ... */
+	print_type(neg->base.type);
+	/* ... */
+	print_expression(neg->op);
+	/* ... */
+}
+void print_expression(const expression_t *expr)
+{
+	switch (expr->kind) {
+	case EXPR_ADD: print_add(&expr->add); return;
+	case EXPR_NEG: print_neg(&expr->neg); return;
+	}
+	panic("invalid expression");
+}
+----

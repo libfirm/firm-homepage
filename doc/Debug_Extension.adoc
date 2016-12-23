@@ -1,0 +1,86 @@
+Debug Extension
+===============
+:toc:
+
+Commands
+--------
+
+[options="header,footer",cols="1,2"]
+[frame="topbot",grid="none"]
+|=======================
+|Command|
+|`init` | break after initialization
+|`create nr` | break if node nr was created
+|`replace nr` | break if node nr is replaced by another node
+|`lower nr` | break before node nr is lowered
+|`remirg nr/name` | break if the irg of nr or entity name is deleted
+|`newent nr/name` | break if the entity nr or name was created
+|`newtype nr/name` | break if the type nr or name was created
+|`bp` | show all breakpoints
+|`enable nr` | enable breakpoint nr
+|`disable nr` | disable breakpoint nr
+|`showtype nr/name` | show content of type nr or name
+|`showent nr/name` | show content of entity nr or name
+|`setmask name msk` | sets the debug module to mask msk
+|`setlvl name lvl` | sets the debug module name to level lvl
+|`setoutfile name file` | redirects debug output of module name to file
+|`irgname name` | prints address and graph number of a method given by its name
+|`irgldname name` | prints address and graph number of a method given by its ldname
+|`help` | list all commands
+|`dumpfilter name` |only dump graphs containing the given name
+|=======================
+
+Usage
+-----
+
+libFirm contains a builtin debug extension helping set breakpoints and inspecting data.
+
+Environment Variable
+~~~~~~~~~~~~~~~~~~~~
+
+When firm starts up the environment variable FIRMDBG is interpreted as debug commands.
+Examples:
+
+.Break when node number 123 is created
+[source,bash]
+$ FIRMDBG="create 123" my_firm_compiler
+
+.Enable full debug logging for the firm.be.prefalloc module
+[source,bash]
+$ FIRMDBG="setmask firm.be.prefalloc -1" my_firm_compiler
+
+Inside a debugger
+~~~~~~~~~~~~~~~~~
+
+The debug extension is accessed using the builtin `firm_debug` function.
+
+In gdb, issue a call
+
+ call firm_debug(".help")
+
+In the Visual Studio Debugger, simply place a call into the watch window.
+
+Debug Functions
+---------------
+
+Further, the following functions/expression might be useful while debugging
+
+[options="header,footer",cols="1,2"]
+[frame="topbot",grid="none"]
+|=======================
+|Function|
+|`current_ir_graph` | the current graph, set by most libFirm functions
+|`dump_ir_block_graph(irg, suffix)` | dumps graph irg
+|`dump_ir_block_graph_sched(irg, suffix)` | dumps graph irg
+|=======================
+
+Usage in gdb macros
+~~~~~~~~~~~~~~~~~~~
+
+You can predefine gdb macros for common constructs like displaying an `ir_node*` or dumping the current graph for opening it in ycomp.
+The following is a good idea:
+
+[source,bash]
+----
+include::gdbinit[]
+----

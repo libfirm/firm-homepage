@@ -1,0 +1,30 @@
+yComp - VCG Viewer and Compiler Graph Visualization Tool
+========================================================
+
+yComp is a visualization tool for program dependency graphs in VCG format.
+
+Features
+--------
+
+* Fully automatic layouting of graphs, producing high quality output
+* Easy to use GUI supporting panning, zooming and keyboard shortcuts for fast navigation
+* Support for exporting graphs as SVG
+* Support for exporting graphs as PGF/TikZ for simple integration into LaTeX documents
+
+Download
+--------
+
+You can download yComp-1.3.19 http://pp.ipd.kit.edu/firm/download/yComp-1.3.19.zip[here].
+A Java Runtime Environment (version 5 or higher) is needed to run yComp.
+
+License
+-------
+
+This software is based on the yFiles library.
+
+yWorks GmbH granted an academic license for „yFiles“ to IPD Goos: An academic license restricts the use of the software (yComp) to non-commercial purposes (research, teaching, projects, courses and application development).
+
+Screenshot
+----------
+
+image::images/ycomp_screenshot.png[width="100%"]

@@ -1,0 +1,63 @@
+Unreachable Code
+================
+:toc:
+
+What is unreachable code
+------------------------
+
+Unreachable code is code which cannot be reached (by control-flow) from the beginning of the function.
+It will consequently never be executed and can be removed.
+(Note that unreachable code is dead code because removing it will not change program semantics, but you can also have dead code which is reachable.)
+
+By definition the end block is always reachable.
+Optimizations that change control flow are responsible for inserting keep edges accordingly.
+
+Detection
+---------
+
+We can detect unreachable code in several ways:
+
+Conservatively
+~~~~~~~~~~~~~~
+
+A block without any inputs is obviously dead. When removing unreachable code, this usually makes other blocks lose their inputs and therefore makes them dead, too.
+This property will, however, miss unreachable code that contains loops.
+We can easily express this conservative rule as a local optimization.
+
+Marking reachable blocks
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is best done using an optimistic dataflow analysis:
+If a block has at least one reachable predecessor then it is reachable.
+If you iterate this until the fixpoint then you have caught all reachable blocks. All other blocks are unreachable.
+This should catch all cases of unreachable code.
+This style is one of the things the dataflow analysis in the "combo" phase calculates.
+
+The principle of marking all reaching blocks also happens implicitly when we calculate the dominance relation.
+So you can identify unreachable blocks in firm by them having a dominance_depth of -1.
+
+Pruning
+-------
+
+Removing unreachable code means removing a block and all the nodes in it.
+This, however, means that we have to remove inputs from blocks.
+Removing inputs from blocks is only possible if we remove the same input from all Phi nodes in a block at the exact same time!
+As this additionally requires to know all Phi nodes of a block, we use a two-phase approach:
+
+The function `remove_unreachable_code()` uses dominance information to find unreachable code and replaces all unreachable blocks by a special node called _Bad_.
+Nodes within unreachable blocks are also replaced by Bad.
+So in effect all unreachable code is replaced by Bad.
+Afterwards, only Blocks and Phi nodes have Bad as input values.
+
+The function `remove_bads()` removes Bad inputs by updating the block and all contained Phi nodes at once.
+
+Caveats
+-------
+
+libFirm has the invariant that Bad nodes should appear only as operands of blocks or Phi nodes.
+This invariant can be violated during an optimization phase but must hold afterwards.
+
+Dominance is not defined for unreachable code.
+So the SSA-property that a definition dominates its uses does not really apply.
+It is unclear if this actually causes problems.
+So far it is only a special case in the verifier.

@@ -1,3 +1,0 @@
-{%- macro node(name) -%}
-	<a href="Nodes_latest#{{name}}"><tt>{{name}}</tt></a>
-{%- endmacro -%}

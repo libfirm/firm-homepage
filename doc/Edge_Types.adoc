@@ -1,0 +1,78 @@
+Edge Types
+==========
+:toc:
+
+People, who know intermediate representations from text books,
+are often confused because Firm shows edges in the wrong direction.
+Instead of data flow, Firm provides data dependencies,
+which is usually more convenient in practice.
+So, "forward" means from the End to the Start node.
+
+Forward Edges
+-------------
+
+Data Dependencies (black)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+These are the most common edges.
+An operation is connected with a data dependency to its operands.
+
+Reversed Control Flow Edges (red)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Reversed, these edges form (sort of) a control flow graph.
+However, these edges go to the operation (not the block),
+which is used to jump to the source block.
+
+These edges are not control dependencies!
+
+Special Case: Back Edges
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+A reversed control flow edge, where the block of the target node dominates (or is) the source block.
+
+Do not confuse back edges with reversed edges!
+
+Memory Dependencies (blue)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Memory dependencies represent a special form of data dependency,
+where the value is the memory.
+In contrast to other SSA values, memory cannot be duplicated.
+Intuitively, a store operation consumes the whole memory state
+and produces a new state.
+
+Keeps (violet)
+~~~~~~~~~~~~~~
+
+If code is dead, but link:Unreachable_Code[reachable], e.g. infinite loops,
+the keep edges are Firm's hack to "keep" the code,
+because they provide a path from the End node.
+
+Other Dependencies (green)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Additional dependencies with no special semantics.
+
+
+
+Reverse Edges
+-------------
+
+Sometimes it is necessary to walk a Firm graph in data _flow_ order.
+So libFirm provides the following mechanisms.
+
+Outs
+~~~~
+
+Outs are the reversed form of the dependencies above.
+However, any change to the graph makes this edges inconsistent,
+but the corresponding flag is not set implicitly.
+
+Out Edges
+~~~~~~~~~
+
+These are like outs, but are updated automatically.
+These automatic updates can be switched on and off (edges_activate, edges_deactivate).
+However, keep in mind that this means that dead code does not disappear implicitly,
+because it is still referenced by out edges.

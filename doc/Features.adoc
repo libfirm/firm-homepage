@@ -1,0 +1,61 @@
+Features
+========
+
+About
+-----
+
+* Works exclusively on a graph-based SSA representation ("sea of nodes") until emission of assembly code.
+* Written in portable C99: Known to compile with gcc, clang and icc on Linux, FreeBSD, Cygwin.
+* Includes doxygen documentation
+
+Analyses
+--------
+
+* Dominance
+* Loop Tree
+* Execution frequency (estimated, profiling with instrumentation)
+* Control Dependencies
+* Inter-procedural Call Graph
+* Def-Use
+* Alias Analysis
+
+Optimizations
+-------------
+
+* Dead Code Elimination (_happens implicitly_)
+* Constant Folding (_happens on the fly_)
+* Local Common Subexpression Elimination (_happens on the fly_)
+* Arithmetic Identities (_happens on the fly_)
+* Unreachable Code Elimination
+* Global Common Subexpression Elimination
+* Code Placement
+* Operator Strength Reduction
+* Scalar Replacement
+* Load/Store Optimisation
+* Control Flow Optimisations
+* If-conversion
+* Jump Threading
+* Reassociation
+* Tail Recursion Elimination
+* Inlining
+* Procedure Cloning
+
+Code Generation
+---------------
+
+* Mature code generation for x86 (32-bit) with support for x87 and SSE2 floating point
+* Mature code generation for SPARC
+* Code generation for x86-64
+* Experimental code generation for ARM
+* Novel SSA based register allocator
+* Several spilling algorithms
+* Several copy coalescing algorithms
+* Algorithms for instruction and basic block scheduling
+* ABI handling helpers
+
+Development Support
+-------------------
+
+* Extensive checkers
+* Builtin debugger: breakpoints on node creation/entity creation, graph dumping, visual studio debug extension
+* Lowering of intrinsics, double word arithmetics, bitfields

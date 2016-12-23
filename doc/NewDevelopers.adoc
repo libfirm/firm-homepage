@@ -1,0 +1,23 @@
+New Developers
+==============
+
+This site collects good advice to novice firm developers. So if you're new to firm and want to contribute please read the following points carefully.
+
+Coding Conventions
+------------------
+
+Please respect the link:Coding_Conventions[Coding Conventions]
+
+Committing
+----------
+
+If you're a student your probably have full access to the repository. Nonetheless consider the following points:
+
+* Don't even think about commiting if your code doesn't compile
+* Grab the testsuite and see if your changes broke any testcases (note that there are usually some testcases broken anyway, but your code mustn't increase the number of broken testcases)
+* And if this is your first commit (to the firm repository): *Show us your code and let us do a code review before you commit!*
+
+Debugging
+---------
+
+Make your life a little easier and use the link:Debug_Extension[Debug Extension]. Make sure you grab the .gdbinit file from that site.

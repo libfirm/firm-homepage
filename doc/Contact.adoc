@@ -1,0 +1,9 @@
+Contact
+=======
+
+Probably the best approach is to contact the developers directly at
+mailto:firm@ipd.info.uni-karlsruhe.de[].
+
+We also have a http://pp.ipd.kit.edu/~firm/bugs[bug tracker].
+
+There is also the #firm channel on freenode.

@@ -1,0 +1,28 @@
+Projects using Firm
+===================
+
+Frontends
+---------
+
+* http://github.com/MatzeB/cparser/[CParser]: GCC-compatible C frontend with full C99 support
+* http://pp.ipd.kit.edu/git/X10i/[X10i]: X10 native code compiler (for http://www.invasic.de[invasic] architectures)
+* https://github.com/libfirm/bytecode2firm[bytecode2firm]: Java bytecode frontend
+* http://github.com/MatzeB/fluffy[Fluffy]: Frontend for the fluffy language
+* https://github.com/libfirm/firm-bf[brainfuck]: Brainfuck frontend (and a good tutorial)
+
+Tools
+-----
+
+* link:yComp[yComp]: Visualization tool for intermediate representation graphs
+* https://github.com/libfirm/sisyphus[Sisyphus]: A generic regression tester aimed at compiler tests
+
+Libraries
+---------
+
+* http://github.com/MatzeB/jFirm[jFirm]: Java bindings for libFirm
+* http://github.com/MatzeB/liboo/[libOO]: Support library for dealing with object-oriented constructs
+
+Testing
+-------
+	
+* http://pp.ipd.kit.edu/git/firm-testsuite[firm-testsuite]: C compiler and Firm optimization testsuite

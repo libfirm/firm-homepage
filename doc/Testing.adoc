@@ -1,0 +1,29 @@
+Testing
+=======
+
+Testsuite
+---------
+
+We have a repository with lots of small test programs along with a testing driver script in:
+
+[source,bash]
+$ git clone http://pp.ipd.kit.edu/git/firm-testsuite.git
+
+* http://pp.ipd.kit.edu/git/firm-testsuite/[]
+
+Buildbot
+--------
+
+We also started using buildbot for automatically running tests on pushs.
+You can find it here:
+
+* http://buildbot.info.uni-karlsruhe.de/[]
+
+If you have access to the firm account then you can edit the config like this:
+
+[source,bash]
+$ ssh firm@i44sun3
+$ cd buildbot_config
+(edit master.cfg)
+$ git commit -m "did some changes on the master config" master.cfg
+$ ./install_master_config.sh

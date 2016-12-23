@@ -1,0 +1,14 @@
+The Zen of libFirm
+==================
+
+Merging Blocks
+--------------
+
+The student knocked on the door of the master.
+
+"Myeah", the master greeted him.
+
+"Master, i know to use *exchange* to replace a node with another one,
+but how do i move all the nodes in a block into another block?"
+
+The master replied "*exchange*" and the student became enlightened.

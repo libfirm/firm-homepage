@@ -1,0 +1,32 @@
+Object Orientation
+==================
+
+Basics
+------
+
+Many modern languages use object-oriented constructs. These includes:
+
+* compound-datastructures with associated methods (class types)
+* inheritance hierarchies for class types
+* dynamic-dispatch when calling methods in an class hierarchy
+* multiple-inheritance, in the form of interfaces or "true" C++-style multiple inheritance
+
+The following 2 are also very common in OO-languages though are orthogonal concepts.
+
+* runtime-type information (introspection of object types, which enable dyanmic casting or reflection)
+* throwing exceptions (these in itself are not an OO-concept) and catching exceptions based on their runtime type
+* Garbage Collection
+
+This article attempts to describe how to model some of these aspects in firm
+
+Implement them as a library
+---------------------------
+
+libFirm at its core is concerned with low-level code. object-orientation is consider as a high-level feature which will be lowered to low-level code. Bases on this definition these features should not be part of libfirms core.
+Instead we attempt to provide them as an add-on library called liboo.
+
+Note though that we should keep libfirms core open for extensions of this kind this means:
+
+* Creating new nodes
+* Registering optimization rules for these new nodes
+* Support creationg of new types/entities? (not possible currently)
