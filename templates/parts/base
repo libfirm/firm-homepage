@@ -7,7 +7,7 @@
 		<title>{%- block title -%}libFirm{%- endblock -%}</title>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 		<link rel="stylesheet" type="text/css" href="pygments.css"/>
-		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+		<link rel="icon" type="image/png" href="logo-simple.png"/>
 		{%- block extrahead -%}
 		{%- endblock %}
 	</head>
