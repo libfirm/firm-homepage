@@ -16,7 +16,6 @@
 <li class="toclevel-1 tocsection-5"><a href="#Debug_Functions"><span class="tocnumber">3</span> <span class="toctext">Debug Functions</span></a>
 <ul>
 <li class="toclevel-2 tocsection-6"><a href="#Usage_in_gdb_macros"><span class="tocnumber">3.1</span> <span class="toctext">Usage in gdb macros</span></a></li>
-<li class="toclevel-2 tocsection-7"><a href="#Installation_for_the_FirmEvaluator_DLL_for_DevStudio.2FVisual_Studio"><span class="tocnumber">3.2</span> <span class="toctext">Installation for the FirmEvaluator DLL for DevStudio/Visual Studio</span></a></li>
 </ul>
 </li>
 </ul>
@@ -209,76 +208,6 @@ end
 define cptype
 call print_type($arg0), (void)putchar('\n')
 end
-</pre>
-<h2><span class="mw-headline" id="Installation_for_the_FirmEvaluator_DLL_for_DevStudio.2FVisual_Studio"> Installation for the FirmEvaluator DLL for DevStudio/Visual Studio </span></h2>
-<p>The FirmEvaluator shows complex <span class="algo">Firm</span> data structures like nodes or bitsets directly in the Visula Studio Debuggers.
-</p><p><a href="File:FirmEvaluator.gif" class="image"><img alt="FirmEvaluator.gif" src="images/FirmEvaluator.gif" width="380" height="80" /></a>
-</p><p>Copy the firmEvaluator.dll to an appropriate place.
-</p><p>VC6: &lt;InstallRoot&gt;\Common\MSDev98\Bin\IDE
-VS2003/VS2005: &lt;Visual Studio folder&gt;\Common7\Packages\Debugger
-</p><p>Open the file AutoExp.dat in
-</p><p>VC6: &lt;Visual Studio folder&gt;\Common\MSDev98\Bin
-VS2003/VS2005: &lt;Visual Studio folder&gt;\Common7\Packages\Debugger
-</p><p>Add the following to the [AutoExpand] section:
-</p>
-<pre>; firm evaluator
-_arch_register_class_t=name=&lt;name,s&gt;
-arch_register_class_t=name=&lt;name,s&gt;
-_arch_register_t=name=&lt;name,s&gt; idx=&lt;index,d&gt;
-arch_register_t=name=&lt;name,s&gt; idx=&lt;index,d&gt;
-
-ir_graph=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_Evaluate)
-ir_node=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_Evaluate)
-ir_op=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_op_Evaluate)
-entity=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_Evaluate)
-ir_entity=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_Evaluate)
-ir_prog=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_Evaluate)
-ir_mode=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_Evaluate)
-ir_type=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_Evaluate)
-tarval=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_Evaluate)
-ir_loop=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_Evaluate)
-_ident=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_ident_Evaluate)
-pset=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_pset_Evaluate)
-set=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_set_Evaluate)
-pmap=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_set_Evaluate)
-eset=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_set_Evaluate)
-_arr_descr=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_arr_Evaluate)
-pdeq=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_pdeq_Evaluate)
-_bitset_t=$ADDIN(&lt;path to dll&gt;firmEvaluator.dll,firm_bitset_Evaluate)
-</pre>
-<p>&lt;path to dll&gt; can be omitted if the DLL is copied to ts default directory.
-</p><p>The FirmEvaluator decodes the following data structions:
-</p>
-<table border="1" cellspacing="0">
-<tr>
-<td>ir_graph  </td>
-<td> IRG:{name} [graph number, number of nodes]
-</td></tr>
-<tr>
-<td>ir_node   </td>
-<td> {Node Op}{mode} [node number:node index]
-</td></tr>
-<tr>
-<td>ir_entity </td>
-<td> ENT:{entity name} [entity number]
-</td></tr>
-<tr>
-<td>ir_type   </td>
-<td> {Type op} {name} [type number]
-</td></tr>
-<tr>
-<td>ir_op     </td>
-<td> operation name
-</td></tr>
-<tr>
-<td>ir_mode   </td>
-<td> mode name
-</td></tr></table>
-<p><br />
-For the EDG Java frontend the following might be interesting:
-</p>
-<pre>; edgjfe
-a_text_buffer=size=&lt;size,u&gt; text=&lt;buffer,s&gt;
 </pre>
 
 {% endblock %}
