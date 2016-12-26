@@ -1,19 +1,23 @@
+#include <assert.h>
+#include <stdbool.h>
 #include <libfirm/firm.h>
-#include <irdump_t.h>
-#include <panic.h>
-#include <util.h>
+#include <libfirm/irdump.h>
+
+#define ARRAY_SIZE(x)  (sizeof(x)/sizeof(x[0]))
+
+static ir_entity *x_entity;
 
 void begin_construction(bool params_ret)
 {
 	ir_type *type_int    = get_type_for_mode(mode_Is);
 	ir_type *method_type;
 	if (params_ret) {
-		method_type = new_type_method(2, 1);
+		method_type = new_type_method(2, 1, false, 0, 0);
 		set_method_res_type(method_type, 0, type_int);
 		set_method_param_type(method_type, 0, type_int);
 		set_method_param_type(method_type, 1, type_int);
 	} else {
-		method_type = new_type_method(0, 0);
+		method_type = new_type_method(0, 0, false, 0, 0);
 	}
 
 	ident     *id     = id_unique("foobar%u");
@@ -26,8 +30,7 @@ void begin_construction(bool params_ret)
 FILE *begin_vcg(const char *filename)
 {
 	FILE *out = fopen(filename, "w");
-	if (out == NULL)
-		panic("couldn't create output");
+	assert(out && "Could not create output file");
 	dump_vcg_header(out, "", NULL, NULL);
 	fputs("create_reference_nodes: no\n", out);
 	ir_graph *irg = get_current_ir_graph();
@@ -38,8 +41,7 @@ FILE *begin_vcg(const char *filename)
 void dump_func(const char *filename)
 {
 	FILE *out = fopen(filename, "w");
-	if (out == NULL)
-		panic("couldn't create output");
+	assert(out && "Could not create output file");
 
 	dump_ir_graph_file(out, get_current_ir_graph());
 
@@ -79,7 +81,7 @@ void simpleadd(void)
 	begin_construction(false);
 	ir_node *five  = new_Const_long(mode_Is, 5);
 	ir_node *three = new_Const_long(mode_Is, 3);
-	ir_node *add   = new_Add(five, three, mode_Is);
+	ir_node *add   = new_Add(five, three);
 
 	FILE *out = begin_vcg("simpleadd.vcg");
 	dump_node_with_preds(out, add);
@@ -92,16 +94,13 @@ void load_mul(void)
 	begin_construction(false);
 
 	ir_node *mem      = get_store();
-	ir_type *type_int = get_type_for_mode(mode_Is);
-	ir_entity *x
-		= new_entity(get_glob_type(), new_id_from_str("x"), type_int);
-	ir_node *addr  = new_Address(x);
+	ir_node *addr  = new_Address(x_entity);
 	ir_node *load  = new_Load(mem, addr, mode_Is, get_unknown_type(), cons_none);
 	ir_node *loadM = new_Proj(load, mode_M, pn_Load_M);
 	ir_node *res   = new_Proj(load, mode_Is, pn_Load_res);
-	ir_node *mul   = new_Mul(res, res, mode_Is);
+	ir_node *mul   = new_Mul(res, res);
 	ir_node *two   = new_Const_long(mode_Is, 2);
-	ir_node *sub   = new_Sub(mul, two, mode_Is);
+	ir_node *sub   = new_Sub(mul, two);
 
 	FILE *out = begin_vcg("load_mul.vcg");
 	dump_placeholder_for(out, mem);
@@ -117,7 +116,7 @@ void two_calls(void)
 	begin_construction(false);
 
 	ir_type *type_int = get_type_for_mode(mode_Is);
-	ir_type *pitype   = new_type_method(1, 0);
+	ir_type *pitype   = new_type_method(1, 0, false, 0, 0);
 	set_method_param_type(pitype, 0, type_int);
 	ir_entity *print_int
 		= new_entity(get_glob_type(), new_id_from_str("print_int"), pitype);
@@ -147,10 +146,9 @@ void member(void)
 	ir_type   *strct    = new_type_struct(new_id_from_str("S"));
 	ir_type   *type_int = get_type_for_mode(mode_Is);
 	ir_entity *z        = new_entity(strct, new_id_from_str("z"), type_int);
-	ir_entity *x        = new_entity(get_glob_type(), new_id_from_str("x"), strct);
 
 	ir_node *mem    = get_store();
-	ir_node *addr   = new_Address(x);
+	ir_node *addr   = new_Address(x_entity);
 	ir_node *member = new_Member(addr, z);
 	ir_node *load   = new_Load(mem, member, mode_Is, get_unknown_type(), cons_none);
 	ir_node *pmem   = new_Proj(load, mode_M, pn_Load_M);
@@ -324,7 +322,7 @@ void loop(void)
 	ir_node *in[]   = { c0, new_Dummy(mode_Is) };
 	ir_node *phi    = new_Phi(ARRAY_SIZE(in), in, mode_Is);
 	ir_node *c1     = new_Const_long(mode_Is, 1);
-	ir_node *add    = new_Add(phi, c1, mode_Is);
+	ir_node *add    = new_Add(phi, c1);
 	ir_node *cmp    = new_Cmp(add, c100, ir_relation_less);
 	ir_node *cond   = new_Cond(cmp);
 	ir_node *ptrue  = new_Proj(cond, mode_X, pn_Cond_true);
@@ -380,7 +378,7 @@ void params(void)
 	ir_node  *params = get_irg_args(irg);
 	ir_node  *param0 = new_Proj(params, mode_Is, 0);
 	ir_node  *param1 = new_Proj(params, mode_Is, 1);
-	ir_node  *add    = new_Add(param0, param1, mode_Is);
+	ir_node  *add    = new_Add(param0, param1);
 	ir_node  *in[]   = { add };
 	ir_node  *mem    = get_store();
 	ir_node  *ret    = new_Return(mem, ARRAY_SIZE(in), in);
@@ -399,6 +397,9 @@ int main(void)
 {
 	ir_init();
 	ir_set_dump_flags(ir_dump_flag_blocks_as_subgraphs);
+
+	ir_type *type_int = get_type_for_mode(mode_Is);
+	x_entity = new_entity(get_glob_type(), new_id_from_str("x"), type_int);
 
 	simpleadd();
 	load_mul();
