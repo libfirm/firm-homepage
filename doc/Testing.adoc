@@ -7,9 +7,9 @@ Testsuite
 We have a repository with lots of small test programs along with a testing driver script in:
 
 [source,bash]
-$ git clone http://pp.ipd.kit.edu/git/firm-testsuite.git
+$ git clone https://github.com/libfirm/firm-testsuite.git
 
-* http://pp.ipd.kit.edu/git/firm-testsuite/[]
+* https://github.com/libfirm/firm-testsuite/[]
 
 Buildbot
 --------
@@ -17,7 +17,7 @@ Buildbot
 We also started using buildbot for automatically running tests on pushs.
 You can find it here:
 
-* http://buildbot.info.uni-karlsruhe.de/[]
+* https://buildbot.info.uni-karlsruhe.de/[]
 
 If you have access to the firm account then you can edit the config like this:
 

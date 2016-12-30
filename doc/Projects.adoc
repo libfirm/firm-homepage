@@ -4,10 +4,10 @@ Projects using Firm
 Frontends
 ---------
 
-* http://github.com/MatzeB/cparser/[CParser]: GCC-compatible C frontend with full C99 support
+* https://github.com/libfirm/cparser/[CParser]: GCC-compatible C frontend with full C99 support
 * http://pp.ipd.kit.edu/git/X10i/[X10i]: X10 native code compiler (for http://www.invasic.de[invasic] architectures)
 * https://github.com/libfirm/bytecode2firm[bytecode2firm]: Java bytecode frontend
-* http://github.com/MatzeB/fluffy[Fluffy]: Frontend for the fluffy language
+* https://github.com/MatzeB/fluffy[Fluffy]: Frontend for the fluffy language
 * https://github.com/libfirm/firm-bf[brainfuck]: Brainfuck frontend (and a good tutorial)
 
 Tools
@@ -19,10 +19,10 @@ Tools
 Libraries
 ---------
 
-* http://github.com/MatzeB/jFirm[jFirm]: Java bindings for libFirm
-* http://github.com/MatzeB/liboo/[libOO]: Support library for dealing with object-oriented constructs
+* https://github.com/libfirm/jFirm[jFirm]: Java bindings for libFirm
+* https://github.com/libfirm/liboo/[libOO]: Support library for dealing with object-oriented constructs
 
 Testing
 -------
 	
-* http://pp.ipd.kit.edu/git/firm-testsuite[firm-testsuite]: C compiler and Firm optimization testsuite
+* https://github.com/libfirm/firm-testsuite[firm-testsuite]: C compiler and Firm optimization testsuite
