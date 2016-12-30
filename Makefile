@@ -2,8 +2,10 @@ builddir ?= build
 srcdir ?= .
 # This hides the noisy commandline outputs. Show them with "make V=1"
 ifneq ($(V),1)
-Q ?= @
+export Q ?= @
 endif
+
+export FIRM_HOME ?= $(abspath ../libfirm)
 
 ASCIIDOC ?= asciidoc
 VPATH = $(srcdir) $(builddir)
@@ -31,12 +33,11 @@ upload:
 clean:
 	@echo 'CLEAN'
 	$(Q)rm -rf $(builddir)/*
-	$(Q)cd vcg-examples && $(MAKE) clean
 
 .PHONY: vcg-examples_subdir
 vcg-examples_subdir:
 	@echo "Entering directory 'vcg-examples'"
-	$(Q)$(MAKE) -C vcg-examples
+	$(Q)$(MAKE) builddir=$(abspath $(builddir)) -C vcg-examples
 	@echo "Leaving directory 'vcg-examples'"
 
 $(builddir)/html_temp/%: doc/%.adoc firm.conf header.html footer.html

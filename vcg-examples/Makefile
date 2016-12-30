@@ -1,38 +1,37 @@
--include config.mak
-
-FIRM_HOME ?= "../../libfirm"
+UNUSED := $(shell mkdir -p $(builddir)/vcgs)
+builddir_vcgs := $(builddir)/vcgs
 
 LINKFLAGS = $(FIRM_HOME)/build/debug/libfirm.a -lm
 CPPFLAGS  = -I$(FIRM_HOME)/include -I$(FIRM_HOME)/build/gen/include/libfirm
 CFLAGS    = -std=c99 -Wall -W
 SOURCES   = makevcgs.c
-OBJECTS   = $(SOURCES:%.c=%.o)
-VCGS      = twocalls.vcg member.vcg load_mul.vcg simpleadd.vcg jump.vcg condjump.vcg phi.vcg loop.vcg start_return.vcg params.vcg
-SVGS      = $(VCGS:%.vcg=../build/website/%.svg)
+OBJECTS   = $(SOURCES:%.c=$(builddir_vcgs)/%.o)
+VCGS      = $(addprefix $(builddir_vcgs)/, twocalls.vcg member.vcg load_mul.vcg simpleadd.vcg jump.vcg condjump.vcg phi.vcg loop.vcg start_return.vcg params.vcg)
+SVGS      = $(VCGS:$(builddir_vcgs)/%.vcg=$(builddir)/website/%.svg)
 YCOMP    ?= ycomp
 
-Q?=@
-
-.PHONY: clean
-
+.SECONDARY:
+.PHONY: all
 all: $(SVGS)
 
-../build/website/%.svg: %.vcg
+$(builddir)/website/%.svg: $(builddir_vcgs)/%.vcg
 	@echo YCOMP $@
 	$(Q)$(YCOMP) --dolayout --export $@ $<
 
-$(VCGS): makevcgs
+MAKEVCGS=$(builddir_vcgs)/makevcgs
+$(VCGS): $(MAKEVCGS)
 	@echo MAKEVCGS $@
-	$(Q)./makevcgs
+	$(Q)cd $(builddir_vcgs) && $(MAKEVCGS)
 
-makevcgs: $(OBJECTS)
+$(MAKEVCGS): $(OBJECTS)
 	@echo LINK $@
 	$(Q)$(CC) $^ $(LINKFLAGS) -o $@
 
-%.o: %.c
+$(builddir_vcgs)/%.o: %.c
 	@echo CC
 	$(Q)$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
 
+.PHONY: clean
 clean:
 	@echo CLEAN
 	$(Q)rm -rf makevcgs $(wildcard *.vcg) $(OBJECTS) $(SVGS)
