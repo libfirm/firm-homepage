@@ -1,0 +1,51 @@
+Firm Node Types
+===============
+:toc:
+:footer-generated: Generated {{time}}
+
+{% for node in nodes %}
+== {{node.name}}
+
+{{node.doc}}
+
+.Inputs
+{% if node.ins or node.arity == "variable" or node.arity == "dynamic" %}
+{% for input in node.ins %}
+* `{{input.name}}` {{input.comment}}
+{% endfor %}
+{% if node.arity == "variable" %}
+* ... additional inputs (oparity_variable)
+{% elif node.arity == "dynamic" %}
+* ... inputs dynamically mananged (oparity_dynamic)
+{% endif %}
+{% else %}
+None
+{% endif %}
+
+{% if node.outs %}
+.Output Tuple
+{% for output in node.outs %}
+* `{{output.name}}` {{output.comment}}
+{% endfor %}
+{% endif %}
+
+{% if node.attrs %}
+.Attributes
+{% for attr in node.attrs %}
+* `{{attr.type}} {{attr.name}}` {{attr.comment}}
+{% endfor %}
+{% endif %}
+
+Flags:
+{% set comma = joiner(", ") -%}
+{% if node.flags.__len__() > 0 -%}
+{% for flag in node.flags -%}
+{{comma()}}link:{{("irop_flag_"+flag) | doxylink()}}[{{flag}}]
+{%- endfor %}
+{% else -%}
+None
+{% endif %}
+
+link:{{node.name|doxygrouplink()}}[API]
+
+{% endfor %}

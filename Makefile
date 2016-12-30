@@ -1,10 +1,12 @@
 builddir ?= build
+srcdir ?= .
 # This hides the noisy commandline outputs. Show them with "make V=1"
 ifneq ($(V),1)
 Q ?= @
 endif
 
 ASCIIDOC ?= asciidoc
+VPATH = $(srcdir) $(builddir)
 
 UNUSED := $(shell mkdir -p $(builddir)/doc $(builddir)/website $(builddir)/html_temp $(builddir)/website/images))
 
@@ -19,7 +21,7 @@ WEBSITE_FILES = $(HTMLFILES:$(builddir)/html_temp/%=$(builddir)/website/%) $(STA
 .SECONDARY:
 
 .PHONY: all
-all: vcg-examples_subdir $(WEBSITE_FILES)
+all: vcg-examples_subdir $(builddir)/website/Nodes $(WEBSITE_FILES)
 
 .PHONY: upload
 upload:
@@ -50,6 +52,16 @@ $(builddir)/website/%: $(builddir)/html_temp/% gentoc.py
 $(builddir)/website/%: static/%
 	@echo 'CP $@'
 	$(Q)cp -p $< $@
+
+.PHONY: firm_make_doc
+firm_make_doc:
+	$(MAKE) -C $(FIRM_HOME) doc
+
+TAGFILE=$(FIRM_HOME)/build/doc/libfirm.tag
+IR_SPEC=$(FIRM_HOME)/scripts/ir_spec.py
+$(builddir)/doc/Nodes.adoc: templates/Nodes.adoc templates/docufilters.py $(TAGFILE) | firm_make_doc
+	@echo 'GEN_IR $@'
+	$(Q)$(FIRM_HOME)/scripts/gen_ir.py -e templates/docufilters.py -Ddoxygen_linkbase=api_latest/ -Ddoxygen_tagfile=$(TAGFILE) $(IR_SPEC) $< > $@
 
 # TODO: Can we autogenerate dependencies?
 $(builddir)/doc/Debug_Extension: doc/gdbinit

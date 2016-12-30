@@ -7,7 +7,7 @@ Documentation
 ** link:api_1.22/[libfirm-1.22]
 ** Older release APIs: link:api_1.20/[1.20], link:api_1.21/[1.21]
 * Firm Node Types:
-** link:api_latest/nodes.html[libfirm git snapshot]
+** link:Nodes[libfirm git snapshot]
 ** link:api_1.22/nodes.html[libfirm-1.22]
 ** Older release APIs: link:api_1.20/nodes.html[1.20], link:api_1.21/nodes.html[1.21]
 * link:GraphSnippets[Firm Graph Examples]
