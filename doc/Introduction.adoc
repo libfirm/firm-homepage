@@ -2,14 +2,6 @@ Introduction
 ============
 :toc:
 
-[WARNING]
-====================
-This article is work in progress. It is incomplete and can contain errors. Help in finishing the article is appreciated.
-====================
-
-Introduction
-------------
-
 libFirm is a C library implementing the Firm low-level intermediate representation.
 Firm is used to represent a computer program in order to analyse and transform it.
 Its main application is compiler construction where http://pp.ipd.kit.edu[we] use it to represent, optimize and transform C and Java programs to native machine code.
