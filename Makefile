@@ -1,3 +1,5 @@
+-include config.mak
+
 builddir ?= build
 srcdir ?= .
 # This hides the noisy commandline outputs. Show them with "make V=1"
