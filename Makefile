@@ -59,6 +59,7 @@ $(builddir)/website/%: static/%
 .PHONY: firm_make_doc
 firm_make_doc:
 	$(MAKE) -C $(FIRM_HOME) doc
+	cp -r $(FIRM_HOME)/build/doc/html $(builddir)/website/api_latest
 
 TAGFILE=$(FIRM_HOME)/build/doc/libfirm.tag
 IR_SPEC=$(FIRM_HOME)/scripts/ir_spec.py
