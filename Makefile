@@ -16,7 +16,7 @@ UNUSED := $(shell mkdir -p $(builddir)/doc $(builddir)/website $(builddir)/html_
 
 ASCIIDOCS := $(wildcard doc/*.adoc)
 
-HTMLFILES = $(ASCIIDOCS:doc/%.adoc=$(builddir)/html_temp/%)
+HTMLFILES = $(ASCIIDOCS:doc/%.adoc=$(builddir)/html_temp/%.html)
 
 STATIC_FILES := $(wildcard static/*) $(wildcard static/images/*)
 
@@ -25,7 +25,7 @@ WEBSITE_FILES = $(HTMLFILES:$(builddir)/html_temp/%=$(builddir)/website/%) $(STA
 .SECONDARY:
 
 .PHONY: all
-all: vcg-examples_subdir $(builddir)/website/Nodes $(WEBSITE_FILES)
+all: vcg-examples_subdir $(builddir)/website/Nodes.html $(WEBSITE_FILES)
 
 .PHONY: upload
 upload:
@@ -42,7 +42,7 @@ vcg-examples_subdir:
 	$(Q)$(MAKE) builddir=$(abspath $(builddir)) -C vcg-examples
 	@echo "Leaving directory 'vcg-examples'"
 
-$(builddir)/html_temp/%: doc/%.adoc firm.conf header.html footer.html
+$(builddir)/html_temp/%.html: doc/%.adoc firm.conf header.html footer.html
 	@echo 'ASCIIDOC $@'
 	$(Q)$(ASCIIDOC) -b xhtml11 -a source-highlighter=pygments -f firm.conf -o $@ $<
 	$(Q)xmllint --noout $@
