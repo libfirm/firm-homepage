@@ -3,3 +3,4 @@
 /vcg-examples/makevcgs.o
 /vcg-examples/makevcgs
 /build
+config.mak
