@@ -25,7 +25,7 @@ WEBSITE_FILES = $(HTMLFILES:$(builddir)/html_temp/%=$(builddir)/website/%) $(STA
 .SECONDARY:
 
 .PHONY: all
-all: vcg-examples_subdir $(builddir)/website/Nodes.html $(WEBSITE_FILES)
+all: vcg-examples_subdir $(builddir)/website/Nodes.html $(WEBSITE_FILES) $(builddir)/website/.git/config
 
 .PHONY: upload
 upload:
@@ -68,3 +68,10 @@ $(builddir)/doc/Nodes.adoc: templates/Nodes.adoc templates/docufilters.py $(TAGF
 
 # TODO: Can we autogenerate dependencies?
 $(builddir)/doc/Debug_Extension: doc/gdbinit
+
+$(builddir)/website/.git/config:
+	$(Q)cd $(builddir)/website && git init &&\
+		git remote add github git@github.com:libfirm/libfirm.github.io.git &&\
+		git fetch github &&\
+		git branch master github/master &&\
+		git read-tree HEAD
