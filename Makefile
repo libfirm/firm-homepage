@@ -29,7 +29,7 @@ all: vcg-examples_subdir $(builddir)/website/Nodes.html $(WEBSITE_FILES) $(build
 
 .PHONY: upload
 upload:
-	cp -rvpu output/* /ben/www/firm
+	cp -rvpu $(builddir)/website/* /ben/www/firm/
 
 .PHONY: clean
 clean:
