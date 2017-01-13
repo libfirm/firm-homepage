@@ -13,7 +13,7 @@ Frontends
 Tools
 -----
 
-* link:yComp[yComp]: Visualization tool for intermediate representation graphs
+* link:yComp.html[yComp]: Visualization tool for intermediate representation graphs
 * https://github.com/libfirm/sisyphus[Sisyphus]: A generic regression tester aimed at compiler tests
 
 Libraries

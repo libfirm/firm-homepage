@@ -133,7 +133,7 @@ Tips & Tricks
 -------------
 
 
-* link:Subclassing[]
+* link:Subclassing.html[]
 * Allocate memory with the macros from http://pp.ipd.kit.edu/git/libfirm/tree/include/libfirm/adt/xmalloc.h[xmalloc.h] to be more robust against type errors.
 * Use the const modifier freely, even for non-pointers. It makes program understanding easier if you can immediately see that a variable is only assigned once.
 

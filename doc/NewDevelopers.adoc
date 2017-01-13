@@ -6,7 +6,7 @@ This site collects good advice to novice firm developers. So if you're new to fi
 Coding Conventions
 ------------------
 
-Please respect the link:Coding_Conventions[Coding Conventions]
+Please respect the link:Coding_Conventions.html[Coding Conventions]
 
 Committing
 ----------
@@ -20,4 +20,4 @@ If you're a student your probably have full access to the repository. Nonetheles
 Debugging
 ---------
 
-Make your life a little easier and use the link:Debug_Extension[Debug Extension]. Make sure you grab the .gdbinit file from that site.
+Make your life a little easier and use the link:Debug_Extension.html[Debug Extension]. Make sure you grab the .gdbinit file from that site.

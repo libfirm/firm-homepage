@@ -45,7 +45,7 @@ and produces a new state.
 Keeps (violet)
 ~~~~~~~~~~~~~~
 
-If code is dead, but link:Unreachable_Code[reachable], e.g. infinite loops,
+If code is dead, but link:Unreachable_Code.html[reachable], e.g. infinite loops,
 the keep edges are Firm's hack to "keep" the code,
 because they provide a path from the End node.
 
