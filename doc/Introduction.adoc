@@ -12,7 +12,7 @@ The most important features of Firm are that it is
 * completely graph based which means that there are no instruction lists or triple code, only data dependence and control flow graphs.
 * completely http://en.wikipedia.org/wiki/Static_single_assignment_form[SSA] based which means that the code of the program is always in SSA form.
 
-A complete list of link:Features.html[] is also available.
+A complete list of link:Features.html[Features] is also available.
 
 In the following, we will try to give you an idea about how programs are presented in Firm.
 
@@ -44,7 +44,7 @@ Hence, there are nodes which describe
 * data flow operations such as loads, stores, additions, etc.
 
 libFirm has several routines to dump irgs to text files in the VCG format.
-The link:yComp.html[] Tool is very well suited to visualize these graphs.
+The link:yComp.html[yComp] Tool is very well suited to visualize these graphs.
 In the following, we will use these visualizations to present the fundamental concepts of the irgs.
 
 Basic IRG Elements

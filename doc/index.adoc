@@ -13,10 +13,10 @@ Features
 * High-quality register allocation
 * Mature code generation support for x86 (32-bit) and SPARC
 
-For a more complete list of features, see our link:Features.html[] page.
+For a more complete list of features, see our link:Features.html[Features] page.
 
 Interested?
 -----------
 
-If you're interested in trying out libFirm, visit the link:Download.html[] page to get you started. +
+If you're interested in trying out libFirm, visit the link:Download.html[Download] page to get you started. +
 You can also try out a http://kreacher.isla-de-muerta.de/~matze/online_compiler[demo in your browser]!

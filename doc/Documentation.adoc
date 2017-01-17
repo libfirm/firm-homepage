@@ -1,7 +1,7 @@
 Documentation
 =============
 
-* link:Introduction.html[]
+* link:Introduction.html[Introduction]
 * API Documentation:
 ** link:api_latest/[libfirm git snapshot]
 ** link:api_1.22/[libfirm-1.22]
@@ -12,7 +12,7 @@ Documentation
 ** Older release APIs: link:api_1.20/nodes.html[1.20], link:api_1.21/nodes.html[1.21]
 * link:GraphSnippets.html[Firm Graph Examples]
 * link:Debug_Extension.html[Debug Extension]
-* link:Statistics.html[]
+* link:Statistics.html[Statistics]
 * link:Endless_Loops.html[Endless Loops]
 * link:Unreachable_Code.html[Unreachable Code]
 * link:Unknown_and_Undefined.html[Undefined Values and Undefined Behaviour]
