@@ -16,7 +16,7 @@ Documentation
 * link:Endless_Loops.html[Endless Loops]
 * link:Unreachable_Code.html[Unreachable Code]
 * link:Unknown_and_Undefined.html[Undefined Values and Undefined Behaviour]
-* link:Edge_Types[Edge Types]
+* link:Edge_Types.html[Edge Types]
 * http://pp.ipd.kit.edu/firm/tutorial/[Frontend Tutorial]
 * link:Frontends.html[]
 * link:Backends.html[]
