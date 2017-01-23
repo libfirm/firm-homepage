@@ -7,7 +7,10 @@ ifneq ($(V),1)
 export Q ?= @
 endif
 
-export FIRM_HOME ?= $(abspath ../libfirm)
+FIRM_HOME ?= $(abspath ../libfirm)
+export FIRM_HOME
+YCOMP ?= ycomp
+export YCOMP
 
 ASCIIDOC ?= asciidoc
 VPATH = $(srcdir) $(builddir)
