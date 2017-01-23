@@ -1,0 +1,14 @@
+install:
+- apt-get install -qq asciidoc
+- wget http://pp.ipd.kit.edu/firm/download/yComp-1.3.19.zip
+- unzip yComp-1.3.19.zip
+- chmod +x yComp-1.3.19/ycomp
+
+script:
+- git clone https://github.com/libfirm/libfirm.git
+- echo "FIRM_HOME=$(pwd)/libfirm" > config.mak
+- echo "YCOMP=$(pwd)/yComp-1.3.19/ycomp" >> config.mak
+- make -C libfirm
+- make -C libfirm doc
+- make
+# TODO: upload
