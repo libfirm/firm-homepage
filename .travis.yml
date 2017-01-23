@@ -1,5 +1,7 @@
 install:
-- apt-get install -qq asciidoc
+- sudo apt-get -qq update
+- sudo apt-get install -y asciidoc
+- sudo apt-get install -y doxygen
 - wget http://pp.ipd.kit.edu/firm/download/yComp-1.3.19.zip
 - unzip yComp-1.3.19.zip
 - chmod +x yComp-1.3.19/ycomp
