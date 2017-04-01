@@ -9,6 +9,7 @@ Frontends
 * https://github.com/libfirm/bytecode2firm[bytecode2firm]: Java bytecode frontend
 * https://github.com/MatzeB/fluffy[Fluffy]: Frontend for the fluffy language
 * https://github.com/libfirm/firm-bf[brainfuck]: Brainfuck frontend (and a good tutorial)
+* https://github.com/anse1/firmforth[FirmForth]: A just-in-time compiling forth interpreter (also small and comprehensible)
 
 Tools
 -----
