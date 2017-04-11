@@ -22,8 +22,11 @@ They are unusual in that they don't necessarily respect the SSA dominance proper
 
 In a correct graph any potentially endless loop needs:
 
-* At least 1 block in the loop must be referenced by a keep-alive-edge
+* At least 1 block in the loop must be referenced by a keep-alive-edge,
+  because an endless loop may consists of only a block with a jump in it.
+  There might be no PhiM in it.
 * There must be at least 1 Phi node with memory mode which is referenced by a keep-alive-edge
+  The Phi might get garbage collection without users, if not kept alive.
 
 The keep alive edges lead to the endless loop still being connected with the rest of the graph, the memory Phi node ensures that the loop uses and produces memory.
 
