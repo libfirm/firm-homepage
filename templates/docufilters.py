@@ -1,7 +1,7 @@
 """Some jinja filters to support documentation generation. This esp. supports
 the creation of links into doxygen generated documentation."""
 from jinjautil import export_filter
-from jinja2.filters import environmentfilter
+from jinja2.filters import pass_environment
 import xml.etree.ElementTree as ET
 import sys
 
@@ -38,7 +38,7 @@ def get_tagfile(environment):
     return tags
 
 
-@environmentfilter
+@pass_environment
 def doxygrouplink(environment, group):
     tags = get_tagfile(environment)
     compounds = environment.globals['doxygen_compounds']
@@ -52,7 +52,7 @@ def doxygrouplink(environment, group):
     return "%s%s" % (linkbase, anchorfile)
 
 
-@environmentfilter
+@pass_environment
 def doxylink(environment, tag):
     tags = get_tagfile(environment)
     members = environment.globals['doxygen_members']

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # By default asciidoc delegates the generation of a table of contents to docbook
 # or uses some javascript snippet when immediately generating html.
@@ -6,7 +6,7 @@
 # a full docbook toolchain).
 import xml.etree.ElementTree as ET
 import sys
-import cgi
+import html
 
 def close_uls(toc, current_level, new_level):
     if current_level >= 0:
@@ -49,7 +49,7 @@ for e in tree.iter():
         else:
             current_level = close_uls(toc, current_level, level)
         id = e.attrib['id']
-        text = cgi.escape(e.text)
+        text = html.escape(e.text)
         toc.append('    '*current_level +
                    '  <li><a href="#%s">%s</a>' % (id, text))
 close_uls(toc, current_level, -1)
@@ -57,5 +57,5 @@ close_uls(toc, current_level, -1)
 # Print part before ::TOC::, the TOC and the part behind ::TOC::
 sys.stdout.write(inp[0:toc_place])
 for s in toc:
-    sys.stdout.write(s.encode('utf-8'))
+    sys.stdout.write(s)
 sys.stdout.write(inp[toc_place+7:])

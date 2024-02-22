@@ -8,7 +8,7 @@ SOURCES   = makevcgs.c
 OBJECTS   = $(SOURCES:%.c=$(builddir_vcgs)/%.o)
 VCGS      = $(addprefix $(builddir_vcgs)/, twocalls.vcg member.vcg load_mul.vcg simpleadd.vcg jump.vcg condjump.vcg phi.vcg loop.vcg start_return.vcg params.vcg)
 SVGS      = $(VCGS:$(builddir_vcgs)/%.vcg=$(builddir)/website/%.svg)
-YCOMP    ?= ycomp
+YCOMP    ?= $(abspath ../../ycomp-1.3.19/ycomp)
 
 .SECONDARY:
 .PHONY: all

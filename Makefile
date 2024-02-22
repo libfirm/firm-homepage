@@ -7,7 +7,7 @@ ifneq ($(V),1)
 export Q ?= @
 endif
 
-export FIRM_HOME ?= $(abspath ../libfirm)
+export FIRM_HOME ?= $(abspath ../cparser/libfirm)
 
 ASCIIDOC ?= asciidoc
 VPATH = $(srcdir) $(builddir)

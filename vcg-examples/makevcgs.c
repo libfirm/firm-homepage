@@ -396,7 +396,6 @@ void params(void)
 int main(void)
 {
 	ir_init();
-	be_initialize();
 	ir_set_dump_flags(ir_dump_flag_blocks_as_subgraphs);
 
 	ir_type *type_int = get_type_for_mode(mode_Is);
