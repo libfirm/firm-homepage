@@ -18,6 +18,20 @@ Simple Arithmetic with Constants
 
 image::simpleadd.svg[]
 
+. Modes
+* `Is` 32 bit integer signed
+* `Iu` 32 bit integer unsigned
+* `Ls`/`Lu` 64 bit integer signed/unsigned
+* `Hs`/`Hu` 16 bit integer signed/unsigned
+* `Bs`/`Bu` 8 bit integer signed/unsigned
+* `F` ieee754 binary32 float "single precision"
+* `D` ieee754 binary64 float "double precision"
+* `b` boolean
+* `P` Pointer
+* `M` Memory, State
+* `X` Execution
+* `T` Tuple
+
 Load, Arithmetic, Multiple Users
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
