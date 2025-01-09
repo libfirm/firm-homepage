@@ -3,7 +3,5 @@ Development
 
 * link:NewDevelopers.html[Advice for new Developers]
 * link:Coding_Conventions.html[Coding Conventions]
-* http://pp.ipd.kit.edu/~firm/bugs[Bugtracker]
 * link:Debug_Extension.html[Debug Extension]
-* link:Sourcecode_Repositories.html[Sourcecode Repositories]
 * link:Testing.html[Testing]

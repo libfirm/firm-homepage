@@ -4,12 +4,8 @@ Documentation
 * link:Introduction.html[Introduction]
 * API Documentation:
 ** link:api_latest/[libfirm git snapshot]
-** link:api_1.22/[libfirm-1.22]
-** Older release APIs: link:api_1.20/[1.20], link:api_1.21/[1.21]
 * Firm Node Types:
 ** link:Nodes.html[libfirm git snapshot]
-** link:api_1.22/nodes.html[libfirm-1.22]
-** Older release APIs: link:api_1.20/nodes.html[1.20], link:api_1.21/nodes.html[1.21]
 * link:GraphSnippets.html[Firm Graph Examples]
 * link:Debug_Extension.html[Debug Extension]
 * link:Statistics.html[Statistics]
