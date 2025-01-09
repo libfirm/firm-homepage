@@ -27,10 +27,6 @@ WEBSITE_FILES = $(HTMLFILES:$(builddir)/html_temp/%=$(builddir)/website/%) $(STA
 .PHONY: all
 all: vcg-examples_subdir $(builddir)/website/Nodes.html $(WEBSITE_FILES) $(builddir)/website/.git/config
 
-.PHONY: upload
-upload:
-	cp -rvpu $(builddir)/website/* /ben/www/firm/
-
 .PHONY: clean
 clean:
 	@echo 'CLEAN'
@@ -73,7 +69,8 @@ $(builddir)/doc/Debug_Extension: doc/gdbinit
 
 $(builddir)/website/.git/config:
 	$(Q)cd $(builddir)/website && git init &&\
+		git checkout -B master &&\
 		git remote add github git@github.com:libfirm/libfirm.github.io.git &&\
 		git fetch github &&\
 		git branch master github/master &&\
-		git read-tree HEAD
+		git read-tree master
